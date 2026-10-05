@@ -1,5 +1,6 @@
 import {rareEarths,sources} from './data.js';
 import {applications,applicationSourceKeys} from './applications-data.js';
+import {applicationIcon} from './application-icons.js';
 
 export function initApplications(){
  const root=document.querySelector('.applications-explorer');
@@ -7,7 +8,7 @@ export function initApplications(){
  const sourceLink=key=>`<a class="source-link" href="${sources[key].url}" target="_blank" rel="noopener">${key==='reeeduca'?'SGB · elementos e usos':sources[key].name} ↗</a>`;
  let selected='phone';
  $('#application-total').textContent=`${applications.length} APLICAÇÕES PARA EXPLORAR`;
- $('#application-nav').innerHTML=applications.map(a=>`<button type="button" data-tech="${a.id}" aria-pressed="false" aria-controls="application-materials application-title application-sources">${a.name}</button>`).join('');
+ $('#application-nav').innerHTML=applications.map(a=>`<button type="button" data-tech="${a.id}" aria-pressed="false" aria-controls="application-materials application-title application-sources">${applicationIcon(a.id)}<span class="application-label">${a.name}</span></button>`).join('');
  function render(){
   const app=applications.find(a=>a.id===selected);
   root.querySelectorAll('[data-tech]').forEach(button=>{

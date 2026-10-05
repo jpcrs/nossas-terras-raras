@@ -1,4 +1,4 @@
-# Terras Raras — O futuro sob nossos pés
+# Nossas terras raras — O futuro sob nossos pés
 
 Atlas editorial interativo em português. A experiência começa pelo território: projetos e minerais, folhas geológicas publicadas e tipos de depósito. Os detalhes e as fontes aparecem conforme a seleção, com comparações e aplicações tecnológicas em seguida.
 
@@ -21,12 +21,14 @@ Abra http://127.0.0.1:4174. `PORT=4180 npm run dev` usa outra porta. A publicaç
 - **Quanto conhecemos:** 874 polígonos oficiais do inventário SGB, com escalas 1:1.000.000, 1:250.000 e 1:100.000, sempre no recorte completo até 2025. As folhas são selecionadas diretamente no mapa, por clique ou teclado, para consultar a publicação e a fonte. As geometrias ficam recortadas ao Brasil.
 - **Tipos de depósito:** classificação dos projetos e seção conceitual de argilas iônicas ou sistemas de rocha/alteração.
 - **Comparações:** reservas versus produção, com a estimativa histórica de 21 Mt identificada, produção e reservas lado a lado para 12 minerais com pelo menos um valor disponível, seleção pelas células e exportação conjunta em CSV. Perfis sem valores nas duas séries (cobalto, urânio e titânio) não aparecem no seletor; o catálogo completo continua disponível nas fichas de aplicações e no JSON.
-- **Materiais e tecnologias:** um explorador integrado reúne 15 aplicações auditadas em `research/APPLICATIONS-AUDIT-2026.md`. Os 78 cartões mostram apenas terras raras, com fontes do uso selecionado; exemplos históricos, etapas de fabricação e pesquisa ficam identificados. As contagens são recortes documentados, não composições universais. O seletor usa duas linhas com rolagem horizontal no celular e permite setas/Home/End no teclado.
+- **Materiais e tecnologias:** um explorador integrado reúne 15 aplicações auditadas em `research/APPLICATIONS-AUDIT-2026.md`. Os 78 cartões mostram apenas terras raras, com fontes do uso selecionado; exemplos históricos, etapas de fabricação e pesquisa ficam identificados. As contagens são recortes documentados, não composições universais. O seletor combina 15 pictogramas SVG originais com rótulos, em uma grade de cinco colunas no desktop e duas linhas com rolagem horizontal no celular. Mantém seleção por clique e setas/Home/End no teclado.
 
 - **Da mina ao ímã:** perfis D3 de China e Estados Unidos na extração, no refino e na fabricação de ímãs. Seleção por clique ou teclado, escala comum de 0–100% e descrição acessível dos valores. CSV original da IEA (2024) preservado nos dados.
 - **Demanda por terras raras:** capítulo 05, depois da comparação brasileira (04). A projeção de mercado da Adamas Intelligence compara 234 mil t de óxidos de terras raras por ano em 2024 com 607 mil t em 2040: 2,6×, +159% e mais 373 mil t anuais. Usa somente os dois pontos publicados no relatório Songwe Hill de 2026, sem interpolação ou controles de cenários da IEA. O escopo é o mercado agregado de óxidos (TREO); não se afirma uma cobertura individual dos 17 elementos. Indicadores de motores elétricos, eólicas e robótica mantêm unidades e fontes próprias.
 
 ## Estrutura
+
+- `dist/assets/logo.svg`: monograma N em facetas minerais; acompanha o nome Nossas terras raras no cabeçalho e rodapé. `dist/assets/favicon.svg`, `dist/favicon.ico` e `dist/assets/apple-touch-icon.png` compartilham o símbolo em formatos adequados a abas e atalhos.
 
 - `dist/index.html` e `dist/style.css`: estrutura editorial e layout responsivo. O espaçamento entre conteúdos de seções usa `--section-gap` (72/64/56 px), dividido entre a margem anterior e `--section-lead` após uma linha sutil alinhada ao conteúdo. Divisórias internas mais claras agrupam controles, notas e fontes; os rótulos dos capítulos compartilham a cor de destaque.
 - `dist/maps.js`: projeção D3, camadas, zoom, seleção, filtros de cobertura e inspector.

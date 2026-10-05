@@ -219,12 +219,14 @@ test('reserve and production controls preserve their data after removing revisio
  await tick();assert.equal(document.querySelectorAll('#country-chart .data-row').length,4);
 });
 test('item selection shows all its materials and uses without component controls',()=>{
- assert.equal(document.querySelector('.applications-explorer svg'),null);
+ assert.equal(document.querySelectorAll('#application-nav svg[aria-hidden="true"]').length,15);
  assert.equal($('.application-footnote>p'),null);
  assert.equal(document.querySelector('.applications-explorer [data-part], .applications-explorer [data-component], .applications-explorer [data-choice]'),null);
  assert(!$('.applications-explorer').textContent.includes('Também nesta peça'));
  for(const app of applications){
-  const button=$(`[data-tech="${app.id}"]`);button.focus();button.click();
+  const button=$(`[data-tech="${app.id}"]`);button.focus();
+  assert.equal(button.textContent,app.name);
+  button.querySelector('svg').dispatchEvent(new dom.window.MouseEvent('click',{bubbles:true}));
   assert.equal(document.activeElement,button);assert.equal(button.getAttribute('aria-pressed'),'true');
   assert.equal(document.querySelectorAll('[data-tech][aria-pressed="true"]').length,1);
   assert.equal($('#application-title').textContent,app.name);

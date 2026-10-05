@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f5ef">
   <meta name="description" content="Um atlas interativo das terras raras do Brasil. Explore projetos, minerais e mapas geológicos, compare reservas e produção e siga os dados até suas fontes.">
-  <title>Terras Raras — O futuro sob nossos pés</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23f7f5ef'/%3E%3Cpath d='M20 4 35 15 28 34 12 34 5 15Z' fill='none' stroke='%23b54b32' stroke-width='2'/%3E%3Cpath d='m5 15 15 8 15-8M20 4v19l8 11M20 23l-8 11' fill='none' stroke='%23b54b32'/%3E%3C/svg%3E">
+  <title>Nossas terras raras — O futuro sob nossos pés</title>
+  <meta name="application-name" content="Nossas terras raras">
+  <meta property="og:site_name" content="Nossas terras raras">
+  <meta property="og:title" content="Nossas terras raras — O futuro sob nossos pés">
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" sizes="any">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="applications.css">
   <link rel="stylesheet" href="supply-chain.css">
@@ -17,8 +22,15 @@
 <body>
   <a class="skip" href="#explorar">Pular para o mapa</a>
   <header class="masthead">
-    <a href="#inicio" class="brand" aria-label="Terras Raras, início"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 35 15 28 34 12 34 5 15Z M5 15l15 8 15-8 M20 4v19l8 11 M20 23l-8 11"/></svg><strong>TERRAS RARAS</strong><span>UM ATLAS DO BRASIL</span></a>
-    <nav aria-label="Navegação principal"><a href="#explorar">Explore o mapa</a><a href="#elementos">Do mineral à tecnologia</a><a href="#dimensao">Brasil no mundo</a><a href="#fontes">Fontes ↗</a></nav>
+    <a href="#inicio" class="brand" aria-label="Nossas terras raras, início"><img class="brand-mark" src="assets/logo.svg" width="46" height="46" alt=""><span class="brand-wordmark"><span class="brand-prefix">Nossas</span><strong>terras raras</strong></span><span class="brand-tagline">UM ATLAS<br>DO BRASIL</span></a>
+    <nav aria-label="Navegação principal">
+      <a href="#explorar">Explore o mapa</a>
+      <a href="#elementos">Do mineral à tecnologia</a>
+      <a href="#cadeia">Da mina ao ímã</a>
+      <a href="#dimensao">Brasil no mundo</a>
+      <a href="#futuro">Demanda futura</a>
+      <a href="#fontes">Fontes</a>
+    </nav>
   </header>
   <main id="inicio">
     <section class="opening" aria-labelledby="title">
@@ -105,12 +117,11 @@
       <div class="future-source-row"><p>Projeção de mercado da Adamas Intelligence, publicada no relatório técnico Songwe Hill (2026). TREO = total de óxidos de terras raras.</p><a id="future-source" href="https://minedocs.com/32/Songwe-Hill-Update-DFS-06302025.pdf#page=54" target="_blank" rel="noopener">Adamas · relatório, pp. 54–55 ↗</a></div>
       <h3 class="future-drivers-heading">Tecnologias que impulsionam esse consumo</h3>
       <div id="future-drivers" class="future-drivers" aria-label="Tecnologias que impulsionam a demanda"></div>
-      <div class="future-digital"><span class="eyebrow">ROBÓTICA E IA</span><p>Ímãs em motores de precisão e discos rígidos de data centers. Substituições podem reduzir eficiência ou exigir componentes maiores.</p><a href="https://iea.blob.core.windows.net/assets/19c60aa0-ee07-4a20-a138-33c967ac5008/GlobalCriticalMineralsOutlook2026.pdf#page=202" target="_blank" rel="noopener">IEA · usos e limites</a></div>
     </section>
 
-    <section id="fontes" class="sources-section"><div class="sources-header"><div><p class="eyebrow">DADOS ABERTOS. FONTES À VISTA.</p><h2>Explore. Questione.<br><em>Confira a origem.</em></h2></div><p>Recorte editorial de 5 de outubro de 2026. As fichas mantêm as datas e classificações das fontes. Novas pesquisas podem mudar esse retrato.</p><a href="data-snapshot.json" download class="download-link">Baixar todos os dados <span>↓</span><small>JSON · EDIÇÃO COMPLETA</small></a></div><details><summary>Como tratamos os dados e as diferenças entre eles</summary><div class="method-grid"><div><h3>Reserva ≠ recurso</h3><p>Recurso é uma estimativa geológica. Reserva exige critérios técnicos e econômicos. Quantidades de minério, de metal e de óxidos não se somam.</p></div><div><h3>Sem informação ≠ zero</h3><p>Dados ausentes, sigilosos e valores iguais a zero têm representações diferentes. Recursos históricos estão identificados em cada ficha.</p></div><div><h3>Um mapa tem limites</h3><p>Malhas IBGE delimitam estados e municípios. Folhas SGB mostram a extensão dos mapas geológicos publicados, não os limites de depósitos ou concessões minerais.</p></div><div><h3>Cobertura não é descoberta</h3><p>Os percentuais de 28% e 50% vêm do balanço nacional SGB até 2025. O inventário vetorial é uma consulta separada; folhas podem se sobrepor. Área mapeada não equivale a área com minerais.</p></div></div></details><details><summary>Consultar todas as fontes e documentos</summary><div id="source-directory" class="source-directory"></div></details><details><summary>Ver a cartografia original de cobertura do SGB</summary><figure><img src="assets/sgb-coverage-2025.png" alt="Figura original do SGB com a cobertura geológica brasileira até 2025, escalas 1:100.000 e 1:250.000, incluindo legenda de áreas publicadas, em andamento e planejadas." loading="lazy"><figcaption>Panorama SGB 2026 · figura 4.1, página 9. A figura original também distingue o que ainda está em andamento ou planejado.</figcaption></figure></details></section>
+    <section id="fontes" class="sources-section"><div class="sources-header"><div><p class="eyebrow">DADOS ABERTOS. FONTES À VISTA.</p><h2>Explore. Questione.<br><em>Confira a origem.</em></h2></div><p>Recorte editorial de 5 de outubro de 2026. As fichas mantêm as datas e classificações das fontes. Novas pesquisas podem mudar esse retrato.</p><a href="data-snapshot.json" download class="download-link">Baixar todos os dados <span>↓</span><small>JSON · EDIÇÃO COMPLETA</small></a></div><details><summary>Como tratamos os dados e as diferenças entre eles</summary><div class="method-grid"><div><h3>Reserva ≠ recurso</h3><p>Recurso é uma estimativa geológica. Reserva exige critérios técnicos e econômicos. Quantidades de minério, de metal e de óxidos não se somam.</p></div><div><h3>Sem informação ≠ zero</h3><p>Dados ausentes, sigilosos e valores iguais a zero têm representações diferentes. Recursos históricos estão identificados em cada ficha.</p></div><div><h3>Um mapa tem limites</h3><p>Malhas IBGE delimitam estados e municípios. Folhas SGB mostram a extensão dos mapas geológicos publicados, não os limites de depósitos ou concessões minerais.</p></div><div><h3>Cobertura não é descoberta</h3><p>Os percentuais de 28% e 50% vêm do balanço nacional SGB até 2025. O inventário vetorial é uma consulta separada; folhas podem se sobrepor. Área mapeada não equivale a área com minerais.</p></div></div></details><details><summary>Consultar todas as fontes e documentos</summary><div id="source-directory" class="source-directory"></div></details></section>
   </main>
-  <footer><a href="#inicio" class="brand"><strong>TERRAS RARAS</strong><span>UM ATLAS DO BRASIL</span></a><a href="#inicio" class="text-link">Voltar ao início ↑</a></footer>
+  <footer><a href="#inicio" class="brand" aria-label="Nossas terras raras, início"><img class="brand-mark" src="assets/logo.svg" width="46" height="46" alt=""><span class="brand-wordmark"><span class="brand-prefix">Nossas</span><strong>terras raras</strong></span><span class="brand-tagline">UM ATLAS<br>DO BRASIL</span></a><a href="#inicio" class="text-link">Voltar ao início ↑</a></footer>
   <dialog id="detail-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Fechar detalhes">×</button><div id="dialog-content"></div></dialog>
   <div id="announcement" class="sr-only" aria-live="polite"></div>
   <noscript><p class="noscript">Ative o JavaScript para explorar as visualizações. <a href="data-snapshot.json">Os dados completos estão disponíveis em JSON.</a></p></noscript>
