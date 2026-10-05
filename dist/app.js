@@ -3,11 +3,9 @@ import {projectFacts,locations,fmt} from './editorial.js';
 import {initMap,selectProject} from './maps.js';
 import {initApplications} from './applications.js';
 import {initSupplyChain} from './supply-chain.js';
-import {mineralComparisons,comparisonCountries,comparisonMissing,mineralComparisonCSV} from './mineral-comparisons.js';
 const d3=window.d3,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const motion=()=>!matchMedia('(prefers-reduced-motion: reduce)').matches;
 const link=(key,label)=>`<a class="source-link" href="${sources[key].url}" target="_blank" rel="noopener">${label||sources[key].name} ↗</a>`;
-const metricLink=m=>m.source?`<a class="source-link" href="${usgsUrl(m.source)}" target="_blank" rel="noopener">USGS · ${m.name.split(' · ')[0]} ↗</a>`:link(m.sourceKey);
 function pressed(selector,key,value){$$(selector).forEach(b=>{const on=b.dataset[key]===value;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});}
 function openDialog(html){$('#dialog-content').innerHTML=html;$('#detail-dialog').showModal();$('#detail-dialog').scrollTop=0;}
 $('.dialog-close').onclick=()=>$('#detail-dialog').close();
@@ -54,30 +52,5 @@ initApplications();
 
 initSupplyChain();
 
-// Offer a comparison only when at least one series has a reported value; zero counts.
-const comparisonMinerals=minerals.filter(m=>Object.values(mineralComparisons[m.symbol]).some(series=>series.values.some(Number.isFinite)));
-let selectedMineral=comparisonMinerals[0].symbol;
-$('#mineral-count').textContent=`${comparisonMinerals.length} PERFIS · PRODUÇÃO E RESERVAS`;
-$('#mineral-grid').innerHTML=comparisonMinerals.map(m=>`<button class="mineral-tile" data-mineral="${m.symbol}" aria-label="Comparar ${m.name}" aria-pressed="false" aria-controls="production-chart reserve-chart"><small>${m.number}</small><strong>${m.symbol}</strong><span>${m.name}</span></button>`).join('');
-function renderMineralComparisons(){
- const mineral=minerals.find(m=>m.symbol===selectedMineral);
- pressed('#mineral-grid [data-mineral]','mineral',selectedMineral);
- $('#mineral-selection').innerHTML=`<strong class="selected-mineral-symbol">${mineral.symbol}</strong><div><span class="eyebrow">${mineral.group.toUpperCase()} · MINERAL SELECIONADO</span><h3>${mineral.name}</h3></div>`;
- $('#mineral-profile').dataset.mineralDetail=selectedMineral;
- for(const type of ['production','reserve']){
-  const m=mineralComparisons[selectedMineral][type];
-  drawBarChart(`#${type}-chart`,comparisonCountries.map((name,i)=>({name,value:m.values[i],missing:comparisonMissing(m,i)})),{unit:m.unit,labelWidth:150,ariaLabel:m.name});
-  $(`#${type}-period`).textContent=m.id==='ree-r'?'USGS 2026 · HISTÓRICO':type==='production'?'2025 · ESTIMATIVA':'USGS · MCS 2026';
-  $(`#${type}-unit`).textContent=m.unit||'SEM SÉRIE COMPARÁVEL NESTE RECORTE';
-  const note=m.chartNote??m.note??'';
-  $(`#${type}-note`).textContent=note;
-  $(`#${type}-note`).hidden=!note;
-  $(`#${type}-source`).innerHTML=metricLink(m);
- }
- $('#mineral-announcement').textContent=`${mineral.name}: gráficos de produção e reservas atualizados.`;
-}
-$$('#mineral-grid [data-mineral]').forEach(b=>b.onclick=()=>{selectedMineral=b.dataset.mineral;renderMineralComparisons();});
-renderMineralComparisons();
-$('#download-csv').onclick=()=>{const blob=new Blob([mineralComparisonCSV(selectedMineral)],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`terras-raras-${selectedMineral.toLowerCase()}-producao-reservas.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 $('#source-directory').innerHTML=Object.values(sources).map(s=>`<a href="${s.url}" target="_blank" rel="noopener">${s.name} ↗<small>${s.date}</small></a>`).join('')+`<a href="assets/geological-coverage.geojson" download>Folhas geológicas · polígonos do SGB ↓<small>GeoJSON · consulta de 05/10/2026 · publicadas até 2025</small></a>`;
 export const mapInitialized=initMap();
