@@ -92,20 +92,3 @@ As seções usam uma grade vertical única com intervalos de 96 px no desktop, 8
 Removidos os avisos solicitados do mapa de projetos, da comparação de reservas e das aplicações, além do acordeão de revisão. A comparação mantém 21 Mt com identificação histórica e fonte preservada; o histórico de revisão segue no JSON e nas fontes. Notas genéricas de comparabilidade e transcrição parcial deixam de aparecer sob os gráficos; unidades, indicações de dados ausentes e notas específicas dos indicadores continuam disponíveis.
 
 Verificação desta revisão: 14 testes passaram. Medição no navegador confirmou todos os seis intervalos iguais em 1280 px (96 px), 768 px (80 px) e 360 px (64 px), sem transbordamento horizontal. Alternância de produção/reservas, seleção mineral e ajuda do mapa conferidas, sem erros de console. Captura em `research/screenshots/layout-spacing.png`.
-
-### Assimetria China–EUA: evidências complementares de 05/10/2026
-
-O gráfico mantém a mesma série IEA de 2024, reconferida no atributo público `data-chart-csv` em 05/10/2026. O destaque calcula a razão China/EUA na extração (58,9 ÷ 9,6 = 6,1×, arredondado) e no refino (91,3 ÷ 1,2 = 76,1×). Não se calcula razão para ímãs, pois o denominador publicado é 0,0% arredondado. Cada seleção explica a implicação industrial da etapa.
-
-As evidências seguintes ficam em painéis separados, com fonte e período próprios:
-
-- [Governo do Canadá, cadeia de ímãs permanentes](https://www.canada.ca/en/campaign/critical-minerals-in-canada/critical-minerals-an-opportunity-for-canada/permanent-magnets.html), página de 09/01/2025: China produz 90% dos metais e 90% das ligas. O ano-base e a parcela americana não são informados; ambos são `null` no modelo. Não apresentamos o valor sugerido de “EUA <1%” sem comprovação comparável.
-- [USGS, MCS 2026, tabela Rare Earths](https://pubs.usgs.gov/periodicals/mcs2026/mcs2026.pdf): estimativas de mineração de 2025 de 270.000 t para China e 51.000 t para EUA, sobre 390.000 t mundiais. Parcelas calculadas: 69,2% e 13,1%. Recorte mais amplo que Nd/Pr/Dy/Tb, em equivalente de óxidos (REO). Conferido na cópia de pesquisa existente; o leitor web retornou 403 nesta consulta. Não confundir produção nacional com produção exclusiva de Mountain Pass.
-- [MP Materials, 22/01/2025](https://investors.mpmaterials.com/investor-news/news-details/2025/MP-Materials-Restores-U.S.-Rare-Earth-Magnet-Production/): início de produção comercial de metal NdPr em Independence, Texas.
-- [MP Materials, resultados anuais publicados em 26/02/2026](https://investors.mpmaterials.com/investor-news/news-details/2026/MP-Materials-Reports-Fourth-Quarter-and-Full-Year-2025-Results/): 2.599 t de óxidos de NdPr em 2025 e primeiros ímãs em equipamentos comerciais no quarto trimestre. São dados declarados pela empresa, sem conversão em participação mundial ou capacidade anual efetivamente atingida.
-
-O [relatório IEA de 2026](https://www.iea.org/reports/rare-earth-elements/executive-summary) e o [DOE, avaliação da cadeia de ímãs de 2022](https://www.energy.gov/sites/default/files/2022-02/Neodymium%20Magnets%20Supply%20Chain%20Report%20-%20Final.pdf) fundamentam a distinção entre concentração, separação, metalização, ligas e ímãs. Não aplicamos uma pureza universal de 99,99% a todos os produtos: o requisito varia por material e uso.
-
-As novas fontes e os dados estruturados integram o download JSON. As verificações comparam os totais USGS com a série já presente no atlas e mantêm as lacunas da metalização como `null`, nunca zero.
-
-Validação da ampliação: `npm test` passou (13 cenários), incluindo proveniência e consistência do JSON; `git diff --check` sem erros. No navegador, seleção de refino atualizou o painel, layouts de 1.280 e 360 px sem transbordamento horizontal e nenhum erro de console capturado.

@@ -104,26 +104,6 @@
       "url": "https://www.iea.org/data-and-statistics/charts/share-of-global-supply-of-magnet-rare-earths-and-magnet-manufacturing-2024",
       "date": "Dados de 2024 · consulta 05/10/2026 · CC BY 4.0"
     },
-    "nrcanMagnets": {
-      "name": "Governo do Canadá · cadeia de ímãs permanentes",
-      "url": "https://www.canada.ca/en/campaign/critical-minerals-in-canada/critical-minerals-an-opportunity-for-canada/permanent-magnets.html",
-      "date": "09/01/2025 · ano-base das participações não informado"
-    },
-    "usgsREE": {
-      "name": "USGS · terras raras · produção mundial",
-      "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026.pdf",
-      "date": "MCS 2026 · produção estimada de 2025 · tabela Rare Earths"
-    },
-    "mpMetal2025": {
-      "name": "MP Materials · início da produção de metal NdPr",
-      "url": "https://investors.mpmaterials.com/investor-news/news-details/2025/MP-Materials-Restores-U.S.-Rare-Earth-Magnet-Production/",
-      "date": "22/01/2025 · comunicado da empresa"
-    },
-    "mpResults2025": {
-      "name": "MP Materials · resultados de 2025",
-      "url": "https://investors.mpmaterials.com/investor-news/news-details/2026/MP-Materials-Reports-Fourth-Quarter-and-Full-Year-2025-Results/",
-      "date": "26/02/2026 · produção de 2025 · dados da empresa"
-    },
     "iea2026": {
       "name": "IEA · Global Critical Minerals Outlook 2026",
       "url": "https://www.iea.org/news/supply-concentration-export-restrictions-and-declining-investment-put-critical-mineral-security-at-risk",
@@ -2394,7 +2374,6 @@
         "name": "Extração",
         "output": "Do minério ao concentrado",
         "description": "A mineração e o beneficiamento obtêm um concentrado de terras raras.",
-        "implication": "Mountain Pass, na Califórnia, fornece sobretudo terras raras leves. Extrair esse minério não substitui as etapas químicas e industriais seguintes.",
         "values": [
           58.9,
           9.6
@@ -2406,7 +2385,6 @@
         "name": "Separação e refino",
         "output": "Do concentrado aos óxidos",
         "description": "Os elementos são separados e purificados para fornecer óxidos à indústria.",
-        "implication": "Aqui a diferença se amplia: separar elementos quimicamente semelhantes exige processos especializados. Uma mina não entrega, por si só, óxidos prontos para uso.",
         "values": [
           91.3,
           1.2
@@ -2418,45 +2396,11 @@
         "name": "Fabricação de ímãs",
         "output": "Dos materiais ao componente",
         "description": "Após a produção de metais e ligas, são fabricados os ímãs permanentes sinterizados.",
-        "implication": "É o componente que chega a motores, eletrônicos e sistemas de defesa. A concentração nesta etapa mantém a dependência industrial mesmo onde há mineração.",
         "values": [
           94.4,
           0
         ]
       }
-    ],
-    "metallurgy": {
-      "name": "Metalização e ligas",
-      "chinaMetalShare": 90,
-      "chinaAlloyShare": 90,
-      "usaShare": null,
-      "year": null,
-      "source": "nrcanMagnets",
-      "published": "2025-01-09",
-      "note": "A fonte informa 90% para metais e 90% para ligas, sem explicitar o ano-base ou uma participação dos EUA. Não integra a série IEA de 2024."
-    },
-    "totalMining": {
-      "year": 2025,
-      "estimated": true,
-      "values": [
-        270000,
-        51000
-      ],
-      "world": 390000,
-      "unit": "t de REO",
-      "source": "usgsREE",
-      "note": "Recorte de terras raras da tabela USGS, mais amplo que Nd, Pr, Dy e Tb. Participações calculadas sobre o total mundial arredondado; não são pontos da série IEA de 2024."
-    },
-    "usProgress": {
-      "year": 2025,
-      "ndprOxideTonnes": 2599,
-      "metalProductionStarted": "2025-01",
-      "firstMagnetsOnCommercialEquipment": "2025-Q4",
-      "sources": [
-        "mpMetal2025",
-        "mpResults2025"
-      ],
-      "note": "Marcos divulgados pela MP Materials. Produção de óxidos de NdPr, metal e primeiros ímãs não são volumes intercambiáveis nem uma estimativa da participação mundial dos EUA."
-    }
+    ]
   }
 }
