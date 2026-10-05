@@ -17,16 +17,17 @@
   <a class="skip" href="#explorar">Pular para o mapa</a>
   <header class="masthead">
     <a href="#inicio" class="brand" aria-label="Terras Raras, início"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 35 15 28 34 12 34 5 15Z M5 15l15 8 15-8 M20 4v19l8 11 M20 23l-8 11"/></svg><strong>TERRAS RARAS</strong><span>UM ATLAS DO BRASIL</span></a>
-    <nav aria-label="Navegação principal"><a href="#explorar">Explore o mapa</a><a href="#dimensao">Brasil no mundo</a><a href="#elementos">Do mineral à tecnologia</a><a href="#fontes">Fontes ↗</a></nav>
+    <nav aria-label="Navegação principal"><a href="#explorar">Explore o mapa</a><a href="#elementos">Do mineral à tecnologia</a><a href="#dimensao">Brasil no mundo</a><a href="#fontes">Fontes ↗</a></nav>
   </header>
   <main id="inicio">
     <section class="opening" aria-labelledby="title">
       <div><p class="eyebrow"><span class="accent-rule"></span> UM PAÍS. UM SUBSOLO. MUITAS POSSIBILIDADES.</p><h1 id="title">O futuro está<br>sob nossos <em>pés.</em></h1></div>
-      <div class="opening-deck"><p>Dos solos de Goiás aos complexos de Minas Gerais, os minerais brasileiros ajudam a mover o mundo.</p><p class="muted">Explore o que temos, o que conhecemos e o caminho que separa uma jazida de uma tecnologia.</p><a href="#explorar" class="text-link">Comece pelo território <span>↓</span></a></div>
+      <div class="opening-deck"><p>Os minerais brasileiros ajudam a gerar energia, mover veículos e conectar pessoas.</p><p class="muted">Explore o que temos, o que conhecemos e o caminho que separa uma jazida de uma tecnologia.</p><a href="#explorar" class="text-link">Comece pelo território <span>↓</span></a></div>
     </section>
 
     <section id="explorar" class="atlas" aria-label="Atlas interativo de projetos e conhecimento geológico">
-      <div class="atlas-heading"><div><span class="eyebrow">01 — O TERRITÓRIO</span><h2>Um mapa, muitas camadas.</h2></div><p>Troque a camada. Escolha um lugar.<br>Descubra o que os dados revelam.</p></div>
+      <div class="section-heading"><span class="eyebrow">01 — O TERRITÓRIO</span></div>
+      <div class="section-intro"><h2>Um mapa,<br><em>muitas camadas.</em></h2><p>Troque a camada. Escolha um lugar.<br>Descubra o que os dados revelam.</p></div>
       <div class="atlas-toolbar"><div class="layer-tabs" role="group" aria-label="Camada do mapa"><button data-layer="projects" class="active" aria-pressed="true"><span>◉</span> Projetos e minerais</button><button data-layer="coverage" aria-pressed="false"><span>▧</span> Quanto conhecemos</button><button data-layer="geology" aria-pressed="false"><span>≋</span> Tipos de depósito</button></div><span class="live-caption">BASE IBGE · DADOS SGB</span></div>
       <div class="atlas-body">
         <div class="map-stage">
@@ -42,13 +43,8 @@
       <div class="atlas-footnote"><div class="map-notes"><p id="map-scope-note">O mapa reúne uma seleção de projetos e ocorrências de terras raras, não um inventário completo das reservas do Brasil. Recursos minerais e reservas são categorias distintas.</p><p id="map-note" hidden></p></div><button id="map-help" class="text-button">Como ler este mapa <span>↗</span></button></div>
     </section>
 
-    <section id="dimensao" class="story-section dimension">
-      <div class="section-heading"><span class="eyebrow">02 — A DIMENSÃO DA OPORTUNIDADE</span><span class="eyebrow">USGS · MCS 2026</span></div>
-      <div class="comparison-layout"><div class="story-copy"><h2>Ter a reserva<br>é só o <em>começo.</em></h2><p>O Brasil tem uma das maiores reservas conhecidas de terras raras. Sua participação na produção ainda é pequena.</p><div class="big-takeaway" id="comparison-takeaway"></div><p class="small">REO = óxidos de terras raras. Reservas são uma estimativa do que pode ser extraído economicamente; produção é o que sai das minas em um ano.</p></div><div class="comparison-viz"><div class="comparison-toolbar"><div class="segmented" role="group" aria-label="Comparar terras raras"><button data-comparison="reserve" class="active" aria-pressed="true">No subsolo</button><button data-comparison="production" aria-pressed="false">Nas minas</button></div><span id="comparison-unit" class="eyebrow"></span></div><div id="country-chart"></div><p id="comparison-caption" class="chart-caption"></p><div class="source-row" id="comparison-source"></div></div></div>
-    </section>
-
     <section id="elementos" class="story-section elements-section">
-      <div class="section-heading"><span class="eyebrow">03 — A MATÉRIA DO FUTURO</span><span class="eyebrow">17 ELEMENTOS · FUNÇÕES DIFERENTES</span></div>
+      <div class="section-heading"><span class="eyebrow">02 — A MATÉRIA DO FUTURO</span><span class="eyebrow">17 ELEMENTOS · FUNÇÕES DIFERENTES</span></div>
       <div class="section-intro"><h2>Raras no nome.<br><em>Presentes no cotidiano.</em></h2><p>Do ímã que move um carro à fibra que transporta informação. Escolha uma aplicação e descubra como cada material é usado.</p></div>
       <div class="applications-explorer">
         <div id="application-nav" class="application-nav" role="group" aria-label="Explorar aplicações"></div>
@@ -57,13 +53,12 @@
         <div id="application-materials" class="application-materials" role="group" aria-label="Materiais e seus usos"></div>
         <p id="application-note" class="application-note" hidden></p>
         <div class="application-footnote"><div id="application-sources" class="source-row"></div></div>
-        <details class="rare-earth-library"><summary>Conheça a família completa: as 17 terras raras</summary><p>Cada elemento tem funções diferentes. Selecione um para consultar os usos, os registros no atlas e as fontes.</p><div id="rare-earth-reference" class="rare-earth-reference" role="group" aria-label="As 17 terras raras"></div></details>
         <p id="application-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>
       </div>
     </section>
 
     <section id="outros-minerais" class="story-section mineral-section">
-      <div class="section-heading"><span class="eyebrow">04 — OUTROS MINERAIS</span><span id="mineral-count" class="eyebrow">12 PERFIS · PRODUÇÃO E RESERVAS</span></div>
+      <div class="section-heading"><span class="eyebrow">03 — OUTROS MINERAIS</span><span id="mineral-count" class="eyebrow">12 PERFIS · PRODUÇÃO E RESERVAS</span></div>
       <div class="section-intro"><h2>O Brasil além<br><em>das terras raras.</em></h2><p>Selecione um mineral para comparar a produção e as reservas de Brasil, China e Estados Unidos.</p></div>
       <div id="mineral-grid" class="mineral-grid" role="group" aria-label="Selecionar mineral para comparar"></div>
       <div class="mineral-comparison-heading"><div id="mineral-selection"></div><div class="mineral-comparison-actions"><button id="mineral-profile" class="text-button">Ficha e fontes ↗</button><button id="download-csv" class="text-button">Baixar os dois gráficos · CSV ↓</button></div></div>
@@ -84,7 +79,7 @@
     </section>
 
     <section class="story-section supply-section" id="cadeia" aria-labelledby="supply-title">
-      <div class="section-heading"><span class="eyebrow">05 — DA MINA AO ÍMÃ</span><span class="eyebrow">IEA · PARTICIPAÇÃO MUNDIAL · 2024</span></div>
+      <div class="section-heading"><span class="eyebrow">04 — DA MINA AO ÍMÃ</span><span class="eyebrow">IEA · PARTICIPAÇÃO MUNDIAL · 2024</span></div>
       <div class="section-intro">
         <h2 id="supply-title">Da mina ao ímã,<br><em>a liderança chinesa cresce.</em></h2>
         <p>China e Estados Unidos em três etapas da cadeia. A distância aumenta quando o minério se transforma em material para a indústria.</p>
@@ -105,6 +100,11 @@
         <a class="source-link" href="https://www.iea.org/data-and-statistics/charts/share-of-global-supply-of-magnet-rare-earths-and-magnet-manufacturing-2024" target="_blank" rel="noopener">IEA · consultar gráfico original ↗</a>
       </div>
       <p id="supply-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+    </section>
+
+    <section id="dimensao" class="story-section dimension">
+      <div class="section-heading"><span class="eyebrow">05 — A DIMENSÃO DA OPORTUNIDADE</span><span class="eyebrow">USGS · MCS 2026</span></div>
+      <div class="comparison-layout"><div class="story-copy"><h2>Ter a reserva<br>é só o <em>começo.</em></h2><p>O Brasil tem uma das maiores reservas conhecidas de terras raras. Sua participação na produção ainda é pequena.</p><div class="big-takeaway" id="comparison-takeaway"></div><p class="small">REO = óxidos de terras raras. Reservas são uma estimativa do que pode ser extraído economicamente; produção é o que sai das minas em um ano.</p></div><div class="comparison-viz"><div class="comparison-toolbar"><div class="segmented" role="group" aria-label="Comparar terras raras"><button data-comparison="reserve" class="active" aria-pressed="true">No subsolo</button><button data-comparison="production" aria-pressed="false">Nas minas</button></div><span id="comparison-unit" class="eyebrow"></span></div><div id="country-chart"></div><p id="comparison-caption" class="chart-caption"></p><div class="source-row" id="comparison-source"></div></div></div>
     </section>
 
     <section id="fontes" class="sources-section"><div class="sources-header"><div><p class="eyebrow">DADOS ABERTOS. FONTES À VISTA.</p><h2>Explore. Questione.<br><em>Confira a origem.</em></h2></div><p>Recorte editorial de 5 de outubro de 2026. As fichas mantêm as datas e classificações das fontes. Novas pesquisas podem mudar esse retrato.</p><a href="data-snapshot.json" download class="download-link">Baixar todos os dados <span>↓</span><small>JSON · EDIÇÃO COMPLETA</small></a></div><details><summary>Como tratamos os dados e as diferenças entre eles</summary><div class="method-grid"><div><h3>Reserva ≠ recurso</h3><p>Recurso é uma estimativa geológica. Reserva exige critérios técnicos e econômicos. Quantidades de minério, de metal e de óxidos não se somam.</p></div><div><h3>Sem informação ≠ zero</h3><p>Dados ausentes, sigilosos e valores iguais a zero têm representações diferentes. Recursos históricos estão identificados em cada ficha.</p></div><div><h3>Um mapa tem limites</h3><p>Malhas IBGE delimitam estados e municípios. Folhas SGB mostram a extensão dos mapas geológicos publicados, não os limites de depósitos ou concessões minerais.</p></div><div><h3>Cobertura não é descoberta</h3><p>Os percentuais de 28% e 50% vêm do balanço nacional SGB até 2025. O inventário vetorial é uma consulta separada; folhas podem se sobrepor. Área mapeada não equivale a área com minerais.</p></div></div></details><details><summary>Consultar todas as fontes e documentos</summary><div id="source-directory" class="source-directory"></div></details><details><summary>Ver a cartografia original de cobertura do SGB</summary><figure><img src="assets/sgb-coverage-2025.png" alt="Figura original do SGB com a cobertura geológica brasileira até 2025, escalas 1:100.000 e 1:250.000, incluindo legenda de áreas publicadas, em andamento e planejadas." loading="lazy"><figcaption>Panorama SGB 2026 · figura 4.1, página 9. A figura original também distingue o que ainda está em andamento ou planejado.</figcaption></figure></details></section>

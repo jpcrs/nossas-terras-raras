@@ -8,7 +8,6 @@ export function initApplications(){
  const sourceLink=key=>`<a class="source-link" href="${sources[key].url}" target="_blank" rel="noopener">${key==='reeeduca'?'SGB · elementos e usos':'DOE · materiais e tecnologias'} ↗</a>`;
  let selected='ev';
  $('#application-nav').innerHTML=applications.map(a=>`<button data-tech="${a.id}" aria-pressed="false" aria-controls="application-materials">${a.name}</button>`).join('');
- $('#rare-earth-reference').innerHTML=rareEarths.map(e=>`<button data-element-detail="${e[0]}" aria-label="Conhecer ${e[2]}"><small>${e[1]}</small><strong>${e[0]}</strong><span>${e[2]}</span></button>`).join('');
  function render(){
   const app=applications.find(a=>a.id===selected);
   root.querySelectorAll('[data-tech]').forEach(button=>{

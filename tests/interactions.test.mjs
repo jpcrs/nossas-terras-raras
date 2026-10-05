@@ -227,13 +227,6 @@ test('material cards open the correct sourced profile and can navigate to projec
  click('#application-materials [data-mineral-detail="Cu"]');assert.equal($('#dialog-title').textContent,'Cobre');click('.dialog-close');
  assert.equal($('#application-title').textContent,'Carro elétrico');
 });
-test('the optional reference preserves all 17 elements without changing the selected item',()=>{
- const reference=$('.rare-earth-library');assert.equal(reference.open,false);reference.open=true;
- const buttons=[...document.querySelectorAll('#rare-earth-reference button')];assert.equal(buttons.length,17);
- for(const button of buttons){button.click();assert($('#dialog-title').textContent.length>0);click('.dialog-close');}
- click('#rare-earth-reference [data-element-detail="Pm"]');assert.match($('#dialog-content').textContent,/Não integra uma cadeia mineral comum/);assert.match($('#dialog-content').textContent,/Não individualizado/);click('.dialog-close');
- assert.equal($('#application-title').textContent,'Carro elétrico');reference.open=false;
-});
 test('mineral tiles update production and reserves together without opening a dialog',async()=>{
  assert.equal($('#outros-minerais select'),null);
  assert.equal($('#outros-minerais').nextElementSibling.id,'cadeia');

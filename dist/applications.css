@@ -42,15 +42,15 @@
 
 .application-footnote .source-row{gap:16px;flex-direction:row;margin:0}
 .application-footnote .source-link{font-size:9px}
-.rare-earth-library{margin-top:var(--detail-gap);padding-top:var(--detail-gap);border-top:1px solid var(--detail-line)}
-.rare-earth-library>summary{font-size:12px}
-.rare-earth-library>p{font-size:12px;line-height:1.7;color:var(--muted);margin:16px 0}
-.rare-earth-reference{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:7px;margin:18px 0 10px}
-.rare-earth-reference button{text-align:left;border:1px solid var(--line);background:transparent;padding:10px;min-width:0}
-.rare-earth-reference button:hover{background:#eee0cc;border-color:#b9936d}
-.rare-earth-reference small{display:block;font:8px var(--mono);color:var(--muted)}
-.rare-earth-reference strong{display:block;font:29px/1.3 var(--serif);letter-spacing:-.025em}
-.rare-earth-reference span{display:block;font-size:9px;margin-top:3px}
-@media(max-width:1000px){.application-materials{grid-template-columns:repeat(2,minmax(0,1fr))}.application-nav{gap:0 20px}.application-nav button{font-size:11px}.application-overview{gap:24px}.application-count{gap:10px}.application-count>strong{font-size:42px}.application-count>span{font-size:10px}.rare-earth-reference{grid-template-columns:repeat(6,minmax(0,1fr))}}
-@media(max-width:600px){.application-nav{flex-wrap:nowrap;overflow-x:auto;gap:22px;scrollbar-width:thin}.application-nav button{flex:0 0 auto;white-space:nowrap;font-size:12px;text-align:left;padding:15px 0 13px}.application-overview{display:block;padding:25px 0 20px}.application-overview h3{font-size:33px}#application-summary{font-size:12px}.application-count{margin-top:17px;gap:10px}.application-count>strong{font-size:34px}.application-count>span{display:flex;flex-wrap:wrap;align-items:baseline;gap:7px;font-size:11px}.application-count small{font-size:9px;margin:0}.application-count small:before{content:'·';margin-right:7px}.materials-guide{align-items:start;flex-direction:column;gap:8px;font-size:10px}.materials-guide>p{font-size:9px}.application-materials{grid-template-columns:1fr;gap:9px}.application-material,.application-materials:has(>:only-child) .application-material{padding:17px 15px;gap:16px}.material-symbol{width:52px}.material-copy>strong{font-size:15px}.material-description{font-size:12px;line-height:1.7}.material-use{font-size:8px}.application-materials:has(>:only-child) .material-symbol{width:52px;min-height:69px;padding:6px 9px}.application-materials:has(>:only-child) .material-symbol strong{font-size:30px}.application-materials:has(>:only-child) .material-copy>strong{font-size:15px}.application-footnote .source-row{gap:16px;flex-direction:row;margin:0}.rare-earth-reference{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.rare-earth-reference button{padding:8px}.rare-earth-reference span{font-size:8px}.rare-earth-library>summary{font-size:12px}}
+
+
+
+
+
+
+
+
+
+@media(max-width:1000px){.application-materials{grid-template-columns:repeat(2,minmax(0,1fr))}.application-nav{gap:0 20px}.application-nav button{font-size:11px}.application-overview{gap:24px}.application-count{gap:10px}.application-count>strong{font-size:42px}.application-count>span{font-size:10px}}
+@media(max-width:600px){.application-nav{flex-wrap:nowrap;overflow-x:auto;gap:22px;scrollbar-width:thin}.application-nav button{flex:0 0 auto;white-space:nowrap;font-size:12px;text-align:left;padding:15px 0 13px}.application-overview{display:block;padding:25px 0 20px}.application-overview h3{font-size:33px}#application-summary{font-size:12px}.application-count{margin-top:17px;gap:10px}.application-count>strong{font-size:34px}.application-count>span{display:flex;flex-wrap:wrap;align-items:baseline;gap:7px;font-size:11px}.application-count small{font-size:9px;margin:0}.application-count small:before{content:'·';margin-right:7px}.materials-guide{align-items:start;flex-direction:column;gap:8px;font-size:10px}.materials-guide>p{font-size:9px}.application-materials{grid-template-columns:1fr;gap:9px}.application-material,.application-materials:has(>:only-child) .application-material{padding:17px 15px;gap:16px}.material-symbol{width:52px}.material-copy>strong{font-size:15px}.material-description{font-size:12px;line-height:1.7}.material-use{font-size:8px}.application-materials:has(>:only-child) .material-symbol{width:52px;min-height:69px;padding:6px 9px}.application-materials:has(>:only-child) .material-symbol strong{font-size:30px}.application-materials:has(>:only-child) .material-copy>strong{font-size:15px}.application-footnote .source-row{gap:16px;flex-direction:row;margin:0}}
 .application-nav button:focus-visible{outline-offset:-3px}
