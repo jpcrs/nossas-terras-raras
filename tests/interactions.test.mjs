@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
 import * as d3 from 'd3';
+import {applications} from '../dist/applications-data.js';
 import {mineralComparisonCSV} from '../dist/mineral-comparisons.js';
 let dom,document;
 const $=s=>document.querySelector(s);
@@ -91,40 +92,46 @@ test('reserve editions and production switch actual chart data and disclosures',
  click('[data-comparison="reserve"]');change('#reserve-edition','historical');assert.match($('#country-chart svg').getAttribute('aria-label'),/Brasil: 21/);
  await tick();assert.equal(document.querySelectorAll('#country-chart .data-row').length,4);
 });
-test('all rare earth elements retain their own applications and map links',()=>{
- for(const b of document.querySelectorAll('[data-element]')){b.click();assert.equal(b.getAttribute('aria-pressed'),'true');assert($('#element-detail h3').textContent.length>0);}
- click('[data-element="Pm"]');assert.match($('#element-detail').textContent,/Não individualizado/);
- click('[data-element="Nd"]');click('[data-element-project="araxa"]');assert.equal($('#map-inspector h3').textContent,'Araxá');
-});
-test('element and application selections stay connected, including cases with no rare earths',()=>{
- click('[data-element="Er"]');assert.equal($('#application-title').textContent,'Fibra óptica');assert.equal($('#tech-detail h4').textContent,'Amplificação óptica');
- assert.equal($('#periodic-grid [data-element="Er"]').classList.contains('related'),true);
- click('[data-element="Eu"]');assert.equal($('#application-title').textContent,'Telas e vidros');assert.equal($('#tech-detail h4').textContent,'Fósforos');
- click('[data-element="Pm"]');assert.equal(document.querySelectorAll('[data-tech][aria-pressed="true"]').length,0);assert.equal(document.querySelectorAll('[data-part]').length,0);assert.match($('#tech-detail').textContent,/não integra uma cadeia mineral comum/);
- click('[data-tech="ev"]');assert.equal($('#tech-detail h4').textContent,'Motor');assert.equal($('#periodic-grid [data-element="Nd"]').getAttribute('aria-pressed'),'true');
- click('[data-choice="motor"][data-value="induction"]');assert.equal($('#tech-detail [data-material="Nd"]'),null);assert.match($('#tech-detail').textContent,/dispensar ímãs/);assert.equal(document.querySelectorAll('#periodic-grid .related').length,0);
- click('[data-element="Dy"]');assert.equal($('[data-choice="motor"][data-value="magnet"]').getAttribute('aria-pressed'),'true');assert.equal($('#tech-detail [data-material="Dy"]').getAttribute('aria-pressed'),'true');
- click('[data-component="1"]');assert($('#tech-detail [data-mineral-detail="Co"]'));
- click('[data-choice="battery"][data-value="lfp"]');assert.equal($('#tech-detail [data-mineral-detail="Ni"]'),null);assert.equal($('#tech-detail [data-mineral-detail="Co"]'),null);assert.match($('#tech-detail').textContent,/Não depende de níquel/);
- click('[data-tech="wind"]');assert.equal($('#tech-detail h4').textContent,'Gerador');
- click('[data-choice="motor"][data-value="induction"]');assert.equal(document.querySelectorAll('#tech-detail [data-material]').length,0);
- click('[data-tech="solar"]');assert.equal($('#tech-detail h4').textContent,'Células');assert($('#tech-detail [data-mineral-detail="Si"]'));assert.equal(document.querySelectorAll('#periodic-grid .related').length,0);
- click('[data-component="3"]');assert.equal($('#tech-detail h4').textContent,'Moldura');
-});
-test('illustrated components work by pointer and keyboard, preserve focus, and expose material sources',()=>{
- for(const tech of ['ev','wind','optics','fiber','laser','alloys','special','solar']){
-  click(`[data-tech="${tech}"]`);
-  const count=document.querySelectorAll('[data-component]').length;
-  for(let i=0;i<count;i++){
-   const shape=$(`[data-part="${i}"]`);shape.focus();shape.dispatchEvent(new dom.window.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
-   assert.equal(document.activeElement.dataset.part,String(i));assert.equal($(`[data-part="${i}"]`).getAttribute('aria-pressed'),'true');assert.equal($(`[data-component="${i}"]`).getAttribute('aria-pressed'),'true');
+test('item selection shows all its materials and uses without component controls',()=>{
+ assert.equal(document.querySelector('.applications-explorer svg'),null);
+ assert.equal(document.querySelector('.applications-explorer [data-part], .applications-explorer [data-component], .applications-explorer [data-choice]'),null);
+ assert(!$('.applications-explorer').textContent.includes('Também nesta peça'));
+ for(const app of applications){
+  const button=$(`[data-tech="${app.id}"]`);button.focus();button.click();
+  assert.equal(document.activeElement,button);assert.equal(button.getAttribute('aria-pressed'),'true');
+  assert.equal(document.querySelectorAll('[data-tech][aria-pressed="true"]').length,1);
+  assert.equal($('#application-title').textContent,app.name);
+  assert.equal(document.querySelectorAll('#application-materials .application-material').length,app.materials.length);
+  assert.equal($('#detail-dialog').open,false);
+  for(const material of app.materials){
+   const card=$(`#application-materials [data-element-detail="${material.symbol}"], #application-materials [data-mineral-detail="${material.symbol}"]`);
+   assert(card);assert.match(card.textContent,new RegExp(material.use));assert(card.textContent.includes(material.description));
   }
   assert($('#application-sources a').href.startsWith('https://'));
  }
- click('[data-tech="ev"]');const structure=$('[data-part="0"]');structure.dispatchEvent(new dom.window.MouseEvent('click',{bubbles:true}));assert.equal($('#tech-detail h4').textContent,'Estrutura');
- click('[data-component="2"]');click('[data-choice="motor"][data-value="magnet"]');click('[data-material="Pr"]');assert.equal($('#element-detail h3').textContent,'Praseodímio');
- click('#element-detail [data-element-detail="Pr"]');assert.equal($('#dialog-title').textContent,'Praseodímio');click('.dialog-close');
- click('[data-element-project="araxa"]');assert.equal($('#map-inspector h3').textContent,'Araxá');
+ click('[data-tech="ev"]');
+ assert.equal(document.querySelectorAll('#application-materials .rare').length,4);
+ assert($('#application-materials [data-element-detail="Nd"]'));
+ assert($('#application-materials [data-mineral-detail="Co"]'));
+ assert($('#application-materials [data-mineral-detail="Cu"]'));
+ assert.match($('#application-materials [data-mineral-detail="Ni"]').textContent,/NMC.*LFP/);
+ click('[data-tech="solar"]');assert.equal(document.querySelectorAll('#application-materials .rare').length,0);
+ assert.match($('#application-summary').textContent,/não são terras raras/);
+ assert.equal(document.querySelectorAll('#application-materials .application-material').length,3);
+});
+test('material cards open the correct sourced profile and can navigate to project records',()=>{
+ click('[data-tech="ev"]');click('#application-materials [data-element-detail="Pr"]');
+ assert.equal($('#dialog-title').textContent,'Praseodímio');assert($('#dialog-content a').href.startsWith('https://'));
+ click('[data-dialog-project="araxa"]');assert.equal($('#detail-dialog').open,false);assert.equal($('#map-inspector h3').textContent,'Araxá');
+ click('#application-materials [data-mineral-detail="Cu"]');assert.equal($('#dialog-title').textContent,'Cobre');click('.dialog-close');
+ assert.equal($('#application-title').textContent,'Carro elétrico');
+});
+test('the optional reference preserves all 17 elements without changing the selected item',()=>{
+ const reference=$('.rare-earth-library');assert.equal(reference.open,false);reference.open=true;
+ const buttons=[...document.querySelectorAll('#rare-earth-reference button')];assert.equal(buttons.length,17);
+ for(const button of buttons){button.click();assert($('#dialog-title').textContent.length>0);click('.dialog-close');}
+ click('#rare-earth-reference [data-element-detail="Pm"]');assert.match($('#dialog-content').textContent,/Não integra uma cadeia mineral comum/);assert.match($('#dialog-content').textContent,/Não individualizado/);click('.dialog-close');
+ assert.equal($('#application-title').textContent,'Carro elétrico');reference.open=false;
 });
 test('mineral tiles update production and reserves together without opening a dialog',async()=>{
  assert.equal($('#outros-minerais select'),null);

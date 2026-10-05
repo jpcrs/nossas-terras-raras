@@ -1145,202 +1145,83 @@
       "id": "ev",
       "name": "Carro elétrico",
       "category": "MOBILIDADE",
-      "defaultPart": 2,
       "source": "doe2023",
-      "variants": [
+      "summary": "Do motor à bateria, passando pela estrutura e pela eletrônica.",
+      "materials": [
         {
-          "configuration": {
-            "motor": "magnet",
-            "battery": "nmc"
-          },
-          "components": [
-            {
-              "name": "Estrutura",
-              "materials": [
-                "Fe",
-                "Al",
-                "Nb"
-              ],
-              "text": "Aços e alumínio formam a estrutura. Nióbio pode aumentar a resistência de alguns aços, conforme a especificação."
-            },
-            {
-              "name": "Bateria",
-              "materials": [
-                "Li",
-                "Ni",
-                "Mn",
-                "Co",
-                "C",
-                "Cu",
-                "Al"
-              ],
-              "text": "O cátodo NMC usa níquel, manganês e cobalto. Grafita, cobre e alumínio têm outras funções na bateria."
-            },
-            {
-              "name": "Motor",
-              "materials": [
-                "Nd",
-                "Pr",
-                "Dy",
-                "Tb",
-                "Cu",
-                "Fe"
-              ],
-              "text": "Neodímio e praseodímio participam dos ímãs NdFeB. Disprósio e térbio podem aumentar a resistência à desmagnetização em altas temperaturas; seu uso depende da formulação."
-            },
-            {
-              "name": "Eletrônica",
-              "materials": [
-                "Si",
-                "Cu",
-                "Ta"
-              ],
-              "text": "Semicondutores controlam a energia. Silício, cobre e tântalo têm funções distintas nos circuitos e componentes."
-            }
-          ]
+          "symbol": "Nd",
+          "use": "Motor",
+          "description": "Forma ímãs NdFeB usados em alguns motores elétricos."
         },
         {
-          "configuration": {
-            "motor": "magnet",
-            "battery": "lfp"
-          },
-          "components": [
-            {
-              "name": "Estrutura",
-              "materials": [
-                "Fe",
-                "Al",
-                "Nb"
-              ],
-              "text": "Aços e alumínio formam a estrutura. Nióbio pode aumentar a resistência de alguns aços, conforme a especificação."
-            },
-            {
-              "name": "Bateria",
-              "materials": [
-                "Li",
-                "C",
-                "Cu",
-                "Al",
-                "Fe"
-              ],
-              "text": "O cátodo LFP usa fosfato de ferro e lítio. Não depende de níquel ou cobalto no cátodo. Grafita, cobre e alumínio continuam relevantes."
-            },
-            {
-              "name": "Motor",
-              "materials": [
-                "Nd",
-                "Pr",
-                "Dy",
-                "Tb",
-                "Cu",
-                "Fe"
-              ],
-              "text": "Neodímio e praseodímio participam dos ímãs NdFeB. Disprósio e térbio podem aumentar a resistência à desmagnetização em altas temperaturas; seu uso depende da formulação."
-            },
-            {
-              "name": "Eletrônica",
-              "materials": [
-                "Si",
-                "Cu",
-                "Ta"
-              ],
-              "text": "Semicondutores controlam a energia. Silício, cobre e tântalo têm funções distintas nos circuitos e componentes."
-            }
-          ]
+          "symbol": "Pr",
+          "use": "Motor",
+          "description": "Combina-se com neodímio em ímãs de alto desempenho."
         },
         {
-          "configuration": {
-            "motor": "induction",
-            "battery": "nmc"
-          },
-          "components": [
-            {
-              "name": "Estrutura",
-              "materials": [
-                "Fe",
-                "Al",
-                "Nb"
-              ],
-              "text": "Aços e alumínio formam a estrutura. Nióbio pode aumentar a resistência de alguns aços, conforme a especificação."
-            },
-            {
-              "name": "Bateria",
-              "materials": [
-                "Li",
-                "Ni",
-                "Mn",
-                "Co",
-                "C",
-                "Cu",
-                "Al"
-              ],
-              "text": "O cátodo NMC usa níquel, manganês e cobalto. Grafita, cobre e alumínio têm outras funções na bateria."
-            },
-            {
-              "name": "Motor",
-              "materials": [
-                "Cu",
-                "Al",
-                "Fe"
-              ],
-              "text": "Motores de indução podem dispensar ímãs permanentes de terras raras. O campo magnético é produzido por correntes elétricas."
-            },
-            {
-              "name": "Eletrônica",
-              "materials": [
-                "Si",
-                "Cu",
-                "Ta"
-              ],
-              "text": "Semicondutores controlam a energia. Silício, cobre e tântalo têm funções distintas nos circuitos e componentes."
-            }
-          ]
+          "symbol": "Dy",
+          "use": "Motor",
+          "description": "Pode aumentar a resistência dos ímãs à desmagnetização em altas temperaturas."
         },
         {
-          "configuration": {
-            "motor": "induction",
-            "battery": "lfp"
-          },
-          "components": [
-            {
-              "name": "Estrutura",
-              "materials": [
-                "Fe",
-                "Al",
-                "Nb"
-              ],
-              "text": "Aços e alumínio formam a estrutura. Nióbio pode aumentar a resistência de alguns aços, conforme a especificação."
-            },
-            {
-              "name": "Bateria",
-              "materials": [
-                "Li",
-                "C",
-                "Cu",
-                "Al",
-                "Fe"
-              ],
-              "text": "O cátodo LFP usa fosfato de ferro e lítio. Não depende de níquel ou cobalto no cátodo. Grafita, cobre e alumínio continuam relevantes."
-            },
-            {
-              "name": "Motor",
-              "materials": [
-                "Cu",
-                "Al",
-                "Fe"
-              ],
-              "text": "Motores de indução podem dispensar ímãs permanentes de terras raras. O campo magnético é produzido por correntes elétricas."
-            },
-            {
-              "name": "Eletrônica",
-              "materials": [
-                "Si",
-                "Cu",
-                "Ta"
-              ],
-              "text": "Semicondutores controlam a energia. Silício, cobre e tântalo têm funções distintas nos circuitos e componentes."
-            }
-          ]
+          "symbol": "Tb",
+          "use": "Motor",
+          "description": "Pode melhorar o desempenho térmico dos ímãs, conforme a formulação."
+        },
+        {
+          "symbol": "Li",
+          "use": "Bateria",
+          "description": "Transporta carga nas baterias de íons de lítio."
+        },
+        {
+          "symbol": "Ni",
+          "use": "Bateria",
+          "description": "Integra cátodos NMC. Não é usado no cátodo LFP."
+        },
+        {
+          "symbol": "Mn",
+          "use": "Bateria",
+          "description": "Participa do cátodo de baterias NMC; não do LFP convencional."
+        },
+        {
+          "symbol": "Co",
+          "use": "Bateria",
+          "description": "Compõe cátodos NMC. Baterias LFP dispensam cobalto no cátodo."
+        },
+        {
+          "symbol": "C",
+          "use": "Bateria",
+          "description": "A grafita é usada no ânodo, um dos eletrodos da bateria."
+        },
+        {
+          "symbol": "Cu",
+          "use": "Condução elétrica",
+          "description": "Conduz eletricidade no motor, na fiação e em componentes da bateria."
+        },
+        {
+          "symbol": "Al",
+          "use": "Estrutura e bateria",
+          "description": "Forma peças da carroceria e componentes da bateria."
+        },
+        {
+          "symbol": "Fe",
+          "use": "Estrutura, motor e bateria",
+          "description": "É a base do aço e participa de motores e de cátodos LFP."
+        },
+        {
+          "symbol": "Nb",
+          "use": "Estrutura",
+          "description": "Pequenas adições podem aumentar a resistência de alguns aços."
+        },
+        {
+          "symbol": "Si",
+          "use": "Eletrônica",
+          "description": "Forma semicondutores que controlam a energia do veículo."
+        },
+        {
+          "symbol": "Ta",
+          "use": "Eletrônica",
+          "description": "É empregado em capacitores de circuitos eletrônicos."
         }
       ]
     },
@@ -1348,89 +1229,48 @@
       "id": "wind",
       "name": "Eólica",
       "category": "ENERGIA",
-      "defaultPart": 1,
       "source": "doe2023",
-      "variants": [
+      "summary": "Materiais para o gerador, a torre e as conexões elétricas.",
+      "materials": [
         {
-          "configuration": {
-            "motor": "magnet"
-          },
-          "components": [
-            {
-              "name": "Rotor",
-              "materials": [
-                "Fe"
-              ],
-              "text": "As pás e o rotor transformam vento em movimento. Os compósitos das pás estão fora deste catálogo mineral."
-            },
-            {
-              "name": "Gerador",
-              "materials": [
-                "Nd",
-                "Pr",
-                "Dy",
-                "Tb",
-                "Cu",
-                "Fe"
-              ],
-              "text": "Alguns geradores eólicos usam ímãs NdFeB. Nd e Pr participam do ímã; Dy e Tb podem melhorar seu desempenho térmico. Outras arquiteturas dispensam esses ímãs."
-            },
-            {
-              "name": "Torre",
-              "materials": [
-                "Fe",
-                "Nb"
-              ],
-              "text": "A torre usa aço. Nióbio pode integrar aços de alta resistência, conforme a especificação."
-            },
-            {
-              "name": "Conexões",
-              "materials": [
-                "Cu",
-                "Al"
-              ],
-              "text": "Cabos e conexões conduzem a eletricidade. A escolha de cobre ou alumínio depende da aplicação."
-            }
-          ]
+          "symbol": "Nd",
+          "use": "Gerador",
+          "description": "Forma ímãs NdFeB usados em alguns geradores eólicos."
         },
         {
-          "configuration": {
-            "motor": "induction"
-          },
-          "components": [
-            {
-              "name": "Rotor",
-              "materials": [
-                "Fe"
-              ],
-              "text": "As pás e o rotor transformam vento em movimento. Os compósitos das pás estão fora deste catálogo mineral."
-            },
-            {
-              "name": "Gerador",
-              "materials": [
-                "Cu",
-                "Al",
-                "Fe"
-              ],
-              "text": "Geradores sem ímãs permanentes usam excitação elétrica ou indução. A composição depende da arquitetura."
-            },
-            {
-              "name": "Torre",
-              "materials": [
-                "Fe",
-                "Nb"
-              ],
-              "text": "A torre usa aço. Nióbio pode integrar aços de alta resistência, conforme a especificação."
-            },
-            {
-              "name": "Conexões",
-              "materials": [
-                "Cu",
-                "Al"
-              ],
-              "text": "Cabos e conexões conduzem a eletricidade. A escolha de cobre ou alumínio depende da aplicação."
-            }
-          ]
+          "symbol": "Pr",
+          "use": "Gerador",
+          "description": "Participa, com neodímio, dos ímãs de certos geradores."
+        },
+        {
+          "symbol": "Dy",
+          "use": "Gerador",
+          "description": "Pode aumentar a resistência térmica dos ímãs, conforme o projeto."
+        },
+        {
+          "symbol": "Tb",
+          "use": "Gerador",
+          "description": "Pode melhorar o desempenho dos ímãs em altas temperaturas."
+        },
+        {
+          "symbol": "Cu",
+          "use": "Condução elétrica",
+          "description": "É usado no gerador, nos cabos e nas conexões."
+        },
+        {
+          "symbol": "Al",
+          "use": "Condução elétrica",
+          "description": "Pode ser usado em cabos e conexões, conforme a aplicação."
+        },
+        {
+          "symbol": "Fe",
+          "use": "Torre e rotor",
+          "description": "É a base dos aços usados na estrutura e em componentes mecânicos."
+        },
+        {
+          "symbol": "Nb",
+          "use": "Torre",
+          "description": "Pode integrar aços de alta resistência, conforme a especificação."
         }
       ]
     },
@@ -1438,35 +1278,28 @@
       "id": "optics",
       "name": "Telas e vidros",
       "category": "LUZ & ÓPTICA",
-      "defaultPart": 0,
       "source": "reeeduca",
-      "variants": [
+      "summary": "Elementos que participam da emissão de luz e da fabricação de vidros.",
+      "materials": [
         {
-          "configuration": {},
-          "components": [
-            {
-              "name": "Fósforos",
-              "materials": [
-                "Eu",
-                "Y"
-              ],
-              "text": "Európio e ítrio têm aplicações em fósforos: materiais usados para emitir luz. A composição depende da tecnologia de iluminação ou de tela."
-            },
-            {
-              "name": "Vidros ópticos",
-              "materials": [
-                "La"
-              ],
-              "text": "Lantânio tem aplicações em vidros ópticos. Sua presença depende da composição do vidro."
-            },
-            {
-              "name": "Polimento",
-              "materials": [
-                "Ce"
-              ],
-              "text": "Compostos de cério são usados no polimento de vidro. Aqui, o material participa da fabricação; isso não significa que integre o vidro acabado."
-            }
-          ]
+          "symbol": "Eu",
+          "use": "Emissão de luz",
+          "description": "Tem aplicação em fósforos, materiais usados para emitir luz."
+        },
+        {
+          "symbol": "Y",
+          "use": "Emissão de luz",
+          "description": "Participa de fósforos usados em tecnologias de iluminação e telas."
+        },
+        {
+          "symbol": "La",
+          "use": "Vidros ópticos",
+          "description": "Integra algumas formulações de vidro para aplicações ópticas."
+        },
+        {
+          "symbol": "Ce",
+          "use": "Polimento de vidro",
+          "description": "Seus compostos ajudam a polir o vidro durante a fabricação; não necessariamente ficam no produto."
         }
       ]
     },
@@ -1474,20 +1307,13 @@
       "id": "fiber",
       "name": "Fibra óptica",
       "category": "COMUNICAÇÃO",
-      "defaultPart": 0,
       "source": "reeeduca",
-      "variants": [
+      "summary": "A amplificação permite que o sinal óptico siga pelo sistema de comunicação.",
+      "materials": [
         {
-          "configuration": {},
-          "components": [
-            {
-              "name": "Amplificação óptica",
-              "materials": [
-                "Er"
-              ],
-              "text": "Érbio tem aplicação na amplificação de sinais ópticos, incluindo fibras de telecomunicações. Sua função está no amplificador, não em toda a extensão do cabo."
-            }
-          ]
+          "symbol": "Er",
+          "use": "Amplificação óptica",
+          "description": "Amplifica sinais em sistemas de fibras de telecomunicações. Sua função está no amplificador, não em toda a extensão do cabo."
         }
       ]
     },
@@ -1495,28 +1321,23 @@
       "id": "laser",
       "name": "Lasers",
       "category": "APLICAÇÕES ÓPTICAS",
-      "defaultPart": 0,
       "source": "reeeduca",
-      "variants": [
+      "summary": "Diferentes elementos atendem a diferentes tecnologias de laser.",
+      "materials": [
         {
-          "configuration": {},
-          "components": [
-            {
-              "name": "Lasers de fibra",
-              "materials": [
-                "Yb"
-              ],
-              "text": "Itérbio tem aplicação em lasers de fibra. O elemento usado varia conforme a tecnologia do laser."
-            },
-            {
-              "name": "Outros lasers",
-              "materials": [
-                "Ho",
-                "Tm"
-              ],
-              "text": "Hólmio e túlio têm aplicações em lasers especializados. São exemplos de materiais para tecnologias diferentes, não uma mistura obrigatória."
-            }
-          ]
+          "symbol": "Yb",
+          "use": "Lasers de fibra",
+          "description": "Tem aplicação em lasers de fibra, conforme a tecnologia do equipamento."
+        },
+        {
+          "symbol": "Ho",
+          "use": "Lasers especializados",
+          "description": "É usado em aplicações específicas de laser."
+        },
+        {
+          "symbol": "Tm",
+          "use": "Lasers especializados",
+          "description": "Tem aplicação em lasers especializados; não precisa estar combinado com os demais elementos."
         }
       ]
     },
@@ -1524,30 +1345,33 @@
       "id": "alloys",
       "name": "Ligas metálicas",
       "category": "MATERIAIS",
-      "defaultPart": 0,
       "source": "reeeduca",
-      "variants": [
+      "summary": "Elementos que entram em formulações de ligas diferentes.",
+      "materials": [
         {
-          "configuration": {},
-          "components": [
-            {
-              "name": "Ligas alumínio–escândio",
-              "materials": [
-                "Sc",
-                "Al"
-              ],
-              "text": "Escândio tem aplicação em ligas de alumínio. É um dos elementos associados à família das terras raras, embora não seja um lantanídeo."
-            },
-            {
-              "name": "Outras ligas",
-              "materials": [
-                "La",
-                "Y",
-                "Yb"
-              ],
-              "text": "Lantânio, ítrio e itérbio têm aplicações em ligas. Cada elemento pode integrar formulações diferentes; não se trata de uma liga única com todos eles."
-            }
-          ]
+          "symbol": "Sc",
+          "use": "Ligas de alumínio",
+          "description": "É adicionado a ligas alumínio–escândio."
+        },
+        {
+          "symbol": "Al",
+          "use": "Metal de base",
+          "description": "É o metal de base das ligas alumínio–escândio."
+        },
+        {
+          "symbol": "La",
+          "use": "Ligas",
+          "description": "Tem aplicações em ligas, dependendo da formulação."
+        },
+        {
+          "symbol": "Y",
+          "use": "Ligas",
+          "description": "Integra formulações de ligas para aplicações específicas."
+        },
+        {
+          "symbol": "Yb",
+          "use": "Ligas especiais",
+          "description": "Tem aplicação em ligas especiais. Os elementos desta seleção não formam uma única receita."
         }
       ]
     },
@@ -1555,35 +1379,28 @@
       "id": "special",
       "name": "Usos especiais",
       "category": "APLICAÇÕES ESPECIALIZADAS",
-      "defaultPart": 0,
       "source": "reeeduca",
-      "variants": [
+      "summary": "Materiais para ímãs, aplicações magnéticas e cintiladores.",
+      "materials": [
         {
-          "configuration": {},
-          "components": [
-            {
-              "name": "Ímãs SmCo",
-              "materials": [
-                "Sm",
-                "Co"
-              ],
-              "text": "Samário participa de ímãs samário–cobalto, inclusive para ambientes de alta temperatura. São uma família diferente dos ímãs NdFeB."
-            },
-            {
-              "name": "Aplicações magnéticas",
-              "materials": [
-                "Gd"
-              ],
-              "text": "Gadolínio apresenta propriedades magnéticas. Algumas classificações o incluem entre as terras raras médias."
-            },
-            {
-              "name": "Cintiladores",
-              "materials": [
-                "Lu"
-              ],
-              "text": "Lutécio tem aplicações em cintiladores e em tecnologias médicas. O elemento participa de materiais específicos, conforme o equipamento."
-            }
-          ]
+          "symbol": "Sm",
+          "use": "Ímãs SmCo",
+          "description": "Forma ímãs samário–cobalto, inclusive para ambientes de alta temperatura."
+        },
+        {
+          "symbol": "Co",
+          "use": "Ímãs SmCo",
+          "description": "Combina-se com samário nessa família de ímãs."
+        },
+        {
+          "symbol": "Gd",
+          "use": "Aplicações magnéticas",
+          "description": "É utilizado por suas propriedades magnéticas."
+        },
+        {
+          "symbol": "Lu",
+          "use": "Cintiladores",
+          "description": "Participa de cintiladores e de tecnologias médicas, conforme o equipamento."
         }
       ]
     },
@@ -1591,43 +1408,26 @@
       "id": "solar",
       "name": "Painel solar",
       "category": "ENERGIA",
-      "defaultPart": 1,
       "source": "doe2023",
-      "variants": [
+      "summary": "Neste exemplo de módulo de silício, os materiais destacados não são terras raras.",
+      "materials": [
         {
-          "configuration": {},
-          "components": [
-            {
-              "name": "Cobertura e vidro",
-              "materials": [
-                "Si"
-              ],
-              "text": "Sílica é matéria-prima do vidro. Sua composição e processamento diferem do silício das células."
-            },
-            {
-              "name": "Células",
-              "materials": [
-                "Si"
-              ],
-              "text": "Silício de alta pureza converte luz em eletricidade. Prata também é relevante, embora esteja fora deste catálogo. Este exemplo de módulo de silício não depende de terras raras nas peças mostradas."
-            },
-            {
-              "name": "Interconexões",
-              "materials": [
-                "Cu"
-              ],
-              "text": "Condutores conectam as células. A metalização pode usar diferentes materiais e rotas."
-            },
-            {
-              "name": "Moldura",
-              "materials": [
-                "Al"
-              ],
-              "text": "Alumínio protege e sustenta o módulo."
-            }
-          ]
+          "symbol": "Si",
+          "use": "Células e vidro",
+          "description": "Silício de alta pureza converte luz em eletricidade. A sílica é matéria-prima do vidro de proteção."
+        },
+        {
+          "symbol": "Cu",
+          "use": "Interconexões",
+          "description": "Conduz eletricidade nas conexões entre as células."
+        },
+        {
+          "symbol": "Al",
+          "use": "Moldura",
+          "description": "Protege e sustenta o módulo."
         }
-      ]
+      ],
+      "note": "Prata também é relevante para as células, mas não tem ficha individual neste atlas."
     }
   ],
   "mineralComparisons": {

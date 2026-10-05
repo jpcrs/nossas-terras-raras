@@ -55,3 +55,11 @@ Verificações automatizadas em `scripts/check.mjs`: estrutura dos dados, cardin
 - Pares definidos em `mineral-comparisons.js`: séries comparativas originais e números brasileiros já publicados nas fichas (Nb, Ni, Mn, Ta e V). Não foram estimados valores para os países ausentes. Recursos de urânio não viram reservas; dados não harmonizados, não individualizados, sigilosos e zero continuam distintos. Gráficos inteiramente sem valores não exibem uma escala numérica fictícia.
 - CSV exporta os dois indicadores do mineral selecionado, com valores nulos vazios, status, períodos, notas e fontes. Os pares também estão no JSON completo.
 - 12 testes passaram. No navegador: troca de mineral por clique e teclado, abertura separada da ficha, ordem dos capítulos, duas visualizações, ausência do dropdown e largura de 360 px sem overflow ou rótulos SVG cortados. Nenhum erro de console. Captura: `research/screenshots/mineral-comparisons.png`.
+
+## Aplicações: acesso direto aos materiais
+
+- Removidos os esquemas SVG, a seleção de componentes e os controles de motor/bateria. Selecionar uma aplicação agora exibe todos os materiais do recorte, sem duplicação, com uso e explicação breve.
+- A cor distingue terras raras de outros materiais na mesma grade. As descrições preservam os usos condicionais (formulação dos ímãs, NMC/LFP, polimento de vidro) sem exigir configurações.
+- As células abrem as fichas e fontes existentes. Fichas de terras raras agora permitem ir diretamente aos projetos no mapa. A referência completa dos 17 elementos permanece em uma seção recolhida, independente da aplicação selecionada.
+- Navegação de aplicações permanece visível durante a rolagem. No celular, o seletor permite rolagem horizontal; a grade adapta-se a três, duas ou uma coluna.
+- 12 cenários automatizados passaram, cobrindo todas as aplicações, materiais sem duplicação, fichas, navegação aos projetos e demais visualizações. Inspeção no navegador em 360, 390, 768 e 1.280 px: sem overflow horizontal da página ou das células. Captura: `research/screenshots/application-materials.png`.

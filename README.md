@@ -19,18 +19,17 @@ Abra http://127.0.0.1:4174. `PORT=4180 npm run dev` usa outra porta. A publicaç
 - **Quanto conhecemos:** 874 polígonos oficiais do inventário SGB, com escalas 1:1.000.000, 1:250.000 e 1:100.000, ano de publicação e consulta de cada folha. As geometrias ficam recortadas ao Brasil.
 - **Tipos de depósito:** classificação dos projetos e seção conceitual de argilas iônicas ou sistemas de rocha/alteração.
 - **Comparações:** reservas versus produção, escolha explícita entre a estimativa histórica de 21 Mt e a revisão de 11 Mt, produção e reservas lado a lado para os 15 perfis de minerais, com seleção pelas células e exportação conjunta em CSV.
-- **Materiais e tecnologias:** um explorador integrado conecta 17 terras raras a oito vistas ilustradas: carro elétrico, eólica, telas e vidros, fibra óptica, lasers, ligas, usos especiais e solar. Elementos abrem aplicações; peças destacam seus materiais. Motor e química de bateria alteram a composição. As fichas mantêm a conexão com os projetos no mapa.
+- **Materiais e tecnologias:** um explorador integrado conecta 17 terras raras a oito aplicações: carro elétrico, eólica, telas e vidros, fibra óptica, lasers, ligas, usos especiais e solar. Selecionar um item mostra todos os materiais do recorte com explicações breves de uso. As fichas mantêm fontes e links para projetos no mapa; a referência completa dos 17 elementos fica em uma seção expansível.
 
 ## Estrutura
 
 - `dist/index.html` e `dist/style.css`: estrutura editorial e layout responsivo.
 - `dist/maps.js`: projeção D3, camadas, zoom, seleção, filtros de cobertura e inspector.
 - `dist/app.js`: gráficos, minerais, diálogos e exportação.
-- `dist/applications.js`, `dist/applications.css` e `dist/applications-data.js`: seleção integrada de aplicações, componentes, elementos e projetos; composições qualitativas e variantes.
+- `dist/applications.js`, `dist/applications.css` e `dist/applications-data.js`: seleção de aplicações, lista de materiais com seus usos e referência de elementos.
 - `dist/data.js`: pesquisa original, fontes e unidades, preservadas.
 - `dist/mineral-comparisons.js`: pares de produção/reservas por mineral, lacunas explícitas e exportação CSV. Reutiliza as séries comparativas e os valores brasileiros já presentes nas fichas.
 - `dist/editorial.js`: valores estruturados de apresentação, classes de recursos e funções de filtragem.
-- `dist/diagrams.js`: ilustrações vetoriais originais com componentes selecionáveis por ponteiro ou teclado.
 - `dist/assets/geological-coverage.geojson`: polígonos SGB e metadados de consulta.
 - `dist/data-snapshot.json`: dados completos, incluindo proveniência cartográfica e edições de reservas.
 - `tests/interactions.test.mjs`: testes de integração DOM (jsdom, sem navegador externo).
