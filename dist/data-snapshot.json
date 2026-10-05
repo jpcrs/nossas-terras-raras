@@ -1060,15 +1060,6 @@
       "Terras raras só em tecnologias que empregam ímãs permanentes."
     ],
     [
-      "Painel solar",
-      [
-        "Si",
-        "Cu",
-        "Al"
-      ],
-      "Silício cristalino; prata também é relevante, embora esteja fora das colunas desta matriz."
-    ],
-    [
       "Data center",
       [
         "Cu",
@@ -1408,31 +1399,6 @@
           "description": "Participa de cintiladores e de tecnologias médicas, conforme o equipamento."
         }
       ]
-    },
-    {
-      "id": "solar",
-      "name": "Painel solar",
-      "category": "ENERGIA",
-      "source": "doe2023",
-      "summary": "Neste exemplo de módulo de silício, os materiais destacados não são terras raras.",
-      "materials": [
-        {
-          "symbol": "Si",
-          "use": "Células e vidro",
-          "description": "Silício de alta pureza converte luz em eletricidade. A sílica é matéria-prima do vidro de proteção."
-        },
-        {
-          "symbol": "Cu",
-          "use": "Interconexões",
-          "description": "Conduz eletricidade nas conexões entre as células."
-        },
-        {
-          "symbol": "Al",
-          "use": "Moldura",
-          "description": "Protege e sustenta o módulo."
-        }
-      ],
-      "note": "Prata também é relevante para as células, mas não tem ficha individual neste atlas."
     }
   ],
   "mineralComparisons": {

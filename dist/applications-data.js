@@ -56,10 +56,5 @@ export const applications=[
   material('Gd','Aplicações magnéticas','É utilizado por suas propriedades magnéticas.'),
   material('Lu','Cintiladores','Participa de cintiladores e de tecnologias médicas, conforme o equipamento.'),
  ]},
- {id:'solar',name:'Painel solar',category:'ENERGIA',source:'doe2023',summary:'Neste exemplo de módulo de silício, os materiais destacados não são terras raras.',materials:[
-  material('Si','Células e vidro','Silício de alta pureza converte luz em eletricidade. A sílica é matéria-prima do vidro de proteção.'),
-  material('Cu','Interconexões','Conduz eletricidade nas conexões entre as células.'),
-  material('Al','Moldura','Protege e sustenta o módulo.'),
- ],note:'Prata também é relevante para as células, mas não tem ficha individual neste atlas.'},
 ];
 export const applicationExamples=applications;

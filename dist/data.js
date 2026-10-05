@@ -83,7 +83,6 @@ export const technologies=[
  ['Veículo elétrico',['Li','Ni','Mn','C','ETR','Nb','Cu','Si','Al','Fe'],'A combinação muda com a bateria, o motor e a estrutura.'],
  ['Bateria',['Li','Ni','Mn','C','Cu','Al'],'NMC e LFP usam cátodos diferentes; grafita, cobre e alumínio são exemplos de outros componentes.'],
  ['Turbina eólica',['ETR','Nb','Cu','Al','Fe'],'Terras raras só em tecnologias que empregam ímãs permanentes.'],
- ['Painel solar',['Si','Cu','Al'],'Silício cristalino; prata também é relevante, embora esteja fora das colunas desta matriz.'],
  ['Data center',['Cu','Si','Ta','Al','Fe'],'Semicondutores, interconexões, capacitores e infraestrutura física.'],
  ['Semicondutores',['Si','Cu','Ta'],'Seleção de materiais de substrato, interconexão e barreira; outras químicas são possíveis.'],
  ['Rede elétrica',['Cu','Si','Al','Fe'],'Cabos, transformadores, estruturas e eletrônica de potência.'],

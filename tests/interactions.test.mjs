@@ -166,9 +166,7 @@ test('item selection shows all its materials and uses without component controls
  assert($('#application-materials [data-mineral-detail="Co"]'));
  assert($('#application-materials [data-mineral-detail="Cu"]'));
  assert.match($('#application-materials [data-mineral-detail="Ni"]').textContent,/NMC.*LFP/);
- click('[data-tech="solar"]');assert.equal(document.querySelectorAll('#application-materials .rare').length,0);
- assert.match($('#application-summary').textContent,/não são terras raras/);
- assert.equal(document.querySelectorAll('#application-materials .application-material').length,3);
+ assert.equal($('[data-tech="solar"]'),null);
 });
 test('material cards open the correct sourced profile and can navigate to project records',()=>{
  click('[data-tech="ev"]');click('#application-materials [data-element-detail="Pr"]');
