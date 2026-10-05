@@ -30,13 +30,13 @@ test('supply chain selects real country shares by stage and preserves rounded ze
    assert(Math.abs(Number(row.querySelector('.supply-share-bar').getAttribute('width'))-2.4*stage.values[i])<1e-9);
   }
   if(stage.values.includes(0))assert.match($('.supply-zero-note').textContent,/Não significa necessariamente ausência/);
+  else assert.equal($('.supply-zero-note'),null);
   assert($('#supply-announcement').textContent.includes(stage.name));
   assert.equal(document.querySelectorAll('#supply-detail .supply-country-row').length,2);
   assert.doesNotMatch($('#supply-announcement').textContent,/Brasil|Demais países/);
  }
- assert.equal(document.querySelectorAll('#supply-data tbody tr').length,2);
- assert.equal($('#supply-data a[download]').getAttribute('href'),supplyChain.rawData);
- assert.match($('#supply-data').textContent,/99,9%/);
+ assert.equal($('.supply-chart-caption'),null);
+ assert.equal($('.supply-method'),null);
 });
 test('supply chain keyboard and direct chart selection update the same accessible state',()=>{
  const key=(selector,key)=>$(selector).dispatchEvent(new dom.window.KeyboardEvent('keydown',{key,bubbles:true,cancelable:true}));

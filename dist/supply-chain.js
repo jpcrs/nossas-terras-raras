@@ -111,7 +111,7 @@ export function initSupplyChain() {
     detail.html(`<p class="eyebrow">${stage.number} / ${stage.output.toUpperCase()}</p>
       <h3 id="supply-detail-title">${stage.name}</h3><p class="supply-description">${stage.description}</p>
       <div class="supply-country-rows"></div>
-      <p class="supply-zero-note">${stage.values.includes(0) ? '* ' + supplyChain.zeroNote : 'As barras usam a mesma escala, de 0 a 100%.'}</p>`);
+      ${stage.values.includes(0) ? `<p class="supply-zero-note">* ${supplyChain.zeroNote}</p>` : ''}`);
     const rows = countries.map((c, i) => ({...c, value: stage.values[i]}));
     const row = detail.select('.supply-country-rows').selectAll('.supply-country-row').data(rows).join('div')
       .attr('class', d => `supply-country-row supply-${d.key}`).attr('data-country', d => d.key);
@@ -125,12 +125,6 @@ export function initSupplyChain() {
     if (announce) d3.select('#supply-announcement').text(`${stage.name}. ${rows.map(r => `${r.name}: ${supplyPercent(r.value)}`).join('; ')}.`);
   }
 
-  d3.select('#supply-data').html(`<div class="supply-table-wrap"><table>
-    <caption>Participação mundial em 2024 (%)</caption><thead><tr><th scope="col">País</th>${stages.map(s => `<th scope="col">${s.name}</th>`).join('')}</tr></thead>
-    <tbody>${countries.map((c, i) => `<tr><th scope="row">${c.name}</th>${stages.map(s => `<td>${supplyPercent(s.values[i])}${s.values[i] === 0 ? '*' : ''}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
-    <p>* ${supplyChain.zeroNote} ${supplyChain.roundingNote} A cesta de elementos difere da estatística geral de terras raras do USGS.</p>
-    <p>Fonte: IEA, <i>Share of global supply of magnet rare earths and magnet manufacturing, 2024</i>. Licença CC BY 4.0. Visualização adaptada pelo atlas.</p>
-    <a href="${supplyChain.rawData}" class="source-link" download>Baixar a série original da IEA · CSV ↓</a>`);
   draw();
   selectStage(selected, false);
   if (typeof ResizeObserver !== 'undefined') new ResizeObserver(draw).observe(root.node());
