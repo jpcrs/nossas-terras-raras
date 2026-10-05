@@ -205,7 +205,7 @@ test('mineral tiles update production and reserves together without opening a di
  click('[data-mineral="Nb"]');assert.match($('#production-chart svg').getAttribute('aria-label'),/Estados Unidos: 0 t de Nb/);assert.match($('#reserve-chart svg').getAttribute('aria-label'),/Brasil: 14 Mt de Nb/);assert.match($('#reserve-chart svg').getAttribute('aria-label'),/China: Fora deste recorte/);
  assert.equal($('#production-note').hidden,true);assert.equal($('#reserve-note').hidden,true);
  assert.equal($('#production-note').textContent,'');assert.equal($('#reserve-note').textContent,'');
- click('[data-mineral="ETR"]');assert.match($('#reserve-period').textContent,/HISTÓRICO/);assert.match($('#reserve-note').textContent,/anterior à revisão/);
+ click('[data-mineral="ETR"]');assert.match($('#reserve-period').textContent,/HISTÓRICO/);assert.equal($('#reserve-note').textContent,'');assert.equal($('#reserve-note').hidden,true);
  click('[data-mineral="Si"]');assert.match($('#reserve-note').textContent,/Não há um total de reservas comparável/);assert.equal(document.querySelectorAll('#reserve-chart .chart-grid text').length,0);
  await tick();assert([...document.querySelectorAll('#reserve-chart .data-bar')].every(b=>Number(b.getAttribute('width'))===0));
  click('[data-mineral="V"]');click('#mineral-profile');assert.equal($('#dialog-title').textContent,'Vanádio');click('.dialog-close');

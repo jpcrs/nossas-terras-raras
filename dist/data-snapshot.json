@@ -1499,7 +1499,8 @@
         "source": null,
         "sourceKey": "reeHistorical",
         "period": "USGS 2026 · estimativa histórica anterior à revisão de maio",
-        "note": "Tabela histórica do USGS 2026, anterior à revisão de maio. Inclui lantanídeos e ítrio; exclui a maior parte do escândio. Histórico de versões na seção Fontes."
+        "note": "Tabela histórica do USGS 2026, anterior à revisão de maio. Inclui lantanídeos e ítrio; exclui a maior parte do escândio. Histórico de versões na seção Fontes.",
+        "chartNote": ""
       }
     },
     "Li": {
@@ -1561,7 +1562,8 @@
           null
         ],
         "source": "graphite",
-        "note": "EUA: reservas incluídas em outros países, sem valor individualizado na tabela."
+        "note": "EUA: reservas incluídas em outros países, sem valor individualizado na tabela.",
+        "chartNote": ""
       }
     },
     "Ni": {
@@ -1731,7 +1733,8 @@
           "Fora deste recorte",
           "Fora deste recorte"
         ],
-        "note": "Ilmenita e rutilo são séries distintas. A produção não foi harmonizada neste recorte."
+        "note": "Ilmenita e rutilo são séries distintas. A produção não foi harmonizada neste recorte.",
+        "chartNote": ""
       },
       "reserve": {
         "id": "ti-r-catalog",
@@ -1751,7 +1754,8 @@
           "Fora deste recorte",
           "Fora deste recorte"
         ],
-        "note": "Reservas de ilmenita e rutilo devem ser consultadas separadamente. Não há uma série harmonizada neste recorte."
+        "note": "Reservas de ilmenita e rutilo devem ser consultadas separadamente. Não há uma série harmonizada neste recorte.",
+        "chartNote": ""
       }
     },
     "V": {
@@ -1817,7 +1821,8 @@
           "Fora deste recorte",
           "Fora deste recorte"
         ],
-        "note": "Brasil não individualizado na tabela selecionada. China e EUA não transcritos neste recorte; o total mundial não foi distribuído entre países."
+        "note": "Brasil não individualizado na tabela selecionada. China e EUA não transcritos neste recorte; o total mundial não foi distribuído entre países.",
+        "chartNote": ""
       },
       "reserve": {
         "id": "cu-r",
@@ -1872,7 +1877,8 @@
           "Fora deste recorte",
           "Fora deste recorte"
         ],
-        "note": "A ficha informa cerca de 250 mil t de U em recursos brasileiros (IEN, 2026). Recursos não são reservas e não são convertidos em uma barra de reservas."
+        "note": "A ficha informa cerca de 250 mil t de U em recursos brasileiros (IEN, 2026). Recursos não são reservas e não são convertidos em uma barra de reservas.",
+        "chartNote": ""
       }
     },
     "Fe": {
@@ -1900,7 +1906,8 @@
           3600
         ],
         "source": "iron-ore",
-        "note": "Massa de minério bruto. O conteúdo de ferro é outra série e não deve ser misturado."
+        "note": "Massa de minério bruto. O conteúdo de ferro é outra série e não deve ser misturado.",
+        "chartNote": ""
       }
     },
     "Al": {
@@ -1921,7 +1928,8 @@
           null,
           "Dado sigiloso (W)"
         ],
-        "note": "Bauxita em equivalente seco; não é produção de alumínio metálico."
+        "note": "Bauxita em equivalente seco; não é produção de alumínio metálico.",
+        "chartNote": ""
       },
       "reserve": {
         "id": "al-r",
@@ -1976,7 +1984,8 @@
           "Fora deste recorte",
           "Fora deste recorte"
         ],
-        "note": "Não há uma comparação quantitativa de reservas transcrita neste recorte. Consulte a classificação na fonte."
+        "note": "Não há uma comparação quantitativa de reservas transcrita neste recorte. Consulte a classificação na fonte.",
+        "chartNote": ""
       }
     }
   },
