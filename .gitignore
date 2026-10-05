@@ -1,4 +1,5 @@
 .DS_Store
+/.openai/hosting.json
 research/*.pdf
 research/*.txt
 research/*.html

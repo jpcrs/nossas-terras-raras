@@ -61,4 +61,4 @@ Os pontos e as áreas municipais não são coordenadas ou perímetros de jazidas
 
 Recursos, reservas, material total e óxidos contidos não são somados. As fichas não inventam quantidades por elemento. Teores são convertidos de ppm para porcentagem e kg por tonelada apenas para explicar a concentração química; não representam recuperação industrial. Dados ausentes, sigilosos e zero continuam distintos. Fontes corporativas mantêm datas e ressalvas. A série histórica de 21 Mt é identificada como histórica e a revisão de maio permanece documentada nas fontes e no download JSON.
 
-Consulte `research/VERIFICATION.md` para o registro de pesquisa e validação. `.openai/hosting.json` mantém `dist` como diretório estático; as alterações locais não publicam automaticamente uma nova versão do site.
+Consulte `research/VERIFICATION.md` para o registro de pesquisa e validação.
