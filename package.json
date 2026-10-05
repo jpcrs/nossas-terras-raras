@@ -1,1 +1,19 @@
-{"name":"brasil-sob-nossos-pes","private":true,"type":"module","scripts":{"check":"node scripts/check.mjs","snapshot":"node scripts/snapshot.mjs"}}
+{
+  "name": "brasil-sob-nossos-pes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node scripts/check.mjs && node --test tests/interactions.test.mjs",
+    "snapshot": "node scripts/snapshot.mjs",
+    "refresh:coverage": "node scripts/refresh-coverage.mjs",
+    "vendor": "node scripts/vendor.mjs"
+  },
+  "dependencies": {
+    "d3": "^7.9.0"
+  },
+  "devDependencies": {
+    "jsdom": "^30.1.2"
+  }
+}

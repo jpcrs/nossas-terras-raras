@@ -10,7 +10,33 @@
     "through": 2025,
     "scale100000": 28,
     "scale250000": 50,
-    "note": "Percentuais arredondados; não são cobertura específica da Amazônia."
+    "note": "Percentuais arredondados; não são cobertura específica da Amazônia. A contagem de folhas vetoriais não mede cobertura nacional.",
+    "polygons": {
+      "file": "assets/geological-coverage.geojson",
+      "features": 874,
+      "source": "https://geoportal.sgb.gov.br/server/rest/services/sigs_especiais/mapeamento_geologico_brasil_manutencao/FeatureServer/1",
+      "query": {
+        "f": "geojson",
+        "where": "SITUACAO = 'Publicado' AND ESCALA IN (100000,250000,1000000) AND ANO_MAPA <= '2025'",
+        "outFields": "OBJECTID,PROJETO,COD_FOLHA,NOME_FOLHA,EXECUCAO,ANO_MAPA,ESCALA,SITUACAO,URL_RIGEO",
+        "outSR": "4326",
+        "geometryPrecision": "5",
+        "returnGeometry": "true"
+      },
+      "retrieved": "2026-10-05",
+      "note": "Folhas publicadas até 2025, inventário vetorial SGB. Sobreposições e reedições preservadas. O contorno de uma folha não é o contorno de uma jazida. Percentuais nacionais provêm separadamente do Panorama SGB 2026."
+    }
+  },
+  "reserveEditions": {
+    "historical": {
+      "brazilMtREO": 21,
+      "source": "reeHistorical"
+    },
+    "mayRevision": {
+      "brazilMtREO": 11,
+      "source": "revision",
+      "date": "2026-05-27"
+    }
   },
   "sources": {
     "reeHistorical": {
@@ -748,6 +774,125 @@
       "source": "cetem"
     }
   ],
+  "projectFacts": {
+    "serra": {
+      "municipality": "5213087",
+      "short": "Serra Verde",
+      "elements": [
+        "Nd",
+        "Pr",
+        "Dy",
+        "Tb"
+      ],
+      "stage": "production",
+      "kind": "clay",
+      "amount": 911,
+      "unit": "Mt de material",
+      "amountLabel": "Recurso histórico · 2017",
+      "grade": 1200,
+      "year": "2017",
+      "resourceNote": "Classes não discriminadas no quadro do SGB. Não é uma declaração atual do operador."
+    },
+    "caldeira": {
+      "municipality": "3151800",
+      "short": "Caldeira",
+      "elements": [
+        "Nd",
+        "Pr",
+        "Dy",
+        "Tb"
+      ],
+      "stage": "development",
+      "kind": "clay",
+      "amount": 1631,
+      "unit": "Mt de material",
+      "amountLabel": "Recurso · julho de 2026",
+      "grade": 2317,
+      "year": "2026",
+      "inferred": 928,
+      "resourceNote": "Medidos, indicados e inferidos. Reserva separada: 151 Mt de minério a 3.524 ppm TREO."
+    },
+    "araxa": {
+      "municipality": "3104007",
+      "short": "Araxá",
+      "elements": [
+        "Nd",
+        "Pr",
+        "Nb"
+      ],
+      "stage": "development",
+      "kind": "rock",
+      "amount": 3.98,
+      "unit": "Mt de TREO contidos",
+      "amountLabel": "Conteúdo no recurso · agosto de 2026",
+      "grade": null,
+      "year": "2026",
+      "resourceNote": "Aproximadamente 68% da tonelagem nas classes medida e indicada. Corte de 2% TREO não é teor médio."
+    },
+    "carina": {
+      "municipality": "5214903",
+      "short": "Carina",
+      "elements": [
+        "Dy",
+        "Tb",
+        "Nd",
+        "Pr"
+      ],
+      "stage": "development",
+      "kind": "clay",
+      "amount": 298,
+      "unit": "Mt de material",
+      "amountLabel": "Recurso histórico · novembro de 2025",
+      "grade": 1452,
+      "year": "2025",
+      "resourceNote": "Indicados + inferidos, segundo compilação do SGB. Consulte a declaração atual do operador."
+    },
+    "colossus": {
+      "municipality": "3151800",
+      "short": "Colossus",
+      "elements": [
+        "Nd",
+        "Pr",
+        "Dy",
+        "Tb"
+      ],
+      "stage": "development",
+      "kind": "clay",
+      "amount": 493,
+      "unit": "Mt de material",
+      "amountLabel": "Recurso histórico · janeiro de 2025",
+      "grade": 2508,
+      "year": "2025",
+      "resourceNote": "Medidos, indicados e inferidos. A reserva separada de 200,1 Mt tem outra data e não se soma ao recurso."
+    },
+    "morro": {
+      "municipality": "3151800",
+      "short": "Morro do Ferro",
+      "elements": [],
+      "stage": "occurrence",
+      "kind": "rock",
+      "amount": null,
+      "grade": null,
+      "amountLabel": "Sem recurso atual classificado",
+      "resourceNote": "Referência geológica de 2013. Tório associado; elementos individuais de ETR não discriminados nesta seleção."
+    },
+    "pitinga": {
+      "municipality": "1303536",
+      "short": "Pitinga",
+      "elements": [
+        "Y",
+        "Dy",
+        "Er",
+        "Yb"
+      ],
+      "stage": "occurrence",
+      "kind": "rock",
+      "amount": null,
+      "grade": null,
+      "amountLabel": "Sem recurso atual classificado",
+      "resourceNote": "Distrito produtor de outros metais. Produção comercial de terras raras não confirmada nesta seleção."
+    }
+  },
   "rareEarths": [
     [
       "La",

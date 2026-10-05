@@ -4,3 +4,6 @@ research/*.txt
 research/*.html
 research/*.json
 *.tar.gz
+
+node_modules/
+*.next
