@@ -1,0 +1,6 @@
+.DS_Store
+research/*.pdf
+research/*.txt
+research/*.html
+research/*.json
+*.tar.gz

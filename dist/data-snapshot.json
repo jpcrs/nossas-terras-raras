@@ -1,0 +1,989 @@
+{
+  "edition": "2026-10-05",
+  "countryOrder": [
+    "Brasil",
+    "China",
+    "Estados Unidos"
+  ],
+  "mapping": {
+    "source": "panorama",
+    "through": 2025,
+    "scale100000": 28,
+    "scale250000": 50,
+    "note": "Percentuais arredondados; não são cobertura específica da Amazônia."
+  },
+  "sources": {
+    "panorama": {
+      "name": "SGB · Panorama de minerais críticos 2026",
+      "url": "https://rigeo.sgb.gov.br/bitstreams/9d2eac39-ada3-4f29-8221-822380c7edd0/download",
+      "date": "2026 · cobertura até 2025 e províncias minerais"
+    },
+    "chinaArea": {
+      "name": "MOFCOM · território chinês",
+      "url": "https://fdi.mofcom.gov.cn/EN/come-newzonghe.html?Liindex=0&comeID=1&parentId=104",
+      "date": "Área territorial aproximada"
+    },
+    "cartography": {
+      "name": "IBGE · API de malhas territoriais",
+      "url": "https://servicodados.ibge.gov.br/api/docs/malhas?versao=3",
+      "date": "Malhas estaduais e municipais · consulta 05/10/2026"
+    },
+    "usgs": {
+      "name": "USGS · Mineral Commodity Summaries 2026",
+      "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026.pdf",
+      "date": "2026 · versão 1.3"
+    },
+    "revision": {
+      "name": "USGS · histórico de revisões",
+      "url": "https://pubs.usgs.gov/periodicals/mcs2026/versionHist.txt",
+      "date": "27/05/2026"
+    },
+    "sgb": {
+      "name": "SGB · PlanGeo 2025–2034",
+      "url": "https://rigeo.sgb.gov.br/bitstream/doc/24990/3/plangeo_2025_2034.pdf",
+      "date": "Publicado em 2024 · cobertura até 2023"
+    },
+    "mapping": {
+      "name": "SGB · plataforma de mapeamento",
+      "url": "https://www.sgb.gov.br/mapeamento_geologico/",
+      "date": "Consultada em 05/10/2026"
+    },
+    "ibge": {
+      "name": "IBGE · áreas territoriais 2024",
+      "url": "https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/15761-geografia-do-brasil.html",
+      "date": "2024 · publicado em 2025"
+    },
+    "china": {
+      "name": "China Geological Survey · levantamentos regionais",
+      "url": "https://en.cgs.gov.cn/Activities/201603/t20160309_266130.html",
+      "date": "Escalas nacionais de referência"
+    },
+    "china2024": {
+      "name": "CGS · boletim de recursos naturais 2024",
+      "url": "https://www.cgs.gov.cn/zcwj/202503/t20250314_820792.html",
+      "date": "14/03/2025 · atividade em 2024"
+    },
+    "iea": {
+      "name": "IEA · Rare Earth Elements",
+      "url": "https://www.iea.org/reports/rare-earth-elements/executive-summary",
+      "date": "2026 · dados de 2024"
+    },
+    "iea2026": {
+      "name": "IEA · Global Critical Minerals Outlook 2026",
+      "url": "https://www.iea.org/news/supply-concentration-export-restrictions-and-declining-investment-put-critical-mineral-security-at-risk",
+      "date": "16/07/2026 · dados de 2025"
+    },
+    "doe": {
+      "name": "DOE · materiais críticos e aplicações",
+      "url": "https://www.energy.gov/cmm/what-are-critical-minerals-and-materials",
+      "date": "Consultado em 05/10/2026"
+    },
+    "doe2023": {
+      "name": "DOE · Critical Materials Assessment",
+      "url": "https://www.energy.gov/sites/default/files/2023-05/2023-critical-materials-assessment.pdf",
+      "date": "2023 · tecnologias e materiais"
+    },
+    "reeeduca": {
+      "name": "SGB Educa · elementos terras raras",
+      "url": "https://sgbeduca.sgb.gov.br/jovens_geociencias_elementos_terrasraras.html",
+      "date": "Geologia e processos"
+    },
+    "cetem": {
+      "name": "CETEM · Terras raras, capítulo I",
+      "url": "https://mineralis.cetem.gov.br/bitstream/cetem/1853/4/Cap.%20I%20Terras%20raras.pdf",
+      "date": "2013 · geologia histórica, não status operacional"
+    },
+    "niobium": {
+      "name": "SGB · Nióbio brasileiro",
+      "url": "https://www.sgb.gov.br/niobio-brasileiro",
+      "date": "2016 · localização e contexto histórico"
+    },
+    "amazon": {
+      "name": "SGB · cooperação Brasil–China",
+      "url": "https://www.sgb.gov.br/cooperacao-brasil-china",
+      "date": "Pesquisa em áreas de densa cobertura vegetal"
+    },
+    "bndes": {
+      "name": "BNDES · cadeia fotovoltaica brasileira",
+      "url": "https://web.bndes.gov.br/bib/jspui/handle/1408/28110?locale=pt_BR",
+      "date": "Março de 2025"
+    },
+    "homerun": {
+      "name": "Homerun · relatório da administração",
+      "url": "https://homerunresources.com/wp-content/uploads/2026/05/Homerun-Resources-Inc.-MDA-December-31-2025.pdf",
+      "date": "Abril de 2026 · recurso de abril de 2025"
+    },
+    "uranium": {
+      "name": "IEN · prospecção de urânio no Brasil",
+      "url": "https://www.gov.br/ien/pt-br/assuntos/noticias/prospeccao-de-uranio-no-brasil",
+      "date": "03/06/2026"
+    },
+    "inb": {
+      "name": "INB · Caetité e ciclo do combustível",
+      "url": "https://www.inb.gov.br/A-INB/Onde-estamos/Caetite",
+      "date": "Consultado em 05/10/2026"
+    },
+    "serra": {
+      "name": "Serra Verde · operação Pela Ema",
+      "url": "https://www.serraverde.com/operations/",
+      "date": "Consultado em 05/10/2026"
+    },
+    "caldeira": {
+      "name": "Meteoric/Lynas · apresentação técnica",
+      "url": "https://wcsecure.weblink.com.au/pdf/MEI/03142911.pdf",
+      "date": "01/10/2026 · recurso de 09/07/2026"
+    },
+    "araxa": {
+      "name": "St George · projeto Araxá",
+      "url": "https://www.stgm.com.au/",
+      "date": "Recurso de 11/08/2026"
+    },
+    "carina": {
+      "name": "Aclara · projeto Carina",
+      "url": "https://www.aclara-re.com/carina-project",
+      "date": "Consultado em 05/10/2026"
+    },
+    "colossus": {
+      "name": "Viridis · projeto Colossus",
+      "url": "https://viridismining.com.au/project/colossus/",
+      "date": "Consultado em 05/10/2026"
+    },
+    "colossusResource": {
+      "name": "Viridis · relatório anual 2025",
+      "url": "https://viridismining.com.au/wp-content/uploads/2025/09/Viridis-Mining-and-Minerals-Limited-Annual-Report-30062025-Lodgement.pdf",
+      "date": "Recurso de 22/01/2025 · série histórica"
+    }
+  },
+  "metrics": [
+    {
+      "id": "ree-r",
+      "name": "Terras raras · reservas",
+      "type": "reserve",
+      "unit": "Mt de REO",
+      "values": [
+        11,
+        44,
+        1.9
+      ],
+      "source": "rare-earths",
+      "note": "USGS 2026 v1.3. Inclui lantanídeos e ítrio; exclui a maior parte do escândio."
+    },
+    {
+      "id": "ree-p",
+      "name": "Terras raras · produção",
+      "type": "production",
+      "unit": "t de REO",
+      "values": [
+        2000,
+        270000,
+        51000
+      ],
+      "source": "rare-earths",
+      "world": 390000
+    },
+    {
+      "id": "nb-p",
+      "name": "Nióbio · produção",
+      "type": "production",
+      "unit": "t de Nb",
+      "values": [
+        104000,
+        40,
+        0
+      ],
+      "source": "niobium",
+      "world": 112000
+    },
+    {
+      "id": "gr-r",
+      "name": "Grafita natural · reservas",
+      "type": "reserve",
+      "unit": "Mt de grafita",
+      "values": [
+        74,
+        100,
+        null
+      ],
+      "source": "graphite",
+      "note": "EUA: reservas incluídas em outros países, sem valor individualizado na tabela."
+    },
+    {
+      "id": "gr-p",
+      "name": "Grafita natural · produção",
+      "type": "production",
+      "unit": "t de grafita",
+      "values": [
+        65000,
+        1400000,
+        0
+      ],
+      "source": "graphite",
+      "world": 1800000
+    },
+    {
+      "id": "li-r",
+      "name": "Lítio · reservas",
+      "type": "reserve",
+      "unit": "t de Li contido",
+      "values": [
+        540000,
+        4600000,
+        4400000
+      ],
+      "source": "lithium",
+      "geoSource": "panorama"
+    },
+    {
+      "id": "li-p",
+      "name": "Lítio · produção",
+      "type": "production",
+      "unit": "t de Li contido",
+      "values": [
+        12000,
+        62000,
+        null
+      ],
+      "source": "lithium",
+      "world": 290000,
+      "nodata": [
+        null,
+        null,
+        "Dado sigiloso (W)"
+      ],
+      "note": "Produção dos EUA não divulgada. Total mundial exclui os EUA. Não confundir lítio contido com carbonato de lítio equivalente."
+    },
+    {
+      "id": "ni-r",
+      "name": "Níquel · reservas",
+      "type": "reserve",
+      "unit": "Mt de Ni",
+      "values": [
+        16,
+        4.4,
+        0.34
+      ],
+      "source": "nickel",
+      "geoSource": "panorama"
+    },
+    {
+      "id": "mn-r",
+      "name": "Manganês · reservas",
+      "type": "reserve",
+      "unit": "Mt de Mn",
+      "values": [
+        300,
+        260,
+        0
+      ],
+      "source": "manganese",
+      "geoSource": "panorama"
+    },
+    {
+      "id": "ta-r",
+      "name": "Tântalo · reservas",
+      "type": "reserve",
+      "unit": "t de Ta",
+      "values": [
+        40000,
+        240000,
+        0
+      ],
+      "source": "tantalum"
+    },
+    {
+      "id": "cu-r",
+      "name": "Cobre · reservas",
+      "type": "reserve",
+      "unit": "Mt de Cu",
+      "values": [
+        null,
+        41,
+        47
+      ],
+      "source": "copper",
+      "note": "Brasil agregado em “outros países” nesta tabela. A ausência de valor individual não indica ausência de reservas."
+    },
+    {
+      "id": "si-p",
+      "name": "Silício metálico · produção",
+      "type": "production",
+      "unit": "mil t de Si",
+      "values": [
+        180,
+        4000,
+        null
+      ],
+      "source": "silicon",
+      "world": 4600,
+      "nodata": [
+        null,
+        null,
+        "Dado sigiloso (W)"
+      ],
+      "note": "Silício metálico, sem ferrossilício. Não equivale a silício de grau solar ou eletrônico."
+    },
+    {
+      "id": "u-res",
+      "name": "Urânio · recursos",
+      "type": "resource",
+      "unit": "t de U",
+      "values": [
+        null,
+        null,
+        null
+      ],
+      "source": null,
+      "sourceKey": "uranium",
+      "note": "Dados diretamente comparáveis não disponíveis nesta seleção. Classes geológicas e faixas de custo do urânio precisam ser harmonizadas; recursos não são reservas."
+    },
+    {
+      "id": "fe-r",
+      "name": "Minério de ferro · reservas",
+      "type": "reserve",
+      "unit": "Mt de minério bruto",
+      "values": [
+        34000,
+        17000,
+        3600
+      ],
+      "source": "iron-ore",
+      "note": "Massa de minério bruto. O conteúdo de ferro é outra série e não deve ser misturado."
+    },
+    {
+      "id": "fe-p",
+      "name": "Minério de ferro · produção",
+      "type": "production",
+      "unit": "Mt de minério utilizável",
+      "values": [
+        420,
+        290,
+        38
+      ],
+      "source": "iron-ore",
+      "world": 2600
+    },
+    {
+      "id": "al-r",
+      "name": "Bauxita · reservas",
+      "type": "reserve",
+      "unit": "Mt de bauxita",
+      "values": [
+        1700,
+        710,
+        20
+      ],
+      "source": "bauxite-alumina",
+      "geoSource": "panorama"
+    },
+    {
+      "id": "al-p",
+      "name": "Bauxita · produção",
+      "type": "production",
+      "unit": "Mt de bauxita",
+      "values": [
+        33,
+        87,
+        null
+      ],
+      "source": "bauxite-alumina",
+      "world": 440,
+      "nodata": [
+        null,
+        null,
+        "Dado sigiloso (W)"
+      ],
+      "note": "Bauxita em equivalente seco; não é produção de alumínio metálico."
+    }
+  ],
+  "minerals": [
+    {
+      "symbol": "Nb",
+      "number": 41,
+      "name": "Nióbio",
+      "group": "Estrutura",
+      "desc": "Metal de liga: pequenas adições podem melhorar resistência e desempenho de aços.",
+      "uses": "Aços de alta resistência, dutos, automóveis e superligas aeroespaciais.",
+      "reserve": "14 milhões t de Nb",
+      "rank": "1º em produção · USGS 2026",
+      "production": "104 mil t de Nb",
+      "world": "112 mil t de Nb",
+      "location": "Araxá (MG); Catalão e Ouvidor (GO).",
+      "processing": "O Brasil já produz ferronióbio e produtos de nióbio. A oportunidade inclui ampliar aplicações e bens industriais.",
+      "source": "niobium",
+      "geoSource": "niobium"
+    },
+    {
+      "symbol": "ETR",
+      "number": "17",
+      "name": "Terras raras",
+      "group": "Magnetismo",
+      "desc": "Família de 17 elementos: lantanídeos, ítrio e escândio. As estatísticas do USGS não cobrem todos de forma idêntica.",
+      "uses": "Ímãs, catalisadores, cerâmicas, óptica e ligas.",
+      "reserve": "11 milhões t de REO · v1.3",
+      "rank": "2º em reservas divulgadas · USGS 2026",
+      "production": "2 mil t de REO",
+      "world": "390 mil t de REO",
+      "location": "Minaçu (GO); Araxá e Poços de Caldas (MG); Pitinga (AM).",
+      "processing": "Pela Ema produz um concentrado misto. Isso não equivale a ter toda a cadeia de separação, metais e ímãs no país.",
+      "source": "rare-earths",
+      "geoSource": "cetem"
+    },
+    {
+      "symbol": "Li",
+      "number": 3,
+      "name": "Lítio",
+      "group": "Energia",
+      "desc": "Metal leve que transporta carga em diversas baterias recarregáveis.",
+      "uses": "Baterias de íons de lítio, vidros e cerâmicas.",
+      "reserve": "540 mil t de Li",
+      "production": "12 mil t de Li",
+      "world": "290 mil t de Li · exclui EUA",
+      "location": "Pegmatitos do Vale do Jequitinhonha (MG).",
+      "processing": "Concentrado de espodumênio e compostos de lítio são etapas distintas. Produzir concentrado não comprova capacidade de fabricar células.",
+      "source": "lithium",
+      "geoSource": "panorama"
+    },
+    {
+      "symbol": "C",
+      "number": 6,
+      "name": "Grafita",
+      "group": "Energia",
+      "desc": "Forma cristalina do carbono; aqui os dados são de grafita natural.",
+      "uses": "Ânodos de baterias, refratários e lubrificantes.",
+      "reserve": "74 milhões t",
+      "rank": "2º em reservas divulgadas · USGS 2026",
+      "production": "65 mil t",
+      "world": "1,8 milhão t",
+      "location": "Província grafítica Bahia–Minas Gerais.",
+      "processing": "Mineração e beneficiamento não substituem a purificação, esferonização e qualificação exigidas para ânodos.",
+      "source": "graphite",
+      "geoSource": "panorama"
+    },
+    {
+      "symbol": "Ni",
+      "number": 28,
+      "name": "Níquel",
+      "group": "Energia",
+      "desc": "Metal resistente à corrosão e constituinte de ligas.",
+      "uses": "Aço inoxidável, superligas e cátodos NMC/NCA. LFP não usa níquel no cátodo.",
+      "reserve": "16 milhões t de Ni",
+      "production": "70 mil t de Ni",
+      "world": "3,9 milhões t de Ni",
+      "location": "Províncias lateríticas e sulfetadas de Goiás e Pará.",
+      "processing": "Produzir ferroníquel para aço não é o mesmo que fornecer sulfato de níquel de grau bateria.",
+      "source": "nickel",
+      "geoSource": "panorama"
+    },
+    {
+      "symbol": "Mn",
+      "number": 25,
+      "name": "Manganês",
+      "group": "Energia",
+      "desc": "Elemento de liga e componente de algumas químicas de bateria.",
+      "uses": "Siderurgia e cátodos NMC; não integra o cátodo LFP convencional.",
+      "reserve": "300 milhões t de Mn",
+      "production": "800 mil t de Mn",
+      "world": "20 milhões t de Mn",
+      "location": "Urucum (MS) e províncias de Minas Gerais e Pará.",
+      "processing": "Minério e ferroligas atendem cadeias diferentes de sulfato de manganês de alta pureza.",
+      "source": "manganese",
+      "geoSource": "panorama"
+    },
+    {
+      "symbol": "Si",
+      "number": 14,
+      "name": "Silício",
+      "group": "Tecnologia",
+      "desc": "Elemento abundante. Pureza, controle de defeitos e tecnologia de fabricação fazem a diferença.",
+      "uses": "Semicondutores, células solares, silicones e ligas.",
+      "reserve": "Sem total de reservas comparável",
+      "production": "180 mil t de Si metálico",
+      "world": "4,6 milhões t de Si metálico",
+      "location": "Sílica em diversas regiões; areias silicosas de Santa Maria Eterna (BA).",
+      "processing": "Há produção de silício metálico. Grau eletrônico, wafers e células são etapas adicionais; veja a cadeia do quartzo ao chip.",
+      "source": "silicon",
+      "geoSource": "homerun"
+    },
+    {
+      "symbol": "Ta",
+      "number": 73,
+      "name": "Tântalo",
+      "group": "Tecnologia",
+      "desc": "Metal resistente à corrosão, empregado em componentes de alta confiabilidade.",
+      "uses": "Capacitores, equipamentos químicos e superligas.",
+      "reserve": "40 mil t de Ta",
+      "production": "190 t de Ta",
+      "world": "2,5 mil t de Ta",
+      "location": "Pitinga (AM) e pegmatitos brasileiros.",
+      "processing": "Concentrados e ligas exigem processamento adicional para pós e componentes eletrônicos.",
+      "source": "tantalum",
+      "geoSource": "cetem"
+    },
+    {
+      "symbol": "Ti",
+      "number": 22,
+      "name": "Titânio",
+      "group": "Estrutura",
+      "desc": "O dióxido de titânio é um pigmento; o metal é empregado em ligas resistentes e leves.",
+      "uses": "Pigmentos, aeronaves e equipamentos resistentes à corrosão.",
+      "reserve": "Ver ilmenita e rutilo separadamente",
+      "production": "Não harmonizada nesta seleção",
+      "world": "9,4 Mt de ilmenita e 0,45 Mt de rutilo · conteúdo de TiO₂",
+      "location": "Areias minerais e complexos alcalinos brasileiros.",
+      "processing": "Concentrado titanífero, pigmento e titânio metálico de grau aeroespacial são produtos distintos.",
+      "source": "titanium-minerals",
+      "geoSource": "panorama"
+    },
+    {
+      "symbol": "V",
+      "number": 23,
+      "name": "Vanádio",
+      "group": "Estrutura",
+      "desc": "Metal usado como elemento de liga e em eletrólitos de baterias de fluxo.",
+      "uses": "Aços, ligas de titânio e armazenamento estacionário.",
+      "reserve": "94 mil t de V",
+      "production": "5,3 mil t de V",
+      "world": "110 mil t de V",
+      "location": "Maracás (BA).",
+      "processing": "Óxidos de vanádio podem abastecer ferroligas; eletrólitos exigem especificações próprias.",
+      "source": "vanadium",
+      "geoSource": "panorama"
+    },
+    {
+      "symbol": "Cu",
+      "number": 29,
+      "name": "Cobre",
+      "group": "Tecnologia",
+      "desc": "Condutor elétrico central para a eletrificação.",
+      "uses": "Redes, motores, fiação, eletrônica e coletores de baterias.",
+      "reserve": "Brasil não individualizado no MCS 2026",
+      "production": "Brasil não individualizado nesta tabela",
+      "world": "23 milhões t de Cu · mineração",
+      "location": "Carajás (PA).",
+      "processing": "Concentração, fundição, refino e fabricação de fios são elos diferentes.",
+      "source": "copper",
+      "geoSource": "panorama"
+    },
+    {
+      "symbol": "U",
+      "number": 92,
+      "name": "Urânio",
+      "group": "Energia",
+      "desc": "Elemento usado como combustível após etapas industriais específicas.",
+      "uses": "Geração nuclear e pesquisa.",
+      "reserve": "Cerca de 250 mil t de U em recursos · IEN, 2026",
+      "production": "Não harmonizada nesta seleção",
+      "world": "Não harmonizada nesta seleção",
+      "location": "Lagoa Real/Caetité (BA); Itataia/Santa Quitéria (CE).",
+      "processing": "A INB descreve mineração e beneficiamento em Caetité e conversão no exterior. O ciclo inclui outras etapas até o combustível.",
+      "sourceKey": "uranium",
+      "geoSource": "inb",
+      "kind": "Recurso nacional, não reserva"
+    },
+    {
+      "symbol": "Fe",
+      "number": 26,
+      "name": "Ferro",
+      "group": "Estrutura",
+      "desc": "Base dos aços, com aplicações amplas em infraestrutura e máquinas.",
+      "uses": "Estruturas, torres eólicas, transporte e equipamentos.",
+      "reserve": "34 bilhões t de minério bruto",
+      "production": "420 milhões t de minério utilizável",
+      "world": "2,6 bilhões t de minério utilizável",
+      "location": "Carajás (PA); Quadrilátero Ferrífero (MG).",
+      "processing": "O Brasil dispõe de mineração, pelotização e siderurgia. Minério e aço têm unidades e cadeias distintas.",
+      "source": "iron-ore",
+      "geoSource": "panorama"
+    },
+    {
+      "symbol": "Al",
+      "number": 13,
+      "name": "Bauxita / alumínio",
+      "group": "Estrutura",
+      "desc": "A bauxita é o minério; alumina e alumínio são produtos de transformação.",
+      "uses": "Carrocerias, cabos, estruturas solares e embalagens.",
+      "reserve": "1,7 bilhão t de bauxita",
+      "production": "33 milhões t de bauxita",
+      "world": "440 milhões t de bauxita",
+      "location": "Províncias bauxitíferas do Pará e de Minas Gerais.",
+      "processing": "O país produz bauxita e alumina; a redução eletrolítica fabrica alumínio e exige eletricidade.",
+      "source": "bauxite-alumina",
+      "geoSource": "panorama"
+    },
+    {
+      "symbol": "Co",
+      "number": 27,
+      "name": "Cobalto",
+      "group": "Energia",
+      "desc": "Metal frequentemente obtido como coproduto de outros minérios.",
+      "uses": "Algumas baterias e superligas. Não é necessário ao cátodo LFP.",
+      "reserve": "Consultar classificação na fonte",
+      "production": "Não harmonizada nesta seleção",
+      "world": "310 mil t de Co",
+      "location": "Associado a sistemas de níquel; ocorrência não garante produção recuperável.",
+      "processing": "Recuperação como coproduto depende da rota metalúrgica e da viabilidade de cada operação.",
+      "source": "cobalt",
+      "geoSource": "panorama"
+    }
+  ],
+  "projects": [
+    {
+      "id": "serra",
+      "name": "Serra Verde / Pela Ema",
+      "state": "GO",
+      "region": "Minaçu, Goiás",
+      "operator": "Serra Verde Pesquisa e Mineração",
+      "status": "Produção",
+      "type": "Argilas de adsorção iônica",
+      "resource": "Referência histórica compilada pelo SGB 2026: 911 Mt de recursos. Classes não discriminadas no quadro; fonte original de 2017. Não é uma declaração atual do operador.",
+      "grade": "1.200 ppm TREO · referência histórica",
+      "key": "Nd · Pr · Dy · Tb",
+      "date": "05/10/2026",
+      "detail": "Produção comercial iniciada em 2024. Operação em expansão; capacidade planejada não deve ser confundida com produção efetiva.",
+      "source": "serra",
+      "extraSource": "panorama"
+    },
+    {
+      "id": "caldeira",
+      "name": "Caldeira",
+      "state": "MG",
+      "region": "Região de Poços de Caldas, Minas Gerais",
+      "operator": "Meteoric Resources",
+      "status": "Viabilidade",
+      "type": "Argilas de adsorção iônica",
+      "resource": "1.631 Mt de material · medidos, indicados e inferidos (09/07/2026). Inclui 928 Mt inferidos.",
+      "grade": "2.317 ppm TREO",
+      "key": "Nd · Pr · Dy · Tb",
+      "date": "01/10/2026",
+      "detail": "Estudo definitivo publicado em julho de 2026; licença prévia concedida. Reserva de minério separada: 151 Mt a 3.524 ppm TREO. A aquisição pela Lynas foi anunciada e ainda depende de condições.",
+      "source": "caldeira",
+      "cluster": true
+    },
+    {
+      "id": "araxa",
+      "name": "Araxá",
+      "state": "MG",
+      "region": "Araxá, Minas Gerais",
+      "operator": "St George Mining",
+      "status": "Recurso definido",
+      "type": "Complexo carbonatítico / perfil de alteração",
+      "resource": "3,98 Mt de TREO contidos no recurso. Aproximadamente 68% da tonelagem nas classes medida e indicada.",
+      "grade": "Teor médio não transcrito; corte de 2% TREO",
+      "key": "Nd · Pr · Nb",
+      "date": "11/08/2026",
+      "detail": "Projeto de desenvolvimento de terras raras e nióbio. É distinto da operação de nióbio da CBMM na mesma região. Recurso definido não equivale a mina em produção.",
+      "source": "araxa"
+    },
+    {
+      "id": "carina",
+      "name": "Carina",
+      "state": "GO",
+      "region": "Nova Roma, Goiás",
+      "operator": "Aclara Resources",
+      "status": "Viabilidade",
+      "type": "Argilas de adsorção iônica",
+      "resource": "Referência de novembro de 2025, compilada pelo SGB 2026: 298 Mt de recursos indicados + inferidos. Consulte a viabilidade de 2026 para a declaração atual.",
+      "grade": "1.452 ppm TREO · recurso de 2025",
+      "key": "Dy · Tb · Nd · Pr",
+      "date": "05/10/2026",
+      "detail": "Estudo de viabilidade divulgado em abril de 2026. A data de início de operações anunciada pela empresa é uma meta, não produção atual.",
+      "source": "carina",
+      "extraSource": "panorama"
+    },
+    {
+      "id": "colossus",
+      "name": "Colossus",
+      "state": "MG",
+      "region": "Complexo de Poços de Caldas, Minas Gerais",
+      "operator": "Viridis Mining & Minerals",
+      "status": "Desenvolvimento",
+      "type": "Argilas de adsorção iônica",
+      "resource": "Referência histórica: 493 Mt de recursos (medidos, indicados e inferidos), janeiro de 2025. Consulte a estimativa atual do operador.",
+      "grade": "2.508 ppm TREO · recurso de 2025",
+      "key": "Nd · Pr · Dy · Tb",
+      "date": "05/10/2026",
+      "detail": "A página atual informa fase de execução e reserva de minério de 200,1 Mt. A reserva e o recurso histórico são categorias e datas distintas; não se somam.",
+      "source": "colossus",
+      "extraSource": "colossusResource",
+      "cluster": true
+    },
+    {
+      "id": "morro",
+      "name": "Morro do Ferro",
+      "state": "MG",
+      "region": "Complexo de Poços de Caldas, Minas Gerais",
+      "operator": "Sem operador de ETR atual confirmado nesta seleção",
+      "status": "Ocorrência estudada",
+      "type": "Mineralização em complexo alcalino",
+      "resource": "Informação geológica histórica. Sem recurso atual classificado transcrito.",
+      "grade": "Sem teor atual comparável",
+      "key": "Terras raras · tório associado",
+      "date": "2013 · fonte geológica",
+      "detail": "O CETEM descreve o depósito ao sul de Poços de Caldas. A referência geológica não comprova um projeto comercial em atividade em 2026.",
+      "source": "cetem",
+      "cluster": true
+    },
+    {
+      "id": "pitinga",
+      "name": "Pitinga",
+      "state": "AM",
+      "region": "Presidente Figueiredo, Amazonas",
+      "operator": "Mineração Taboca · referência da fonte geológica",
+      "status": "Ocorrência estudada",
+      "type": "Granito Madeira · xenotima associada",
+      "resource": "Sem estimativa moderna de ETR transcrita. Não usamos números históricos como reserva atual.",
+      "grade": "Não disponível em base atual comparável",
+      "key": "Y · Dy · Er · Yb",
+      "date": "2013 · fonte geológica",
+      "detail": "Distrito conhecido por estanho e metais associados. Aqui está classificado pelo conhecimento de ETR, não como produtor comercial confirmado de terras raras.",
+      "source": "cetem"
+    }
+  ],
+  "rareEarths": [
+    [
+      "La",
+      57,
+      "Lantânio",
+      "leve",
+      "Catalisadores, vidros e ligas."
+    ],
+    [
+      "Ce",
+      58,
+      "Cério",
+      "leve",
+      "Polimento de vidro e catalisadores."
+    ],
+    [
+      "Pr",
+      59,
+      "Praseodímio",
+      "leve",
+      "Com neodímio, compõe ímãs de alto desempenho."
+    ],
+    [
+      "Nd",
+      60,
+      "Neodímio",
+      "leve",
+      "Base dos ímãs NdFeB de motores e geradores."
+    ],
+    [
+      "Pm",
+      61,
+      "Promécio",
+      "leve",
+      "Radioativo; sem isótopos estáveis. Não integra uma cadeia mineral comum."
+    ],
+    [
+      "Sm",
+      62,
+      "Samário",
+      "leve",
+      "Ímãs SmCo, inclusive para ambientes de alta temperatura."
+    ],
+    [
+      "Eu",
+      63,
+      "Európio",
+      "leve",
+      "Fósforos e aplicações ópticas."
+    ],
+    [
+      "Gd",
+      64,
+      "Gadolínio",
+      "pesada",
+      "Propriedades magnéticas; também aparece como ETR média em outras classificações."
+    ],
+    [
+      "Tb",
+      65,
+      "Térbio",
+      "pesada",
+      "Pode elevar coercividade e desempenho térmico de ímãs."
+    ],
+    [
+      "Dy",
+      66,
+      "Disprósio",
+      "pesada",
+      "Pode melhorar a resistência à desmagnetização em altas temperaturas."
+    ],
+    [
+      "Ho",
+      67,
+      "Hólmio",
+      "pesada",
+      "Lasers e aplicações magnéticas especializadas."
+    ],
+    [
+      "Er",
+      68,
+      "Érbio",
+      "pesada",
+      "Amplificação óptica, incluindo fibras de telecomunicações."
+    ],
+    [
+      "Tm",
+      69,
+      "Túlio",
+      "pesada",
+      "Lasers e fontes de radiação em aplicações específicas."
+    ],
+    [
+      "Yb",
+      70,
+      "Itérbio",
+      "pesada",
+      "Lasers de fibra e ligas especiais."
+    ],
+    [
+      "Lu",
+      71,
+      "Lutécio",
+      "pesada",
+      "Cintiladores e aplicações médicas."
+    ],
+    [
+      "Y",
+      39,
+      "Ítrio",
+      "pesada",
+      "Cerâmicas, fósforos e ligas. Agrupado por afinidade química."
+    ],
+    [
+      "Sc",
+      21,
+      "Escândio",
+      "outra",
+      "Ligas alumínio–escândio. Não integra a série dos lantanídeos."
+    ]
+  ],
+  "technologies": [
+    [
+      "Veículo elétrico",
+      [
+        "Li",
+        "Ni",
+        "Mn",
+        "C",
+        "ETR",
+        "Nb",
+        "Cu",
+        "Si",
+        "Al",
+        "Fe"
+      ],
+      "A combinação muda com a bateria, o motor e a estrutura."
+    ],
+    [
+      "Bateria",
+      [
+        "Li",
+        "Ni",
+        "Mn",
+        "C",
+        "Cu",
+        "Al"
+      ],
+      "NMC e LFP usam cátodos diferentes; grafita, cobre e alumínio são exemplos de outros componentes."
+    ],
+    [
+      "Turbina eólica",
+      [
+        "ETR",
+        "Nb",
+        "Cu",
+        "Al",
+        "Fe"
+      ],
+      "Terras raras só em tecnologias que empregam ímãs permanentes."
+    ],
+    [
+      "Painel solar",
+      [
+        "Si",
+        "Cu",
+        "Al"
+      ],
+      "Silício cristalino; prata também é relevante, embora esteja fora das colunas desta matriz."
+    ],
+    [
+      "Data center",
+      [
+        "Cu",
+        "Si",
+        "Ta",
+        "Al",
+        "Fe"
+      ],
+      "Semicondutores, interconexões, capacitores e infraestrutura física."
+    ],
+    [
+      "Semicondutores",
+      [
+        "Si",
+        "Cu",
+        "Ta"
+      ],
+      "Seleção de materiais de substrato, interconexão e barreira; outras químicas são possíveis."
+    ],
+    [
+      "Rede elétrica",
+      [
+        "Cu",
+        "Si",
+        "Al",
+        "Fe"
+      ],
+      "Cabos, transformadores, estruturas e eletrônica de potência."
+    ],
+    [
+      "Aeroespacial",
+      [
+        "Ni",
+        "Nb",
+        "Ti",
+        "Al",
+        "Fe"
+      ],
+      "Ligas e superligas; depende do componente e da especificação."
+    ],
+    [
+      "Defesa",
+      [
+        "ETR",
+        "Nb",
+        "Cu",
+        "Si",
+        "Ta",
+        "Ti",
+        "Al",
+        "Fe"
+      ],
+      "Materiais em eletrônica, sensores, motores e estruturas; usos variam por equipamento."
+    ],
+    [
+      "Robótica",
+      [
+        "ETR",
+        "Cu",
+        "Si",
+        "Al",
+        "Fe"
+      ],
+      "Motores, controle eletrônico, fiação e estruturas."
+    ],
+    [
+      "Energia nuclear",
+      [
+        "U",
+        "Ni",
+        "Cu",
+        "Fe"
+      ],
+      "Urânio é combustível em certas tecnologias, não material estrutural de toda aplicação."
+    ]
+  ]
+}

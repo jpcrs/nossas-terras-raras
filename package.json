@@ -1,0 +1,1 @@
+{"name":"brasil-sob-nossos-pes","private":true,"type":"module","scripts":{"check":"node scripts/check.mjs","snapshot":"node scripts/snapshot.mjs"}}
