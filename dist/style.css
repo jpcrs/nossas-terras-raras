@@ -12,3 +12,6 @@ strong{font-weight:550}.revision-note{margin:35px 0;padding:20px 24px;border-lef
 
 #technology-controls>div{min-width:0}#technology-controls select{min-width:0;max-width:100%}.hero-location{fill:#e6bb75;stroke:#111713;stroke-width:2;pointer-events:none}.hero-location-ring{fill:none;stroke:#e6bb75;stroke-width:.6;opacity:.45;pointer-events:none}@media(max-width:420px){#technology-controls{flex-direction:column}.component-list{grid-template-columns:1fr}.component-list .component{grid-column:1!important}}
 .project-point,.project-point.selected{stroke:none;filter:none}.project-point text,.project-point rect{stroke:none}.project-point circle{stroke:none}.project-point.selected circle{stroke:#e6bb75;stroke-width:1}.project-point path{stroke:#74846b;stroke-width:1}.project-point:focus-visible circle{stroke:white;stroke-width:2}
+
+/* The technology explorer now opens its own chapter. */
+.technology-section .technology-lab{margin-top:0}
