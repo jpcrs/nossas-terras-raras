@@ -2,7 +2,7 @@
 
 ## Fontes e escolhas
 
-- USGS MCS 2026, versão 1.3, 27/05/2026. A revisão altera a reserva brasileira de ETR de 21 para 11 milhões de toneladas de REO. Reservas, recursos, produção e minério são categorias distintas. Valores de produção são estimativas de 2025.
+- Escolha editorial atual: ETR usa a tabela histórica do USGS 2026 anterior à revisão de maio, com 21 Mt para o Brasil. Cópia intacta em `dist/assets/usgs-rare-earths-2026-before-may-revision.pdf`, verificada contra o PDF de pesquisa. Os demais indicadores usam USGS MCS 2026, versão 1.3, 27/05/2026. A revisão altera a reserva brasileira de ETR de 21 para 11 milhões de toneladas de REO. Reservas, recursos, produção e minério são categorias distintas. Valores de produção são estimativas de 2025.
 - SGB Panorama 2026, p. 9, figura 4.1: cobertura até 2025 de aproximadamente 50% em 1:250.000 e 28% em 1:100.000. Substitui o balanço até 2023 do PlanGeo (49% e 27%). Escudos pré-cambrianos têm denominador diferente e não representam a Amazônia.
 - IEA Rare Earth Elements: cesta de ETR magnéticas de 2024, distinta da cesta USGS. 60% mineração, 91% refino, 94% ímãs sinterizados. Atualização IEA de julho de 2026 para refino em 2025: 85%, exibida separadamente.
 - IBGE: malhas estaduais e municipais. Localizadores são centros das caixas geográficas municipais, não coordenadas dos depósitos. Poços de Caldas agrupa três fichas; seletor permite abrir todas.

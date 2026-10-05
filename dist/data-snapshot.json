@@ -13,6 +13,11 @@
     "note": "Percentuais arredondados; não são cobertura específica da Amazônia."
   },
   "sources": {
+    "reeHistorical": {
+      "name": "USGS · terras raras · tabela histórica com 21 Mt",
+      "url": "assets/usgs-rare-earths-2026-before-may-revision.pdf",
+      "date": "MCS 2026 · anterior à revisão de maio · cópia preservada"
+    },
     "panorama": {
       "name": "SGB · Panorama de minerais críticos 2026",
       "url": "https://rigeo.sgb.gov.br/bitstreams/9d2eac39-ada3-4f29-8221-822380c7edd0/download",
@@ -161,12 +166,14 @@
       "type": "reserve",
       "unit": "Mt de REO",
       "values": [
-        11,
+        21,
         44,
         1.9
       ],
-      "source": "rare-earths",
-      "note": "USGS 2026 v1.3. Inclui lantanídeos e ítrio; exclui a maior parte do escândio."
+      "source": null,
+      "sourceKey": "reeHistorical",
+      "period": "USGS 2026 · estimativa histórica anterior à revisão de maio",
+      "note": "Tabela histórica do USGS 2026, anterior à revisão de maio. Inclui lantanídeos e ítrio; exclui a maior parte do escândio. Histórico de versões na seção Fontes."
     },
     {
       "id": "ree-p",
@@ -419,13 +426,15 @@
       "group": "Magnetismo",
       "desc": "Família de 17 elementos: lantanídeos, ítrio e escândio. As estatísticas do USGS não cobrem todos de forma idêntica.",
       "uses": "Ímãs, catalisadores, cerâmicas, óptica e ligas.",
-      "reserve": "11 milhões t de REO · v1.3",
+      "reserve": "21 milhões t de REO · estimativa histórica",
+      "kind": "Reservas · edição anterior à revisão de maio de 2026",
       "rank": "2º em reservas divulgadas · USGS 2026",
       "production": "2 mil t de REO",
       "world": "390 mil t de REO",
       "location": "Minaçu (GO); Araxá e Poços de Caldas (MG); Pitinga (AM).",
       "processing": "Pela Ema produz um concentrado misto. Isso não equivale a ter toda a cadeia de separação, metais e ímãs no país.",
-      "source": "rare-earths",
+      "source": null,
+      "sourceKey": "reeHistorical",
       "geoSource": "cetem"
     },
     {
