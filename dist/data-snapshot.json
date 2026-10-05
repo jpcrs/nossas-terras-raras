@@ -188,6 +188,66 @@
       "name": "Viridis · relatório anual 2025",
       "url": "https://viridismining.com.au/wp-content/uploads/2025/09/Viridis-Mining-and-Minerals-Limited-Annual-Report-30062025-Lodgement.pdf",
       "date": "Recurso de 22/01/2025 · série histórica"
+    },
+    "ema": {
+      "name": "BCM · recurso mineral Ema, tabela 1",
+      "url": "https://announcements.asx.com.au/asxpdf/20260422/pdf/06yqhnckzll97s.pdf",
+      "date": "22/04/2026 · recurso de 10/03/2026"
+    },
+    "tiros": {
+      "name": "Resouro · avaliação econômica preliminar, p. 4",
+      "url": "https://api.investi.com.au/api/announcements/rau/fc9f0c53-a62.pdf",
+      "date": "15/06/2026 · recurso de 09/04/2025"
+    },
+    "tirosResource": {
+      "name": "Resouro · relatório de sustentabilidade 2025, p. 22",
+      "url": "https://resouro.com/wp-content/uploads/2025/07/Sustainability-Report-for-year-ended-March-31-2025.pdf",
+      "date": "Recurso de 09/04/2025"
+    },
+    "caladao": {
+      "name": "Axel REE · relatório anual 2026, p. 11",
+      "url": "https://cdn.financialreports.eu/financialreports/media/filings/64480/2026/RNS/64480_rns_2026-09-30_bd7ea866-dfe1-4e9e-86e2-97785db74424.pdf",
+      "date": "30/09/2026 · recurso atualizado em 24/09/2026"
+    },
+    "pch": {
+      "name": "Appia · relatório NI 43-101 do PCH, tabela 1-2",
+      "url": "https://appiareu.com/wp-content/uploads/2024/04/PCH-Project-2024-NI-43101-Technical-Report-for-Appia-FINAL-1.pdf",
+      "date": "Recurso de 01/02/2024"
+    },
+    "ultra": {
+      "name": "Appia · participação no projeto Ultra / PCH",
+      "url": "https://appiareu.com/brazil-rare-earth-projects/",
+      "date": "Consultado em 05/10/2026"
+    },
+    "montealto": {
+      "name": "BRE · Monte Alto, recurso e estudo atualizado, p. 7",
+      "url": "https://wcsecure.weblink.com.au/clients/brazilianrareearths/headline.aspx?headlineid=61338927",
+      "date": "18/08/2026 · recurso divulgado em 13/08/2026"
+    },
+    "sulista": {
+      "name": "BRE · recursos de Monte Alto e Sulista, p. 7",
+      "url": "https://wcsecure.weblink.com.au/clients/brazilianrareearths/headline.aspx?headlineid=61338399",
+      "date": "13/08/2026 · somente a declaração de recursos"
+    },
+    "sulistaUpdate": {
+      "name": "BRE · atualização de exploração em Sulista",
+      "url": "https://wcsecure.weblink.com.au/clients/brazilianrareearths/headline.aspx?headlineid=61346553",
+      "date": "30/09/2026"
+    },
+    "alpha": {
+      "name": "Rare Earths Americas · relatório técnico Alpha, tabela 1-1",
+      "url": "https://www.sec.gov/Archives/edgar/data/2095743/000119312526153091/rea-ex96_3.htm",
+      "date": "25/03/2026 · recurso de 31/10/2025"
+    },
+    "constellation": {
+      "name": "Rare Earths Americas · relatório técnico Constellation, tabela 11-15",
+      "url": "https://www.sec.gov/Archives/edgar/data/2095743/000119312526153091/rea-ex96_2.htm",
+      "date": "25/03/2026 · recurso de 31/10/2025"
+    },
+    "itarantim": {
+      "name": "IMC · relatório técnico Itarantim, tabela 1-1",
+      "url": "https://www.sec.gov/Archives/edgar/data/2098395/000149315226031322/ex96-1.htm",
+      "date": "09/04/2026 · recurso de 31/03/2025"
     }
   },
   "metrics": [
@@ -777,9 +837,342 @@
       "date": "2013 · fonte geológica",
       "detail": "Distrito conhecido por estanho e metais associados. Aqui está classificado pelo conhecimento de ETR, não como produtor comercial confirmado de terras raras.",
       "source": "cetem"
+    },
+    {
+      "id": "ema",
+      "name": "Ema",
+      "state": "AM",
+      "region": "Região de Apuí, Amazonas",
+      "operator": "Brazilian Critical Minerals",
+      "status": "Recurso definido",
+      "type": "Argilas de adsorção iônica",
+      "resource": "1.071 Mt de material · recursos indicados e inferidos. Corte de 500 ppm TREO. A tabela original informa 392 Mt indicados e 681 Mt inferidos, cuja soma diverge do total publicado; preservamos o total sem recalcular as classes.",
+      "grade": "732 ppm TREO",
+      "key": "Nd · Pr · Dy · Tb",
+      "date": "22/04/2026 · recurso de 10/03/2026",
+      "detail": "Projeto Ema, no Amazonas, distinto da mina Pela Ema / Serra Verde, em Goiás. A quantidade corresponde a material mineralizado, não a óxidos recuperados.",
+      "source": "ema"
+    },
+    {
+      "id": "tiros",
+      "name": "Tiros",
+      "state": "MG",
+      "region": "Tiros Central, Minas Gerais",
+      "operator": "Resouro Strategic Metals",
+      "status": "Avaliação preliminar",
+      "type": "Perfil laterítico · titânio e terras raras",
+      "resource": "Aproximadamente 1.900 Mt de material · medidos, indicados e inferidos. Inclui cerca de 1.400 Mt medidos + indicados e 500 Mt inferidos. Corte de 1.000 ppm TREO.",
+      "grade": "3.920 ppm TREO · recurso global",
+      "key": "Nd · Pr · Dy · Tb",
+      "date": "15/06/2026 · recurso de 09/04/2025",
+      "detail": "Estimativa do bloco Tiros Central, mantida na avaliação preliminar de 2026. O domínio de alto teor está incluído no recurso global e não deve ser somado novamente.",
+      "source": "tiros",
+      "extraSource": "tirosResource"
+    },
+    {
+      "id": "caladao",
+      "name": "Caladão",
+      "state": "MG",
+      "region": "Região de Padre Paraíso, Minas Gerais",
+      "operator": "Axel REE",
+      "status": "Recurso definido",
+      "type": "Perfil de alteração granítica · argilas iônicas",
+      "resource": "708,6 Mt de material · indicados e inferidos. A tabela informa 110,08 Mt indicados e 598,51 Mt inferidos, com diferença de arredondamento no total. Inclui Área A, Marambaia, Tiger Creek e Woolrich.",
+      "grade": "1.443 ppm TREO",
+      "key": "Nd · Pr · Dy · Tb",
+      "date": "24/09/2026",
+      "detail": "Atualização de Woolrich incorporada ao recurso global. A estimativa de gálio é uma série distinta e não se soma à tonelagem de terras raras.",
+      "source": "caladao"
+    },
+    {
+      "id": "pch",
+      "name": "Ultra / PCH",
+      "state": "GO",
+      "region": "Região de Iporá, Goiás",
+      "operator": "Ultra Rare Earth Inc. · Appia detém 25% da Ultra",
+      "status": "Recurso definido",
+      "type": "Argilas de adsorção iônica · alvos IV e Buriti",
+      "resource": "52,8 Mt de material · 6,6 Mt indicados a 2.513 ppm e 46,2 Mt inferidos a 2.888 ppm TREO. Estimativa efetiva em 01/02/2024, corte de US$ 10/t de NSR.",
+      "grade": "2.841 ppm TREO · média ponderada das classes publicadas",
+      "key": "Nd · Pr · Dy · Tb",
+      "date": "01/02/2024 · titularidade consultada em 05/10/2026",
+      "detail": "Antigo projeto PCH, hoje Ultra Hard Rock/IAC. Esta ficha usa somente o recurso das argilas. Interceptos de sondagem do alvo carbonatítico não são adicionados como recursos.",
+      "source": "pch",
+      "extraSource": "ultra"
+    },
+    {
+      "id": "montealto",
+      "name": "Monte Alto",
+      "state": "BA",
+      "region": "Ubaíra e Jiquiriçá, Bahia",
+      "operator": "Brazilian Rare Earths",
+      "status": "Avaliação preliminar",
+      "type": "Rocha e mineralização residual · chevkinita",
+      "resource": "3,40 Mt de material · mineralização primária e residual: 2,51 Mt indicados e 0,89 Mt inferidos. Corte de 1% TREO. A monazita secundária é informada separadamente: 1,25 Mt a 2,17% TREO.",
+      "grade": "11,26% TREO · 112.600 ppm",
+      "key": "Nd · Pr · Dy · Tb · Y",
+      "date": "13/08/2026",
+      "detail": "Estimativa de 2026 para a mineralização primária e residual. O estudo revisado de 18/08/2026 considera Monte Alto e a unidade industrial de Camaçari; não usamos as projeções econômicas anteriores que incluíam Sulista.",
+      "source": "montealto"
+    },
+    {
+      "id": "sulista",
+      "name": "Sulista",
+      "state": "BA",
+      "region": "Jequié e Jitaúna, Bahia",
+      "operator": "Brazilian Rare Earths",
+      "status": "Recurso definido",
+      "type": "Rocha e mineralização residual de terras raras",
+      "resource": "8,49 Mt de material · recursos indicados e inferidos. A fonte informa 2,20 Mt indicados e 6,28 Mt inferidos, com arredondamento. Total dos depósitos Sulista East, Sulista West e Outcrop Ridge; corte de 1% TREO.",
+      "grade": "2,29% TREO · 22.900 ppm",
+      "key": "Nd · Pr · Dy · Tb · Y",
+      "date": "13/08/2026",
+      "detail": "Recurso mantido na atualização de exploração de setembro de 2026. Os novos resultados de sondagem estão fora desta estimativa. As projeções econômicas do estudo combinado de agosto foram substituídas e não são usadas nesta ficha.",
+      "source": "sulista",
+      "extraSource": "sulistaUpdate"
+    },
+    {
+      "id": "alpha",
+      "name": "Alpha",
+      "state": "BA",
+      "region": "Iguaí e Nova Canaã, Bahia",
+      "operator": "Rare Earths Americas",
+      "status": "Recurso definido",
+      "type": "Argilas de adsorção iônica",
+      "resource": "201,7 Mt de material · recursos inferidos. Corte de 1.000 ppm TREO; inclui Rio Preto, Sapacaia, Rio das Pombas e Nova Canaã.",
+      "grade": "1.520 ppm TREO",
+      "key": "Nd · Pr · Dy · Tb",
+      "date": "31/10/2025 · relatório de 25/03/2026",
+      "detail": "Estimativa S-K 1300 publicada em relatório técnico independente. Os quatro depósitos são apresentados como um único projeto; ainda não constituem reservas minerais.",
+      "source": "alpha"
+    },
+    {
+      "id": "constellation",
+      "name": "Constellation",
+      "state": "MG",
+      "region": "Região de Poços de Caldas, Minas Gerais",
+      "operator": "Rare Earths Americas",
+      "status": "Recurso definido",
+      "type": "Argilas de adsorção iônica",
+      "resource": "266,2 Mt de material · recursos inferidos. Corte de 1.000 ppm TREO; estimativa efetiva em 31/10/2025.",
+      "grade": "2.637 ppm TREO",
+      "key": "Nd · Pr · Dy · Tb",
+      "date": "31/10/2025 · relatório de 25/03/2026",
+      "detail": "Projeto distinto de Caldeira, Colossus e Morro do Ferro, na mesma região. Recurso limitado à área estudada e à envoltória conceitual definida no relatório S-K 1300.",
+      "source": "constellation",
+      "cluster": true
+    },
+    {
+      "id": "itarantim",
+      "name": "Itarantim",
+      "state": "BA",
+      "region": "Itarantim, Bahia",
+      "operator": "IMC Rare Earths · Niobium Brazil",
+      "status": "Recurso definido",
+      "type": "Argilas de adsorção iônica",
+      "resource": "1.100 Mt de material · recursos inferidos. Corte de 650 ppm TREO; estimativa efetiva em 31/03/2025.",
+      "grade": "1.233 ppm TREO",
+      "key": "Nd · Pr · Dy · Tb",
+      "date": "31/03/2025 · relatório de 09/04/2026",
+      "detail": "Estimativa S-K 1300 preparada pela ERM. O projeto fica a cerca de 10 km a oeste da cidade de Itarantim. O recurso é inferido e não corresponde a uma reserva de minério.",
+      "source": "itarantim"
     }
   ],
   "projectFacts": {
+    "ema": {
+      "municipality": "1300144",
+      "short": "Ema",
+      "elements": [
+        "Nd",
+        "Pr",
+        "Dy",
+        "Tb"
+      ],
+      "stage": "development",
+      "kind": "clay",
+      "amount": 1071,
+      "unit": "Mt de material",
+      "amountLabel": "Recurso · março de 2026",
+      "grade": 732,
+      "year": "2026",
+      "classification": "indicated-inferred",
+      "standard": "JORC 2012",
+      "resourceDate": "2026-03-10",
+      "resourceNote": "Indicados e inferidos · total publicado pela BCM."
+    },
+    "tiros": {
+      "municipality": "3168903",
+      "short": "Tiros",
+      "elements": [
+        "Nd",
+        "Pr",
+        "Dy",
+        "Tb"
+      ],
+      "stage": "development",
+      "kind": "rock",
+      "amount": 1900,
+      "unit": "Mt de material",
+      "amountLabel": "Recurso · abril de 2025",
+      "grade": 3920,
+      "year": "2025",
+      "classification": "measured-indicated-inferred",
+      "standard": "JORC 2012 / NI 43-101",
+      "resourceDate": "2025-04-09",
+      "inferred": 500,
+      "resourceNote": "Medidos, indicados e inferidos · valores aproximados, mantidos na avaliação de 2026."
+    },
+    "caladao": {
+      "municipality": "3146305",
+      "short": "Caladão",
+      "elements": [
+        "Nd",
+        "Pr",
+        "Dy",
+        "Tb"
+      ],
+      "stage": "development",
+      "kind": "clay",
+      "amount": 708.6,
+      "unit": "Mt de material",
+      "amountLabel": "Recurso · setembro de 2026",
+      "grade": 1443,
+      "year": "2026",
+      "classification": "indicated-inferred",
+      "standard": "JORC 2012",
+      "resourceDate": "2026-09-24",
+      "resourceNote": "110,08 milhões de toneladas indicadas e 598,51 milhões inferidas · total arredondado."
+    },
+    "pch": {
+      "municipality": "5210208",
+      "short": "Ultra / PCH",
+      "elements": [
+        "Nd",
+        "Pr",
+        "Dy",
+        "Tb"
+      ],
+      "stage": "development",
+      "kind": "clay",
+      "amount": 52.8,
+      "unit": "Mt de material",
+      "amountLabel": "Recurso · fevereiro de 2024",
+      "grade": 2841,
+      "year": "2024",
+      "classification": "indicated-inferred",
+      "standard": "NI 43-101",
+      "resourceDate": "2024-02-01",
+      "inferred": 46.2,
+      "resourceNote": "Indicados e inferidos · somente os alvos de argilas IV e Buriti."
+    },
+    "montealto": {
+      "municipality": "2932101",
+      "short": "Monte Alto",
+      "elements": [
+        "Nd",
+        "Pr",
+        "Dy",
+        "Tb",
+        "Y"
+      ],
+      "stage": "development",
+      "kind": "rock",
+      "amount": 3.4,
+      "unit": "Mt de material",
+      "amountLabel": "Recurso · agosto de 2026",
+      "grade": 112600,
+      "year": "2026",
+      "classification": "indicated-inferred",
+      "standard": "JORC 2012",
+      "resourceDate": "2026-08-13",
+      "inferred": 0.89,
+      "resourceNote": "Indicados e inferidos · mineralização primária e residual. Monazita secundária na ficha."
+    },
+    "sulista": {
+      "municipality": "2918001",
+      "short": "Sulista",
+      "elements": [
+        "Nd",
+        "Pr",
+        "Dy",
+        "Tb",
+        "Y"
+      ],
+      "stage": "development",
+      "kind": "rock",
+      "amount": 8.49,
+      "unit": "Mt de material",
+      "amountLabel": "Recurso · agosto de 2026",
+      "grade": 22900,
+      "year": "2026",
+      "classification": "indicated-inferred",
+      "standard": "JORC 2012",
+      "resourceDate": "2026-08-13",
+      "resourceNote": "Indicados e inferidos · três depósitos, um único recurso global."
+    },
+    "alpha": {
+      "municipality": "2913507",
+      "short": "Alpha",
+      "elements": [
+        "Nd",
+        "Pr",
+        "Dy",
+        "Tb"
+      ],
+      "stage": "development",
+      "kind": "clay",
+      "amount": 201.7,
+      "unit": "Mt de material",
+      "amountLabel": "Recurso · outubro de 2025",
+      "grade": 1520,
+      "year": "2025",
+      "classification": "inferred",
+      "standard": "S-K 1300",
+      "resourceDate": "2025-10-31",
+      "resourceNote": "Recursos inferidos · quatro depósitos incluídos no total."
+    },
+    "constellation": {
+      "municipality": "3151800",
+      "short": "Constellation",
+      "elements": [
+        "Nd",
+        "Pr",
+        "Dy",
+        "Tb"
+      ],
+      "stage": "development",
+      "kind": "clay",
+      "amount": 266.2,
+      "unit": "Mt de material",
+      "amountLabel": "Recurso · outubro de 2025",
+      "grade": 2637,
+      "year": "2025",
+      "classification": "inferred",
+      "standard": "S-K 1300",
+      "resourceDate": "2025-10-31",
+      "resourceNote": "Recursos inferidos · projeto da Rare Earths Americas."
+    },
+    "itarantim": {
+      "municipality": "2916807",
+      "short": "Itarantim",
+      "elements": [
+        "Nd",
+        "Pr",
+        "Dy",
+        "Tb"
+      ],
+      "stage": "development",
+      "kind": "clay",
+      "amount": 1100,
+      "unit": "Mt de material",
+      "amountLabel": "Recurso · março de 2025",
+      "grade": 1233,
+      "year": "2025",
+      "classification": "inferred",
+      "standard": "S-K 1300",
+      "resourceDate": "2025-03-31",
+      "resourceNote": "Recursos inferidos · relatório técnico ERM de abril de 2026."
+    },
     "serra": {
       "municipality": "5213087",
       "short": "Serra Verde",

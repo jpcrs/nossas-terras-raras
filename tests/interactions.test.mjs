@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
 import * as d3 from 'd3';
+import {projects} from '../dist/data.js';
+import {projectFacts,locations} from '../dist/editorial.js';
 import {applications} from '../dist/applications-data.js';
 import {mineralComparisonCSV} from '../dist/mineral-comparisons.js';
 import {supplyChain, supplyPercent} from '../dist/supply-chain-data.js';
@@ -68,22 +70,22 @@ before(async()=>{
  if(!dom.window.HTMLDialogElement.prototype.showModal){dom.window.HTMLDialogElement.prototype.showModal=function(){this.open=true;};dom.window.HTMLDialogElement.prototype.close=function(){this.open=false;};}
  const app=await import('../dist/app.js');await app.mapInitialized;await tick();
 });
-test('map renders actual state and municipal geometries, with five references for seven project records',()=>{
+test('map renders actual state and municipal geometries, with all municipal references and project records',()=>{
  assert.equal(document.querySelectorAll('.state-shape').length,27);
- assert.equal(document.querySelectorAll('.map-location').length,5);
- assert.equal(document.querySelectorAll('#project-list button').length,7);
+ assert.equal(document.querySelectorAll('.map-location').length,locations.length);
+ assert.equal(document.querySelectorAll('#project-list button').length,projects.length);
  assert.equal($('.map-location.is-selected').getAttribute('aria-label'),'Serra Verde, GO. Referência municipal.');
  assert(!$('#map svg').innerHTML.includes('NaN'));
 });
-test('all seven project cards select, grouped records remain distinct, oxide units stay distinct',()=>{
- for(const id of ['pitinga','morro','colossus','carina','araxa','caldeira','serra']){
+test('all project cards select, grouped records remain distinct, oxide units stay distinct',()=>{
+ for(const {id} of projects){
   click(`#project-list [data-project="${id}"]`);
   assert.equal($(`#project-list [data-project="${id}"]`).getAttribute('aria-pressed'),'true');
   assert($('#map-inspector h3').textContent.length>0);
  }
  click('#project-list [data-project="caldeira"]');
  assert.equal($('.resource-stat .unit').textContent,'milhões de toneladas · material');
- assert.equal(document.querySelectorAll('.cluster-tabs button').length,3);
+ assert.equal(document.querySelectorAll('.cluster-tabs button').length,4);
  assert.match($('.resource-stack').getAttribute('aria-label'),/703 Mt medidos e indicados; 928 Mt inferidos/);
  click('[data-select-project="morro"]');assert.match($('#map-inspector').textContent,/Quantidade não disponível/);
  click('#project-list [data-project="araxa"]');assert.match($('.resource-stat').textContent,/3,98.*TREO contidos/);
@@ -147,8 +149,28 @@ test('coverage shows the current snapshot and selects sheets directly on the map
 test('resource grade is converted into concentration, not inflated into recovered output',()=>{
  click('#project-list [data-project="caldeira"]');
  assert.match($('.grade-conversion').textContent,/2,317 kg de TREO/);
- assert.match($('.grade-strip').getAttribute('aria-label'),/0,2317.*zero a um/);
+ assert.match($('.grade-strip').getAttribute('aria-label'),/0,2317.*zero a 1/);
  assert(Math.abs(parseFloat($('.grade-strip span').style.width)-23.17)<0.001);
+});
+test('new resources keep their source classes, dates and high-grade scales readable',()=>{
+ assert.equal($('#project-count').textContent,'EXPLORE OS 16 REGISTROS');
+ for(const id of ['ema','tiros','caladao','pch','montealto','sulista','alpha','constellation','itarantim']){
+  click(`#project-list [data-project="${id}"]`);
+  assert.equal($('#map-inspector h3').textContent,projectFacts[id].short);
+  assert.equal($('.resource-stat .unit').textContent,'milhões de toneladas · material');
+  const width=parseFloat($('.grade-strip span').style.width);assert(width>0&&width<=100);
+  click(`[data-project-full="${id}"]`);
+  assert($('#dialog-content').textContent.includes(projects.find(p=>p.id===id).resource));
+  assert($('#dialog-content a').href.startsWith('https://'));click('.dialog-close');
+ }
+ click('#project-list [data-project="montealto"]');
+ assert.match($('.grade-strip').getAttribute('aria-label'),/11,26.*zero a 20/);
+ assert(Math.abs(parseFloat($('.grade-strip span').style.width)-56.3)<.001);
+ assert.match($('.grade-conversion').textContent,/112,6 kg/);
+ click('#project-list [data-project="alpha"]');assert.equal($('.resource-stack'),null);assert.match($('.resource-note').textContent,/inferidos/);
+ click('#project-list [data-project="constellation"]');
+ assert.equal(document.querySelectorAll('.cluster-tabs button').length,4);
+ click('[data-select-project="caldeira"]');assert.equal($('#map-inspector h3').textContent,'Caldeira');
 });
 test('project and element dialogs contain traceable details and can be closed',()=>{
  click('[data-project-full="caldeira"]');assert.equal($('#detail-dialog').open,true);assert.match($('#dialog-content').textContent,/Não há decomposição da quantidade por elemento/);assert($('#dialog-content a').href.startsWith('https://'));

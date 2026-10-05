@@ -1,6 +1,15 @@
 // Structured presentation values, transcribed from the existing sourced project records.
 // Never aggregate unlike units, resource classes or disclosure dates.
 export const projectFacts = {
+  ema: {municipality:'1300144',short:'Ema',elements:['Nd','Pr','Dy','Tb'],stage:'development',kind:'clay',amount:1071,unit:'Mt de material',amountLabel:'Recurso · março de 2026',grade:732,year:'2026',classification:'indicated-inferred',standard:'JORC 2012',resourceDate:'2026-03-10',resourceNote:'Indicados e inferidos · total publicado pela BCM.'},
+  tiros: {municipality:'3168903',short:'Tiros',elements:['Nd','Pr','Dy','Tb'],stage:'development',kind:'rock',amount:1900,unit:'Mt de material',amountLabel:'Recurso · abril de 2025',grade:3920,year:'2025',classification:'measured-indicated-inferred',standard:'JORC 2012 / NI 43-101',resourceDate:'2025-04-09',inferred:500,resourceNote:'Medidos, indicados e inferidos · valores aproximados, mantidos na avaliação de 2026.'},
+  caladao: {municipality:'3146305',short:'Caladão',elements:['Nd','Pr','Dy','Tb'],stage:'development',kind:'clay',amount:708.6,unit:'Mt de material',amountLabel:'Recurso · setembro de 2026',grade:1443,year:'2026',classification:'indicated-inferred',standard:'JORC 2012',resourceDate:'2026-09-24',resourceNote:'110,08 milhões de toneladas indicadas e 598,51 milhões inferidas · total arredondado.'},
+  pch: {municipality:'5210208',short:'Ultra / PCH',elements:['Nd','Pr','Dy','Tb'],stage:'development',kind:'clay',amount:52.8,unit:'Mt de material',amountLabel:'Recurso · fevereiro de 2024',grade:2841,year:'2024',classification:'indicated-inferred',standard:'NI 43-101',resourceDate:'2024-02-01',inferred:46.2,resourceNote:'Indicados e inferidos · somente os alvos de argilas IV e Buriti.'},
+  montealto: {municipality:'2932101',short:'Monte Alto',elements:['Nd','Pr','Dy','Tb','Y'],stage:'development',kind:'rock',amount:3.4,unit:'Mt de material',amountLabel:'Recurso · agosto de 2026',grade:112600,year:'2026',classification:'indicated-inferred',standard:'JORC 2012',resourceDate:'2026-08-13',inferred:.89,resourceNote:'Indicados e inferidos · mineralização primária e residual. Monazita secundária na ficha.'},
+  sulista: {municipality:'2918001',short:'Sulista',elements:['Nd','Pr','Dy','Tb','Y'],stage:'development',kind:'rock',amount:8.49,unit:'Mt de material',amountLabel:'Recurso · agosto de 2026',grade:22900,year:'2026',classification:'indicated-inferred',standard:'JORC 2012',resourceDate:'2026-08-13',resourceNote:'Indicados e inferidos · três depósitos, um único recurso global.'},
+  alpha: {municipality:'2913507',short:'Alpha',elements:['Nd','Pr','Dy','Tb'],stage:'development',kind:'clay',amount:201.7,unit:'Mt de material',amountLabel:'Recurso · outubro de 2025',grade:1520,year:'2025',classification:'inferred',standard:'S-K 1300',resourceDate:'2025-10-31',resourceNote:'Recursos inferidos · quatro depósitos incluídos no total.'},
+  constellation: {municipality:'3151800',short:'Constellation',elements:['Nd','Pr','Dy','Tb'],stage:'development',kind:'clay',amount:266.2,unit:'Mt de material',amountLabel:'Recurso · outubro de 2025',grade:2637,year:'2025',classification:'inferred',standard:'S-K 1300',resourceDate:'2025-10-31',resourceNote:'Recursos inferidos · projeto da Rare Earths Americas.'},
+  itarantim: {municipality:'2916807',short:'Itarantim',elements:['Nd','Pr','Dy','Tb'],stage:'development',kind:'clay',amount:1100,unit:'Mt de material',amountLabel:'Recurso · março de 2025',grade:1233,year:'2025',classification:'inferred',standard:'S-K 1300',resourceDate:'2025-03-31',resourceNote:'Recursos inferidos · relatório técnico ERM de abril de 2026.'},
   serra: {municipality:'5213087',short:'Serra Verde',elements:['Nd','Pr','Dy','Tb'],stage:'production',kind:'clay',amount:911,unit:'Mt de material',amountLabel:'Recurso histórico · 2017',grade:1200,year:'2017',resourceNote:'Classes não discriminadas no quadro do SGB. Não é uma declaração atual do operador.'},
   caldeira: {municipality:'3151800',short:'Caldeira',elements:['Nd','Pr','Dy','Tb'],stage:'development',kind:'clay',amount:1631,unit:'Mt de material',amountLabel:'Recurso · julho de 2026',grade:2317,year:'2026',inferred:928,resourceNote:'Medidos, indicados e inferidos. Reserva separada: 151 Mt de minério a 3.524 ppm TREO.'},
   araxa: {municipality:'3104007',short:'Araxá',elements:['Nd','Pr','Nb'],stage:'development',kind:'rock',amount:3.98,unit:'Mt de TREO contidos',amountLabel:'Conteúdo no recurso · agosto de 2026',grade:null,year:'2026',resourceNote:'Aproximadamente 68% da tonelagem nas classes medida e indicada. Corte de 2% TREO não é teor médio.'},
@@ -12,9 +21,17 @@ export const projectFacts = {
 export const locations = [
  {code:'1303536',label:'Pitinga',state:'AM',ids:['pitinga'],offset:[-110,-38]},
  {code:'5213087',label:'Serra Verde',state:'GO',ids:['serra'],offset:[-158,-45]},
- {code:'5214903',label:'Carina',state:'GO',ids:['carina'],offset:[95,-72]},
- {code:'3104007',label:'Araxá',state:'MG',ids:['araxa'],offset:[92,10]},
- {code:'3151800',label:'Poços de Caldas',state:'MG',ids:['caldeira','colossus','morro'],offset:[-170,55]}
+ {code:'5214903',label:'Carina',state:'GO',ids:['carina'],offset:[-5,-100]},
+ {code:'3104007',label:'Araxá',state:'MG',ids:['araxa'],offset:[24,30]},
+ {code:'3151800',label:'Poços de Caldas',state:'MG',ids:['caldeira','colossus','morro','constellation'],offset:[-170,55]},
+ {code:'1300144',label:'Ema',state:'AM',ids:['ema'],offset:[-115,25]},
+ {code:'5210208',label:'Ultra / PCH',state:'GO',ids:['pch'],offset:[-145,-10]},
+ {code:'3168903',label:'Tiros',state:'MG',ids:['tiros'],offset:[-165,26]},
+ {code:'3146305',label:'Caladão',state:'MG',ids:['caladao'],offset:[110,75]},
+ {code:'2932101',label:'Monte Alto',state:'BA',ids:['montealto'],offset:[60,-65]},
+ {code:'2918001',label:'Sulista',state:'BA',ids:['sulista'],offset:[85,-32]},
+ {code:'2913507',label:'Alpha',state:'BA',ids:['alpha'],offset:[95,6]},
+ {code:'2916807',label:'Itarantim',state:'BA',ids:['itarantim'],offset:[110,40]}
 ];
 export const stages = {production:{label:'Em produção',color:'#24675a'},development:{label:'Em desenvolvimento',color:'#bb5738'},occurrence:{label:'Ocorrência estudada',color:'#7b756b'}};
 export const kinds = {clay:{label:'Argilas iônicas',color:'#b27036'},rock:{label:'Rocha / alteração',color:'#686d8c'}};
@@ -22,6 +39,7 @@ export const stateNames = {'11':['RO','Rondônia'],'12':['AC','Acre'],'13':['AM'
 export const coverageScales={1000000:{label:'Visão nacional',short:'Geral',detail:'1 cm = 10 km',rate:null,color:'#758a85'},250000:{label:'Estudo regional',short:'Regional',detail:'1 cm = 2,5 km',rate:50,color:'#609284'},100000:{label:'Estudo detalhado',short:'Detalhado',detail:'1 cm = 1 km',rate:28,color:'#286d5c'}};
 export const fmt=(n,d=2)=>n.toLocaleString('pt-BR',{maximumFractionDigits:d});
 export function gradePercent(ppm){return ppm===null?null:ppm/10000;}
+export function gradeScale(ppm){return [1,5,10,20,50,100].find(max=>gradePercent(ppm)<=max)??100;}
 export function resourceBreakdown(id){const f=projectFacts[id];if(!f?.inferred)return null;return {measuredIndicated:f.amount-f.inferred,inferred:f.inferred,total:f.amount};}
 export function coverageFeatures(collection,scale,year=2025){return collection.features.filter(f=>Number(f.properties.ESCALA)===Number(scale)&&Number(f.properties.ANO_MAPA)<=year&&f.properties.SITUACAO==='Publicado');}
 export function normalizeWinding(collection,d3){const copy=structuredClone(collection);for(const f of copy.features){const polygons=f.geometry.type==='MultiPolygon'?f.geometry.coordinates:[f.geometry.coordinates];for(const rings of polygons){if(d3.geoArea({type:'Polygon',coordinates:rings})>2*Math.PI)rings.forEach(r=>r.reverse());}}return copy;}

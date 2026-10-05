@@ -72,3 +72,9 @@ main>section+section::before{content:"";position:absolute;top:0;inset-inline:var
 .sources-section details:last-child{border-bottom:1px solid var(--detail-line)}
 @media(max-width:800px){:root{--section-gap:64px}.section-heading .eyebrow{font-size:9px}.story-copy>p:not(.small),.section-intro p{font-size:14px}}
 @media(max-width:600px){:root{--page-gutter:5%;--section-gap:56px;--section-lead:20px;--heading-gap:20px;--content-gap:24px;--detail-gap:20px}main{padding-block:32px 48px}.atlas-toolbar{overflow:auto}.atlas-heading .eyebrow{font-size:9px}.section-heading{gap:16px}.mineral-chart-card+.mineral-chart-card{padding-top:var(--detail-gap);border-top:1px solid var(--detail-line)}}
+
+/* Callouts remain tappable without overlapping the nearby municipal markers. */
+.map-location .location-ring,.map-location .location-leader{pointer-events:none}
+.project-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:4px 12px}
+.project-list button{justify-self:start}
+@media(max-width:600px){.zoom-controls{left:16px;right:auto;bottom:85px}}
