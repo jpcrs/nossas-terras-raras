@@ -15,7 +15,6 @@ export function initUSDependence(){
    <div class="us-waffle" role="img" aria-label="Dependência líquida de importações: ${row.netImportReliance}% do consumo aparente dos EUA em ${row.year}. Cada quadrado representa um ponto percentual.">${Array.from({length:100},(_,i)=>`<span class="${i<row.netImportReliance?'is-imported':''}" aria-hidden="true"></span>`).join('')}</div>
    <div class="us-waffle-caption"><span>1 quadrado = 1 ponto percentual</span><span>${selected} · USGS</span></div>`;
   $('#us-import-totals').innerHTML=`<div><strong>${fmt(row.compoundImports/1000)}<small>mil t</small></strong><span>de compostos importados</span><small>Equivalente em óxidos (REO) · ${selected}</small></div><div><strong><small>US$</small>${row.importValueMillionUSD}<small>mi</small></strong><span>em compostos e metais importados</span><small>Valor das importações · ${selected}</small></div>`;
-  $('#us-consumption-note').textContent=`Consumo aparente: ${fmt(row.apparentConsumption)} t de REO em ${selected}. Importações líquidas = importações menos exportações. Estimativas do USGS.`;
   $('#us-announcement').textContent=`${selected}: dependência líquida de ${row.netImportReliance}%; ${fmt(row.compoundImports)} toneladas de compostos importados, em REO equivalente.`;
  }
  $('#us-years').addEventListener('click',event=>{const button=event.target.closest('[data-us-year]');if(!button)return;selected=Number(button.dataset.usYear);render();});

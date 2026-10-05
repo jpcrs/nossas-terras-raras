@@ -19,14 +19,11 @@ export function initApplications(){
   $('#application-title').textContent=app.name;
   $('#application-summary').textContent=app.summary;
   const rareCount=app.materials.length;
-  $('#application-count').innerHTML=`<strong>${rareCount}</strong><span>${rareCount===1?'terra rara neste recorte':'terras raras neste recorte'}<small>Usos documentados</small></span>`;
   $('#application-materials').innerHTML=app.materials.map(material=>{
    const e=rareEarths.find(e=>e[0]===material.symbol);
    const name=e[2];
    return `<button class="application-material rare" data-application="${app.id}" data-element-detail="${material.symbol}" aria-label="${name}: ${material.description}${material.scope?` ${material.scope}.`:''} Abrir ficha e fontes."><span class="material-symbol"><small>${e[1]}</small><strong>${material.symbol}</strong></span><span class="material-copy"><span class="material-use">${material.use}</span><strong>${name}<span aria-hidden="true">↗</span></strong><span class="material-description">${material.description}</span>${material.scope?`<span class="material-scope">${material.scope}</span>`:''}</span></button>`;
   }).join('');
-  $('#application-note').textContent=app.note??'';
-  $('#application-note').hidden=!app.note;
   $('#application-sources').innerHTML=applicationSourceKeys(app).map(sourceLink).join('');
   $('#application-announcement').textContent=`${app.name}: ${rareCount} ${rareCount===1?'terra rara exibida':'terras raras exibidas'}.`;
  }

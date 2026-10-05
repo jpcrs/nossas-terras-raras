@@ -67,6 +67,7 @@ main>section+section::before{content:"";position:absolute;top:0;inset-inline:var
 .section-heading{margin-bottom:var(--heading-gap)}
 .section-heading .eyebrow:first-child{color:var(--accent)}
 .section-intro{margin-bottom:var(--content-gap)}
+.section-intro:has(>h2:only-child){display:block}
 .story-copy>p:not(.small),.section-intro p{font-size:15px;line-height:1.8;text-wrap:pretty}
 .big-takeaway{padding-top:0}
 .story-copy>p:last-child{margin-bottom:0}

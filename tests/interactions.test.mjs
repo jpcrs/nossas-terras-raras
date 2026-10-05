@@ -60,7 +60,7 @@ test('US year selection updates import dependence while preserving the distinct 
  assert.equal($('#us-reliance .us-waffle').querySelectorAll('.is-imported').length,53);
  assert.match($('#us-import-totals').textContent,/8,12mil t/);
  assert.match($('#us-import-totals').textContent,/168/);
- assert.match($('#us-consumption-note').textContent,/9\.010/);
+ assert.equal($('#us-consumption-note'),null);
  assert.equal($('#us-origin-chart').innerHTML,suppliers);
  $('[data-us-year="2024"]').dispatchEvent(new dom.window.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));
  assert.equal(document.activeElement,$('[data-us-year="2025"]'));
@@ -69,7 +69,7 @@ test('US year selection updates import dependence while preserving the distinct 
  assert.match($('#us-reliance .us-waffle').getAttribute('aria-label'),/67%.*2025/);
  assert.equal($('#us-origin-chart').innerHTML,suppliers);
  assert.match($('.us-risk').textContent,/potenciais sob controles integrais/);
- assert.match($('.us-method').textContent,/não uma perda já ocorrida/);
+ assert.equal($('.us-method'),null);
  assert.equal($('#us-import-source').getAttribute('href'),sources.usgsImports.url);
 });
 test('supply chain selects real country shares by stage and preserves rounded zeros',()=>{
@@ -370,7 +370,7 @@ test('every application material opens its own evidence and scope, without unrel
    assert($('.application-dialog-context').textContent.includes(material.description));
    assert.deepEqual([...document.querySelectorAll('.application-dialog-context a')].map(a=>a.href),materialSourceKeys(app,material).map(key=>sources[key].url));
    if(material.scope){assert(card.textContent.includes(material.scope));assert($('.application-dialog-context').textContent.includes(material.scope));}
-   if(app.note)assert($('.application-dialog-context').textContent.includes(app.note));
+   if(app.note)assert(!$('.application-dialog-context').textContent.includes(app.note));
    click('.dialog-close');
   }
  }
@@ -379,15 +379,11 @@ test('every application material opens its own evidence and scope, without unrel
  assert.match($('.application-dialog-context').textContent,/Smartphone.*Som e vibração/);
  assert.equal($('.application-dialog-context a').href,sources.usgsPhone.url);
  click('.dialog-close');
- click('[data-tech="mri"]');
- assert.match($('#application-note').textContent,/Contraste e ímã são aplicações separadas/);
- click('[data-tech="refining"]');
- assert.match($('#application-note').textContent,/combustível final/);
+ assert.equal($('#application-note'),null);
 });
-test('smartphone shows its rare-earth selection without the removed callout or material legend',()=>{
+test('smartphone shows its rare-earth selection without the removed counts, callout or material legend',()=>{
  click('[data-tech="phone"]');
- assert.equal($('#application-count>strong').textContent,'9');
- assert.match($('#application-count').textContent,/terras raras neste recorte/);
+ assert.equal($('#application-count'),null);
  assert.equal(document.querySelectorAll('#application-materials .rare').length,9);
  assert.equal($('#application-insight'),null);
  assert(!$('.applications-explorer').textContent.includes('16 de 17'));
