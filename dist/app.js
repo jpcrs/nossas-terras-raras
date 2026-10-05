@@ -38,16 +38,17 @@ export function drawBarChart(target,rows,{unit='',max=null,labelWidth=128,ariaLa
 }
 let comparison='reserve';
 function renderComparison(){
- const revised=$('#reserve-edition').value==='revised';const reserve=comparison==='reserve';const brazil=revised?11:21;
+ const reserve=comparison==='reserve';const brazil=21;
  const rows=reserve?[{name:'China',value:44},{name:'Brasil',value:brazil},{name:'Austrália',value:6.3},{name:'Estados Unidos',value:1.9}]:[{name:'China',value:270000},{name:'Estados Unidos',value:51000},{name:'Austrália',value:29000},{name:'Brasil',value:2000}];
  drawBarChart('#country-chart',rows,{unit:reserve?'Mt de REO':'t de REO',ariaLabel:reserve?'Reservas de terras raras':'Produção mineral estimada de 2025'});
  $('#comparison-unit').textContent=reserve?'MILHÕES DE TONELADAS · REO':'TONELADAS · REO · 2025e';
- $('#comparison-takeaway').innerHTML=reserve?`<strong>${brazil} Mt</strong><span>de óxidos de terras raras em reservas brasileiras.<br><small>${revised?'USGS · revisão de maio de 2026':'USGS · estimativa histórica de 2026'}</small></span>`:'<strong>0,5%</strong><span>da produção mundial estimada em 2025 veio do Brasil.</span>';
- $('#comparison-caption').textContent=reserve?`Países selecionados, não o total mundial. ${revised?'Estimativa revisada em maio de 2026.':'Série histórica anterior à revisão de maio de 2026; o valor brasileiro foi posteriormente revisado para 11 Mt.'} REO não equivale à massa total do minério.`:'Produção de 2025 estimada pelo USGS. Brasil: 2 mil t de um total mundial de 390 mil t. A participação é arredondada. Escala começa em zero.';
- $('#comparison-source').innerHTML=reserve?(revised?link('usgs','USGS · edição revisada'):link('reeHistorical','USGS · tabela histórica preservada')):`<a class="source-link" href="${usgsUrl('rare-earths')}" target="_blank" rel="noopener">USGS · produção de terras raras ↗</a>`;
+ $('#comparison-takeaway').innerHTML=reserve?`<strong>${brazil} Mt</strong><span>de óxidos de terras raras em reservas brasileiras.<br><small>USGS · estimativa histórica de 2026</small></span>`:'<strong>0,5%</strong><span>da produção mundial estimada em 2025 veio do Brasil.</span>';
+ $('#comparison-caption').hidden=reserve;
+ $('#comparison-caption').textContent=reserve?'':'Produção de 2025 estimada pelo USGS. Brasil: 2 mil t de um total mundial de 390 mil t. A participação é arredondada. Escala começa em zero.';
+ $('#comparison-source').innerHTML=reserve?link('reeHistorical','USGS · tabela histórica preservada'):`<a class="source-link" href="${usgsUrl('rare-earths')}" target="_blank" rel="noopener">USGS · produção de terras raras ↗</a>`;
  pressed('[data-comparison]','comparison',comparison);
 }
-$$('[data-comparison]').forEach(b=>b.onclick=()=>{comparison=b.dataset.comparison;renderComparison();});$('#reserve-edition').onchange=renderComparison;renderComparison();
+$$('[data-comparison]').forEach(b=>b.onclick=()=>{comparison=b.dataset.comparison;renderComparison();});renderComparison();
 
 initApplications();
 
@@ -65,7 +66,9 @@ function renderMineralComparisons(){
   drawBarChart(`#${type}-chart`,comparisonCountries.map((name,i)=>({name,value:m.values[i],missing:comparisonMissing(m,i)})),{unit:m.unit,labelWidth:150,ariaLabel:m.name});
   $(`#${type}-period`).textContent=selectedMineral==='U'?'SEM SÉRIE COMPARÁVEL':m.id==='ree-r'?'USGS 2026 · HISTÓRICO':type==='production'?'2025 · ESTIMATIVA':'USGS · MCS 2026';
   $(`#${type}-unit`).textContent=m.unit||'SEM SÉRIE COMPARÁVEL NESTE RECORTE';
-  $(`#${type}-note`).textContent=m.note||'Mesma unidade e edição da fonte para os três países.';
+  const note=m.chartNote??m.note??'';
+  $(`#${type}-note`).textContent=note;
+  $(`#${type}-note`).hidden=!note;
   $(`#${type}-source`).innerHTML=metricLink(m);
  }
  $('#mineral-announcement').textContent=`${mineral.name}: gráficos de produção e reservas atualizados.`;

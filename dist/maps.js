@@ -50,13 +50,14 @@ function renderControls(){
  const focusScale=document.activeElement?.dataset.scale;
  document.querySelectorAll('[data-layer]').forEach(b=>{b.classList.toggle('active',b.dataset.layer===layer);b.setAttribute('aria-pressed',b.dataset.layer===layer);});
  $('.atlas-body').classList.toggle('coverage-mode',layer==='coverage');
+ $('#map-note').hidden=layer!=='coverage';
  if(layer==='coverage'){
   $('#map-controls').innerHTML=`<div class="scale-controls" role="group" aria-label="Escala dos mapas geológicos">${[1000000,250000,100000].map(s=>`<button data-scale="${s}" class="${scale===s?'active':''}" aria-pressed="${scale===s}">${coverageScales[s].short}<small>1:${fmt(s,0)}</small></button>`).join('')}</div>`;
   $('#map-controls').querySelectorAll('button').forEach(b=>b.onclick=()=>{scale=Number(b.dataset.scale);selectedSheet=null;renderControls();renderInspector();updateCoverage();announcement(`Escala 1 para ${fmt(scale)}. ${coverageScales[scale].label}.`);});
   $('#map-note').textContent='Polígonos oficiais das folhas geológicas publicadas até 2025, consultados no inventário SGB em 05/10/2026. Sobreposições preservadas. Os percentuais nacionais vêm separadamente do Panorama SGB 2026.';
  }else{
   $('#map-controls').replaceChildren();
-  $('#map-note').textContent='Os pontos localizam municípios de referência, não jazidas. A área destacada é a malha municipal IBGE. Três registros compartilham a referência de Poços de Caldas. Esta seleção não é um inventário nacional completo.';
+  $('#map-note').textContent='';
  }
  renderLegend();
  if(focusScale)$('#map-controls').querySelector(`[data-scale="${focusScale}"]`)?.focus({preventScroll:true});

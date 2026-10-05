@@ -1,6 +1,5 @@
 /* Select an item once; every material and its use are visible together. */
-.applications-explorer{border-top:1px solid var(--ink)}
-.application-nav{display:flex;flex-wrap:wrap;gap:0 24px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:3;background:var(--paper)}
+.application-nav{display:flex;flex-wrap:wrap;gap:0 24px;position:sticky;top:0;z-index:3;background:var(--paper);border-bottom:1px solid var(--detail-line)}
 .application-nav button{background:none;padding:17px 0 14px;font-size:12px;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px}
 .application-nav button:hover{color:var(--ink)}
 .application-nav button.active{color:var(--accent);border-color:var(--accent)}
@@ -19,9 +18,9 @@
 .materials-guide .rare-key{background:#efdfc8;border-color:#d4b894}
 .materials-guide>p{margin:0;font-size:10px}
 .application-materials{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.application-material{display:flex;align-items:start;gap:15px;text-align:left;background:#eef0e740;border:1px solid var(--line);padding:19px 16px;min-width:0}
+.application-material{display:flex;align-items:start;gap:15px;text-align:left;background:#eef0e740;border:1px solid transparent;padding:19px 16px;min-width:0}
 .application-material:hover{background:#e9ede2;border-color:#a1b197}
-.application-material.rare{background:#f0e6d660;border-color:#ddcdb7}
+.application-material.rare{background:#f0e6d660;border-color:transparent}
 .application-material.rare:hover{background:#eee0cc;border-color:#b9936d}
 .material-symbol{display:flex;flex-direction:column;align-items:start;justify-content:center;width:54px;min-height:69px;padding:6px 9px;flex-shrink:0;background:#e2e7da;color:#435940}
 .rare .material-symbol{background:#ecdbbf;color:#9d4b30}
@@ -39,11 +38,11 @@
 .application-materials:has(>:only-child) .material-symbol strong{font-size:40px}
 .application-materials:has(>:only-child) .material-copy>strong{font-size:20px}
 .application-note{font-size:11px;line-height:1.7;color:var(--muted);margin:16px 0 0}
-.application-footnote{display:flex;justify-content:space-between;gap:35px;padding:18px 0;margin-top:22px;border-top:1px solid var(--line);align-items:start}
-.application-footnote>p{font-size:10px;line-height:1.8;color:var(--muted);max-width:650px;margin:0}
-.application-footnote .source-row{flex-shrink:0;gap:8px;display:flex;flex-direction:column;align-items:start;margin:0}
+.application-footnote{margin-top:var(--detail-gap)}
+
+.application-footnote .source-row{gap:16px;flex-direction:row;margin:0}
 .application-footnote .source-link{font-size:9px}
-.rare-earth-library{border-block:1px solid var(--line);padding:15px 0}
+.rare-earth-library{margin-top:var(--detail-gap);padding-top:var(--detail-gap);border-top:1px solid var(--detail-line)}
 .rare-earth-library>summary{font-size:12px}
 .rare-earth-library>p{font-size:12px;line-height:1.7;color:var(--muted);margin:16px 0}
 .rare-earth-reference{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:7px;margin:18px 0 10px}
@@ -53,5 +52,5 @@
 .rare-earth-reference strong{display:block;font:29px/1.3 var(--serif);letter-spacing:-.025em}
 .rare-earth-reference span{display:block;font-size:9px;margin-top:3px}
 @media(max-width:1000px){.application-materials{grid-template-columns:repeat(2,minmax(0,1fr))}.application-nav{gap:0 20px}.application-nav button{font-size:11px}.application-overview{gap:24px}.application-count{gap:10px}.application-count>strong{font-size:42px}.application-count>span{font-size:10px}.rare-earth-reference{grid-template-columns:repeat(6,minmax(0,1fr))}}
-@media(max-width:600px){.application-nav{flex-wrap:nowrap;overflow-x:auto;gap:22px;scrollbar-width:thin}.application-nav button{flex:0 0 auto;white-space:nowrap;font-size:12px;text-align:left;padding:15px 0 13px}.application-overview{display:block;padding:25px 0 20px}.application-overview h3{font-size:33px}#application-summary{font-size:12px}.application-count{margin-top:17px;gap:10px}.application-count>strong{font-size:34px}.application-count>span{display:flex;flex-wrap:wrap;align-items:baseline;gap:7px;font-size:11px}.application-count small{font-size:9px;margin:0}.application-count small:before{content:'·';margin-right:7px}.materials-guide{align-items:start;flex-direction:column;gap:8px;font-size:10px}.materials-guide>p{font-size:9px}.application-materials{grid-template-columns:1fr;gap:9px}.application-material,.application-materials:has(>:only-child) .application-material{padding:17px 15px;gap:16px}.material-symbol{width:52px}.material-copy>strong{font-size:15px}.material-description{font-size:12px;line-height:1.7}.material-use{font-size:8px}.application-materials:has(>:only-child) .material-symbol{width:52px;min-height:69px;padding:6px 9px}.application-materials:has(>:only-child) .material-symbol strong{font-size:30px}.application-materials:has(>:only-child) .material-copy>strong{font-size:15px}.application-footnote{flex-direction:column;gap:12px;margin-top:20px}.application-footnote .source-row{flex-direction:row;gap:18px;flex-wrap:wrap}.rare-earth-reference{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.rare-earth-reference button{padding:8px}.rare-earth-reference span{font-size:8px}.rare-earth-library>summary{font-size:12px}}
+@media(max-width:600px){.application-nav{flex-wrap:nowrap;overflow-x:auto;gap:22px;scrollbar-width:thin}.application-nav button{flex:0 0 auto;white-space:nowrap;font-size:12px;text-align:left;padding:15px 0 13px}.application-overview{display:block;padding:25px 0 20px}.application-overview h3{font-size:33px}#application-summary{font-size:12px}.application-count{margin-top:17px;gap:10px}.application-count>strong{font-size:34px}.application-count>span{display:flex;flex-wrap:wrap;align-items:baseline;gap:7px;font-size:11px}.application-count small{font-size:9px;margin:0}.application-count small:before{content:'·';margin-right:7px}.materials-guide{align-items:start;flex-direction:column;gap:8px;font-size:10px}.materials-guide>p{font-size:9px}.application-materials{grid-template-columns:1fr;gap:9px}.application-material,.application-materials:has(>:only-child) .application-material{padding:17px 15px;gap:16px}.material-symbol{width:52px}.material-copy>strong{font-size:15px}.material-description{font-size:12px;line-height:1.7}.material-use{font-size:8px}.application-materials:has(>:only-child) .material-symbol{width:52px;min-height:69px;padding:6px 9px}.application-materials:has(>:only-child) .material-symbol strong{font-size:30px}.application-materials:has(>:only-child) .material-copy>strong{font-size:15px}.application-footnote .source-row{gap:16px;flex-direction:row;margin:0}.rare-earth-reference{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.rare-earth-reference button{padding:8px}.rare-earth-reference span{font-size:8px}.rare-earth-library>summary{font-size:12px}}
 .application-nav button:focus-visible{outline-offset:-3px}

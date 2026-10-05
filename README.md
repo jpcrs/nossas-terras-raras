@@ -18,14 +18,14 @@ Abra http://127.0.0.1:4174. `PORT=4180 npm run dev` usa outra porta. A publicaç
 - **Projetos e minerais:** sete registros em cinco referências municipais IBGE, seleção direta no mapa, zoom, fichas e fontes. Poços de Caldas reúne três registros independentes.
 - **Quanto conhecemos:** 874 polígonos oficiais do inventário SGB, com escalas 1:1.000.000, 1:250.000 e 1:100.000, ano de publicação e consulta de cada folha. As geometrias ficam recortadas ao Brasil.
 - **Tipos de depósito:** classificação dos projetos e seção conceitual de argilas iônicas ou sistemas de rocha/alteração.
-- **Comparações:** reservas versus produção, escolha explícita entre a estimativa histórica de 21 Mt e a revisão de 11 Mt, produção e reservas lado a lado para os 15 perfis de minerais, com seleção pelas células e exportação conjunta em CSV.
+- **Comparações:** reservas versus produção, com a estimativa histórica de 21 Mt identificada, produção e reservas lado a lado para os 15 perfis de minerais, com seleção pelas células e exportação conjunta em CSV.
 - **Materiais e tecnologias:** um explorador integrado conecta 17 terras raras a oito aplicações: carro elétrico, eólica, telas e vidros, fibra óptica, lasers, ligas, usos especiais e solar. Selecionar um item mostra todos os materiais do recorte com explicações breves de uso. As fichas mantêm fontes e links para projetos no mapa; a referência completa dos 17 elementos fica em uma seção expansível.
 
 - **Da mina ao ímã:** perfis D3 de China e Estados Unidos na extração, no refino e na fabricação de ímãs. Seleção por clique ou teclado, escala comum de 0–100%, tabela acessível e CSV original da IEA (2024).
 
 ## Estrutura
 
-- `dist/index.html` e `dist/style.css`: estrutura editorial e layout responsivo.
+- `dist/index.html` e `dist/style.css`: estrutura editorial e layout responsivo. O espaçamento entre conteúdos de seções usa `--section-gap` (72/64/56 px), dividido entre a margem anterior e `--section-lead` após uma linha sutil alinhada ao conteúdo. Divisórias internas mais claras agrupam controles, notas e fontes; os rótulos dos capítulos compartilham a cor de destaque.
 - `dist/maps.js`: projeção D3, camadas, zoom, seleção, filtros de cobertura e inspector.
 - `dist/app.js`: gráficos, minerais, diálogos e exportação.
 - `dist/applications.js`, `dist/applications.css` e `dist/applications-data.js`: seleção de aplicações, lista de materiais com seus usos e referência de elementos.
@@ -53,6 +53,6 @@ A atualização das folhas é deliberada: não modifica automaticamente a ediç�
 
 Os pontos e as áreas municipais não são coordenadas ou perímetros de jazidas. Os polígonos SGB delimitam folhas geológicas publicadas; sobreposições, reedições e lacunas cadastrais estão preservadas. Os percentuais nacionais (28% e 50%, até 2025) vêm de outro balanço do SGB e não são recalculados pela contagem de folhas ou pelo filtro de ano.
 
-Recursos, reservas, material total e óxidos contidos não são somados. As fichas não inventam quantidades por elemento. Teores são convertidos de ppm para porcentagem e kg por tonelada apenas para explicar a concentração química; não representam recuperação industrial. Dados ausentes, sigilosos e zero continuam distintos. Fontes corporativas mantêm datas e ressalvas. A série histórica de 21 Mt é identificada como histórica e a revisão de maio fica disponível no comparador.
+Recursos, reservas, material total e óxidos contidos não são somados. As fichas não inventam quantidades por elemento. Teores são convertidos de ppm para porcentagem e kg por tonelada apenas para explicar a concentração química; não representam recuperação industrial. Dados ausentes, sigilosos e zero continuam distintos. Fontes corporativas mantêm datas e ressalvas. A série histórica de 21 Mt é identificada como histórica e a revisão de maio permanece documentada nas fontes e no download JSON.
 
 Consulte `research/VERIFICATION.md` para o registro de pesquisa e validação. `.openai/hosting.json` mantém `dist` como diretório estático; as alterações locais não publicam automaticamente uma nova versão do site.

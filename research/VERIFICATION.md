@@ -84,3 +84,11 @@ Validação: `npm test` passou com 14 cenários; `git diff --check` sem erros. N
 ### Comparação reduzida a China e Estados Unidos
 
 A pedido do usuário, o gráfico, a legenda, o painel por etapa, a tabela e os anúncios acessíveis passam a comparar somente China e Estados Unidos. O texto introdutório e o download JSON acompanham esse recorte. A série CSV original da IEA permanece intacta com todos os países; os percentuais exibidos continuam relativos ao total mundial, sem renormalização.
+
+### Ritmo visual e redução de texto
+
+As seções usam uma grade vertical única com intervalos de 96 px no desktop, 80 px no tablet e 64 px no celular. Cabeçalhos e áreas de conteúdo compartilham variáveis de espaçamento. Foram removidas as linhas decorativas dos capítulos, painéis, rodapés de fonte e listas, mantendo escalas e estados ativos dos controles.
+
+Removidos os avisos solicitados do mapa de projetos, da comparação de reservas e das aplicações, além do acordeão de revisão. A comparação mantém 21 Mt com identificação histórica e fonte preservada; o histórico de revisão segue no JSON e nas fontes. Notas genéricas de comparabilidade e transcrição parcial deixam de aparecer sob os gráficos; unidades, indicações de dados ausentes e notas específicas dos indicadores continuam disponíveis.
+
+Verificação desta revisão: 14 testes passaram. Medição no navegador confirmou todos os seis intervalos iguais em 1280 px (96 px), 768 px (80 px) e 360 px (64 px), sem transbordamento horizontal. Alternância de produção/reservas, seleção mineral e ajuda do mapa conferidas, sem erros de console. Captura em `research/screenshots/layout-spacing.png`.

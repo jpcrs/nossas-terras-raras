@@ -11,6 +11,7 @@ const catalogSeries=(symbol,type,unit,brazil,note)=>{
   period:type==='production'?'2025 estimado':'USGS MCS 2026',
   nodata:[brazil===null?'Não harmonizado':null,'Fora deste recorte','Fora deste recorte'],
   note,
+  ...(note===partial?{chartNote:''}:{}),
  };
 };
 const partial='Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte.';

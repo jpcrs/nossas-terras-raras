@@ -1468,7 +1468,8 @@
           "Fora deste recorte",
           "Fora deste recorte"
         ],
-        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte."
+        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte.",
+        "chartNote": ""
       }
     },
     "ETR": {
@@ -1582,7 +1583,8 @@
           "Fora deste recorte",
           "Fora deste recorte"
         ],
-        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte."
+        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte.",
+        "chartNote": ""
       },
       "reserve": {
         "id": "ni-r",
@@ -1617,7 +1619,8 @@
           "Fora deste recorte",
           "Fora deste recorte"
         ],
-        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte."
+        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte.",
+        "chartNote": ""
       },
       "reserve": {
         "id": "mn-r",
@@ -1693,7 +1696,8 @@
           "Fora deste recorte",
           "Fora deste recorte"
         ],
-        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte."
+        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte.",
+        "chartNote": ""
       },
       "reserve": {
         "id": "ta-r",
@@ -1769,7 +1773,8 @@
           "Fora deste recorte",
           "Fora deste recorte"
         ],
-        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte."
+        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte.",
+        "chartNote": ""
       },
       "reserve": {
         "id": "v-r-catalog",
@@ -1789,7 +1794,8 @@
           "Fora deste recorte",
           "Fora deste recorte"
         ],
-        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte."
+        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte.",
+        "chartNote": ""
       }
     },
     "Cu": {

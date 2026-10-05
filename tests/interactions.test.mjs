@@ -91,6 +91,7 @@ test('all seven project cards select, grouped records remain distinct, oxide uni
 });
 test('map markers select projects by pointer and keyboard without stale hover overlays',()=>{
  assert.equal($('#map-controls select'),null);
+ assert.equal($('#map-note').hidden,true);assert.equal($('#map-note').textContent,'');
  const araxa=$('.map-location[aria-label^="Araxá,"]');
  araxa.focus();
  araxa.dispatchEvent(new dom.window.MouseEvent('pointermove',{bubbles:true,clientX:100,clientY:100}));
@@ -109,6 +110,7 @@ test('map markers select projects by pointer and keyboard without stale hover ov
 });
 test('coverage uses official polygons, filters scale and year, and exposes source metadata',async()=>{
  click('[data-layer="coverage"]');await tick();
+ assert.equal($('#map-note').hidden,false);assert.match($('#map-note').textContent,/Polígonos oficiais/);
  assert.equal(document.querySelectorAll('.coverage-sheet').length,511);
  assert.match($('.coverage-big').textContent,/28%/);
  change('#coverage-year','1969','input');assert.equal(document.querySelectorAll('.coverage-sheet').length,0);
@@ -132,14 +134,17 @@ test('project and element dialogs contain traceable details and can be closed',(
  click('.dialog-close');assert.equal($('#detail-dialog').open,false);
  click('[data-element-detail="Nd"]');assert.match($('#dialog-title').textContent,/Neodímio/);click('.dialog-close');
 });
-test('reserve editions and production switch actual chart data and disclosures',async()=>{
- change('#reserve-edition','revised');assert.match($('#comparison-takeaway').textContent,/11 Mt/);assert.match($('#country-chart svg').getAttribute('aria-label'),/Brasil: 11/);
+test('reserve and production controls preserve their data after removing revision controls',async()=>{
+ assert.equal($('#reserve-edition'),null);assert.equal($('.revision'),null);
+ assert.equal($('#comparison-caption').hidden,true);
+ assert.match($('#comparison-takeaway').textContent,/estimativa histórica/);
  click('[data-comparison="production"]');assert.match($('#comparison-takeaway').textContent,/0,5%/);assert.match($('#country-chart svg').getAttribute('aria-label'),/Brasil: 2.000 t/);
- click('[data-comparison="reserve"]');change('#reserve-edition','historical');assert.match($('#country-chart svg').getAttribute('aria-label'),/Brasil: 21/);
+ click('[data-comparison="reserve"]');assert.match($('#country-chart svg').getAttribute('aria-label'),/Brasil: 21/);
  await tick();assert.equal(document.querySelectorAll('#country-chart .data-row').length,4);
 });
 test('item selection shows all its materials and uses without component controls',()=>{
  assert.equal(document.querySelector('.applications-explorer svg'),null);
+ assert.equal($('.application-footnote>p'),null);
  assert.equal(document.querySelector('.applications-explorer [data-part], .applications-explorer [data-component], .applications-explorer [data-choice]'),null);
  assert(!$('.applications-explorer').textContent.includes('Também nesta peça'));
  for(const app of applications){
@@ -196,6 +201,8 @@ test('mineral tiles update production and reserves together without opening a di
  }
  click('[data-mineral="Li"]');assert.match($('#production-chart svg').getAttribute('aria-label'),/Dado sigiloso \(W\)/);assert.match($('#reserve-chart svg').getAttribute('aria-label'),/Brasil: 540.000 t de Li/);
  click('[data-mineral="Nb"]');assert.match($('#production-chart svg').getAttribute('aria-label'),/Estados Unidos: 0 t de Nb/);assert.match($('#reserve-chart svg').getAttribute('aria-label'),/Brasil: 14 Mt de Nb/);assert.match($('#reserve-chart svg').getAttribute('aria-label'),/China: Fora deste recorte/);
+ assert.equal($('#production-note').hidden,true);assert.equal($('#reserve-note').hidden,true);
+ assert.equal($('#production-note').textContent,'');assert.equal($('#reserve-note').textContent,'');
  click('[data-mineral="ETR"]');assert.match($('#reserve-period').textContent,/HISTÓRICO/);assert.match($('#reserve-note').textContent,/anterior à revisão/);
  click('[data-mineral="U"]');assert.match($('#reserve-note').textContent,/Recursos não são reservas/);assert.equal(document.querySelectorAll('#reserve-chart .chart-grid text').length,0);
  await tick();assert([...document.querySelectorAll('#reserve-chart .data-bar')].every(b=>Number(b.getAttribute('width'))===0));
