@@ -1139,5 +1139,1034 @@
       ],
       "Urânio é combustível em certas tecnologias, não material estrutural de toda aplicação."
     ]
-  ]
+  ],
+  "applicationExamples": [
+    {
+      "id": "ev",
+      "name": "Carro elétrico",
+      "category": "MOBILIDADE",
+      "defaultPart": 2,
+      "source": "doe2023",
+      "variants": [
+        {
+          "configuration": {
+            "motor": "magnet",
+            "battery": "nmc"
+          },
+          "components": [
+            {
+              "name": "Estrutura",
+              "materials": [
+                "Fe",
+                "Al",
+                "Nb"
+              ],
+              "text": "Aços e alumínio formam a estrutura. Nióbio pode aumentar a resistência de alguns aços, conforme a especificação."
+            },
+            {
+              "name": "Bateria",
+              "materials": [
+                "Li",
+                "Ni",
+                "Mn",
+                "Co",
+                "C",
+                "Cu",
+                "Al"
+              ],
+              "text": "O cátodo NMC usa níquel, manganês e cobalto. Grafita, cobre e alumínio têm outras funções na bateria."
+            },
+            {
+              "name": "Motor",
+              "materials": [
+                "Nd",
+                "Pr",
+                "Dy",
+                "Tb",
+                "Cu",
+                "Fe"
+              ],
+              "text": "Neodímio e praseodímio participam dos ímãs NdFeB. Disprósio e térbio podem aumentar a resistência à desmagnetização em altas temperaturas; seu uso depende da formulação."
+            },
+            {
+              "name": "Eletrônica",
+              "materials": [
+                "Si",
+                "Cu",
+                "Ta"
+              ],
+              "text": "Semicondutores controlam a energia. Silício, cobre e tântalo têm funções distintas nos circuitos e componentes."
+            }
+          ]
+        },
+        {
+          "configuration": {
+            "motor": "magnet",
+            "battery": "lfp"
+          },
+          "components": [
+            {
+              "name": "Estrutura",
+              "materials": [
+                "Fe",
+                "Al",
+                "Nb"
+              ],
+              "text": "Aços e alumínio formam a estrutura. Nióbio pode aumentar a resistência de alguns aços, conforme a especificação."
+            },
+            {
+              "name": "Bateria",
+              "materials": [
+                "Li",
+                "C",
+                "Cu",
+                "Al",
+                "Fe"
+              ],
+              "text": "O cátodo LFP usa fosfato de ferro e lítio. Não depende de níquel ou cobalto no cátodo. Grafita, cobre e alumínio continuam relevantes."
+            },
+            {
+              "name": "Motor",
+              "materials": [
+                "Nd",
+                "Pr",
+                "Dy",
+                "Tb",
+                "Cu",
+                "Fe"
+              ],
+              "text": "Neodímio e praseodímio participam dos ímãs NdFeB. Disprósio e térbio podem aumentar a resistência à desmagnetização em altas temperaturas; seu uso depende da formulação."
+            },
+            {
+              "name": "Eletrônica",
+              "materials": [
+                "Si",
+                "Cu",
+                "Ta"
+              ],
+              "text": "Semicondutores controlam a energia. Silício, cobre e tântalo têm funções distintas nos circuitos e componentes."
+            }
+          ]
+        },
+        {
+          "configuration": {
+            "motor": "induction",
+            "battery": "nmc"
+          },
+          "components": [
+            {
+              "name": "Estrutura",
+              "materials": [
+                "Fe",
+                "Al",
+                "Nb"
+              ],
+              "text": "Aços e alumínio formam a estrutura. Nióbio pode aumentar a resistência de alguns aços, conforme a especificação."
+            },
+            {
+              "name": "Bateria",
+              "materials": [
+                "Li",
+                "Ni",
+                "Mn",
+                "Co",
+                "C",
+                "Cu",
+                "Al"
+              ],
+              "text": "O cátodo NMC usa níquel, manganês e cobalto. Grafita, cobre e alumínio têm outras funções na bateria."
+            },
+            {
+              "name": "Motor",
+              "materials": [
+                "Cu",
+                "Al",
+                "Fe"
+              ],
+              "text": "Motores de indução podem dispensar ímãs permanentes de terras raras. O campo magnético é produzido por correntes elétricas."
+            },
+            {
+              "name": "Eletrônica",
+              "materials": [
+                "Si",
+                "Cu",
+                "Ta"
+              ],
+              "text": "Semicondutores controlam a energia. Silício, cobre e tântalo têm funções distintas nos circuitos e componentes."
+            }
+          ]
+        },
+        {
+          "configuration": {
+            "motor": "induction",
+            "battery": "lfp"
+          },
+          "components": [
+            {
+              "name": "Estrutura",
+              "materials": [
+                "Fe",
+                "Al",
+                "Nb"
+              ],
+              "text": "Aços e alumínio formam a estrutura. Nióbio pode aumentar a resistência de alguns aços, conforme a especificação."
+            },
+            {
+              "name": "Bateria",
+              "materials": [
+                "Li",
+                "C",
+                "Cu",
+                "Al",
+                "Fe"
+              ],
+              "text": "O cátodo LFP usa fosfato de ferro e lítio. Não depende de níquel ou cobalto no cátodo. Grafita, cobre e alumínio continuam relevantes."
+            },
+            {
+              "name": "Motor",
+              "materials": [
+                "Cu",
+                "Al",
+                "Fe"
+              ],
+              "text": "Motores de indução podem dispensar ímãs permanentes de terras raras. O campo magnético é produzido por correntes elétricas."
+            },
+            {
+              "name": "Eletrônica",
+              "materials": [
+                "Si",
+                "Cu",
+                "Ta"
+              ],
+              "text": "Semicondutores controlam a energia. Silício, cobre e tântalo têm funções distintas nos circuitos e componentes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wind",
+      "name": "Eólica",
+      "category": "ENERGIA",
+      "defaultPart": 1,
+      "source": "doe2023",
+      "variants": [
+        {
+          "configuration": {
+            "motor": "magnet"
+          },
+          "components": [
+            {
+              "name": "Rotor",
+              "materials": [
+                "Fe"
+              ],
+              "text": "As pás e o rotor transformam vento em movimento. Os compósitos das pás estão fora deste catálogo mineral."
+            },
+            {
+              "name": "Gerador",
+              "materials": [
+                "Nd",
+                "Pr",
+                "Dy",
+                "Tb",
+                "Cu",
+                "Fe"
+              ],
+              "text": "Alguns geradores eólicos usam ímãs NdFeB. Nd e Pr participam do ímã; Dy e Tb podem melhorar seu desempenho térmico. Outras arquiteturas dispensam esses ímãs."
+            },
+            {
+              "name": "Torre",
+              "materials": [
+                "Fe",
+                "Nb"
+              ],
+              "text": "A torre usa aço. Nióbio pode integrar aços de alta resistência, conforme a especificação."
+            },
+            {
+              "name": "Conexões",
+              "materials": [
+                "Cu",
+                "Al"
+              ],
+              "text": "Cabos e conexões conduzem a eletricidade. A escolha de cobre ou alumínio depende da aplicação."
+            }
+          ]
+        },
+        {
+          "configuration": {
+            "motor": "induction"
+          },
+          "components": [
+            {
+              "name": "Rotor",
+              "materials": [
+                "Fe"
+              ],
+              "text": "As pás e o rotor transformam vento em movimento. Os compósitos das pás estão fora deste catálogo mineral."
+            },
+            {
+              "name": "Gerador",
+              "materials": [
+                "Cu",
+                "Al",
+                "Fe"
+              ],
+              "text": "Geradores sem ímãs permanentes usam excitação elétrica ou indução. A composição depende da arquitetura."
+            },
+            {
+              "name": "Torre",
+              "materials": [
+                "Fe",
+                "Nb"
+              ],
+              "text": "A torre usa aço. Nióbio pode integrar aços de alta resistência, conforme a especificação."
+            },
+            {
+              "name": "Conexões",
+              "materials": [
+                "Cu",
+                "Al"
+              ],
+              "text": "Cabos e conexões conduzem a eletricidade. A escolha de cobre ou alumínio depende da aplicação."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "optics",
+      "name": "Telas e vidros",
+      "category": "LUZ & ÓPTICA",
+      "defaultPart": 0,
+      "source": "reeeduca",
+      "variants": [
+        {
+          "configuration": {},
+          "components": [
+            {
+              "name": "Fósforos",
+              "materials": [
+                "Eu",
+                "Y"
+              ],
+              "text": "Európio e ítrio têm aplicações em fósforos: materiais usados para emitir luz. A composição depende da tecnologia de iluminação ou de tela."
+            },
+            {
+              "name": "Vidros ópticos",
+              "materials": [
+                "La"
+              ],
+              "text": "Lantânio tem aplicações em vidros ópticos. Sua presença depende da composição do vidro."
+            },
+            {
+              "name": "Polimento",
+              "materials": [
+                "Ce"
+              ],
+              "text": "Compostos de cério são usados no polimento de vidro. Aqui, o material participa da fabricação; isso não significa que integre o vidro acabado."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fiber",
+      "name": "Fibra óptica",
+      "category": "COMUNICAÇÃO",
+      "defaultPart": 0,
+      "source": "reeeduca",
+      "variants": [
+        {
+          "configuration": {},
+          "components": [
+            {
+              "name": "Amplificação óptica",
+              "materials": [
+                "Er"
+              ],
+              "text": "Érbio tem aplicação na amplificação de sinais ópticos, incluindo fibras de telecomunicações. Sua função está no amplificador, não em toda a extensão do cabo."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "laser",
+      "name": "Lasers",
+      "category": "APLICAÇÕES ÓPTICAS",
+      "defaultPart": 0,
+      "source": "reeeduca",
+      "variants": [
+        {
+          "configuration": {},
+          "components": [
+            {
+              "name": "Lasers de fibra",
+              "materials": [
+                "Yb"
+              ],
+              "text": "Itérbio tem aplicação em lasers de fibra. O elemento usado varia conforme a tecnologia do laser."
+            },
+            {
+              "name": "Outros lasers",
+              "materials": [
+                "Ho",
+                "Tm"
+              ],
+              "text": "Hólmio e túlio têm aplicações em lasers especializados. São exemplos de materiais para tecnologias diferentes, não uma mistura obrigatória."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alloys",
+      "name": "Ligas metálicas",
+      "category": "MATERIAIS",
+      "defaultPart": 0,
+      "source": "reeeduca",
+      "variants": [
+        {
+          "configuration": {},
+          "components": [
+            {
+              "name": "Ligas alumínio–escândio",
+              "materials": [
+                "Sc",
+                "Al"
+              ],
+              "text": "Escândio tem aplicação em ligas de alumínio. É um dos elementos associados à família das terras raras, embora não seja um lantanídeo."
+            },
+            {
+              "name": "Outras ligas",
+              "materials": [
+                "La",
+                "Y",
+                "Yb"
+              ],
+              "text": "Lantânio, ítrio e itérbio têm aplicações em ligas. Cada elemento pode integrar formulações diferentes; não se trata de uma liga única com todos eles."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "name": "Usos especiais",
+      "category": "APLICAÇÕES ESPECIALIZADAS",
+      "defaultPart": 0,
+      "source": "reeeduca",
+      "variants": [
+        {
+          "configuration": {},
+          "components": [
+            {
+              "name": "Ímãs SmCo",
+              "materials": [
+                "Sm",
+                "Co"
+              ],
+              "text": "Samário participa de ímãs samário–cobalto, inclusive para ambientes de alta temperatura. São uma família diferente dos ímãs NdFeB."
+            },
+            {
+              "name": "Aplicações magnéticas",
+              "materials": [
+                "Gd"
+              ],
+              "text": "Gadolínio apresenta propriedades magnéticas. Algumas classificações o incluem entre as terras raras médias."
+            },
+            {
+              "name": "Cintiladores",
+              "materials": [
+                "Lu"
+              ],
+              "text": "Lutécio tem aplicações em cintiladores e em tecnologias médicas. O elemento participa de materiais específicos, conforme o equipamento."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solar",
+      "name": "Painel solar",
+      "category": "ENERGIA",
+      "defaultPart": 1,
+      "source": "doe2023",
+      "variants": [
+        {
+          "configuration": {},
+          "components": [
+            {
+              "name": "Cobertura e vidro",
+              "materials": [
+                "Si"
+              ],
+              "text": "Sílica é matéria-prima do vidro. Sua composição e processamento diferem do silício das células."
+            },
+            {
+              "name": "Células",
+              "materials": [
+                "Si"
+              ],
+              "text": "Silício de alta pureza converte luz em eletricidade. Prata também é relevante, embora esteja fora deste catálogo. Este exemplo de módulo de silício não depende de terras raras nas peças mostradas."
+            },
+            {
+              "name": "Interconexões",
+              "materials": [
+                "Cu"
+              ],
+              "text": "Condutores conectam as células. A metalização pode usar diferentes materiais e rotas."
+            },
+            {
+              "name": "Moldura",
+              "materials": [
+                "Al"
+              ],
+              "text": "Alumínio protege e sustenta o módulo."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "mineralComparisons": {
+    "Nb": {
+      "production": {
+        "id": "nb-p",
+        "name": "Nióbio · produção",
+        "type": "production",
+        "unit": "t de Nb",
+        "values": [
+          104000,
+          40,
+          0
+        ],
+        "source": "niobium",
+        "world": 112000
+      },
+      "reserve": {
+        "id": "nb-r-catalog",
+        "name": "Nióbio · reservas",
+        "type": "reserve",
+        "unit": "Mt de Nb",
+        "values": [
+          14,
+          null,
+          null
+        ],
+        "source": "niobium",
+        "sourceKey": null,
+        "period": "USGS MCS 2026",
+        "nodata": [
+          null,
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte."
+      }
+    },
+    "ETR": {
+      "production": {
+        "id": "ree-p",
+        "name": "Terras raras · produção",
+        "type": "production",
+        "unit": "t de REO",
+        "values": [
+          2000,
+          270000,
+          51000
+        ],
+        "source": "rare-earths",
+        "world": 390000
+      },
+      "reserve": {
+        "id": "ree-r",
+        "name": "Terras raras · reservas",
+        "type": "reserve",
+        "unit": "Mt de REO",
+        "values": [
+          21,
+          44,
+          1.9
+        ],
+        "source": null,
+        "sourceKey": "reeHistorical",
+        "period": "USGS 2026 · estimativa histórica anterior à revisão de maio",
+        "note": "Tabela histórica do USGS 2026, anterior à revisão de maio. Inclui lantanídeos e ítrio; exclui a maior parte do escândio. Histórico de versões na seção Fontes."
+      }
+    },
+    "Li": {
+      "production": {
+        "id": "li-p",
+        "name": "Lítio · produção",
+        "type": "production",
+        "unit": "t de Li contido",
+        "values": [
+          12000,
+          62000,
+          null
+        ],
+        "source": "lithium",
+        "world": 290000,
+        "nodata": [
+          null,
+          null,
+          "Dado sigiloso (W)"
+        ],
+        "note": "Produção dos EUA não divulgada. Total mundial exclui os EUA. Não confundir lítio contido com carbonato de lítio equivalente."
+      },
+      "reserve": {
+        "id": "li-r",
+        "name": "Lítio · reservas",
+        "type": "reserve",
+        "unit": "t de Li contido",
+        "values": [
+          540000,
+          4600000,
+          4400000
+        ],
+        "source": "lithium",
+        "geoSource": "panorama"
+      }
+    },
+    "C": {
+      "production": {
+        "id": "gr-p",
+        "name": "Grafita natural · produção",
+        "type": "production",
+        "unit": "t de grafita",
+        "values": [
+          65000,
+          1400000,
+          0
+        ],
+        "source": "graphite",
+        "world": 1800000
+      },
+      "reserve": {
+        "id": "gr-r",
+        "name": "Grafita natural · reservas",
+        "type": "reserve",
+        "unit": "Mt de grafita",
+        "values": [
+          74,
+          100,
+          null
+        ],
+        "source": "graphite",
+        "note": "EUA: reservas incluídas em outros países, sem valor individualizado na tabela."
+      }
+    },
+    "Ni": {
+      "production": {
+        "id": "ni-p-catalog",
+        "name": "Níquel · produção",
+        "type": "production",
+        "unit": "t de Ni",
+        "values": [
+          70000,
+          null,
+          null
+        ],
+        "source": "nickel",
+        "sourceKey": null,
+        "period": "2025 estimado",
+        "nodata": [
+          null,
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte."
+      },
+      "reserve": {
+        "id": "ni-r",
+        "name": "Níquel · reservas",
+        "type": "reserve",
+        "unit": "Mt de Ni",
+        "values": [
+          16,
+          4.4,
+          0.34
+        ],
+        "source": "nickel",
+        "geoSource": "panorama"
+      }
+    },
+    "Mn": {
+      "production": {
+        "id": "mn-p-catalog",
+        "name": "Manganês · produção",
+        "type": "production",
+        "unit": "t de Mn",
+        "values": [
+          800000,
+          null,
+          null
+        ],
+        "source": "manganese",
+        "sourceKey": null,
+        "period": "2025 estimado",
+        "nodata": [
+          null,
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte."
+      },
+      "reserve": {
+        "id": "mn-r",
+        "name": "Manganês · reservas",
+        "type": "reserve",
+        "unit": "Mt de Mn",
+        "values": [
+          300,
+          260,
+          0
+        ],
+        "source": "manganese",
+        "geoSource": "panorama"
+      }
+    },
+    "Si": {
+      "production": {
+        "id": "si-p",
+        "name": "Silício metálico · produção",
+        "type": "production",
+        "unit": "mil t de Si",
+        "values": [
+          180,
+          4000,
+          null
+        ],
+        "source": "silicon",
+        "world": 4600,
+        "nodata": [
+          null,
+          null,
+          "Dado sigiloso (W)"
+        ],
+        "note": "Silício metálico, sem ferrossilício. Não equivale a silício de grau solar ou eletrônico."
+      },
+      "reserve": {
+        "id": "si-r-catalog",
+        "name": "Silício · reservas",
+        "type": "reserve",
+        "unit": "",
+        "values": [
+          null,
+          null,
+          null
+        ],
+        "source": "silicon",
+        "sourceKey": null,
+        "period": "USGS MCS 2026",
+        "nodata": [
+          "Não harmonizado",
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "Não há um total de reservas comparável nesta seleção. Sílica, silício metálico e silício de grau eletrônico são produtos distintos."
+      }
+    },
+    "Ta": {
+      "production": {
+        "id": "ta-p-catalog",
+        "name": "Tântalo · produção",
+        "type": "production",
+        "unit": "t de Ta",
+        "values": [
+          190,
+          null,
+          null
+        ],
+        "source": "tantalum",
+        "sourceKey": null,
+        "period": "2025 estimado",
+        "nodata": [
+          null,
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte."
+      },
+      "reserve": {
+        "id": "ta-r",
+        "name": "Tântalo · reservas",
+        "type": "reserve",
+        "unit": "t de Ta",
+        "values": [
+          40000,
+          240000,
+          0
+        ],
+        "source": "tantalum"
+      }
+    },
+    "Ti": {
+      "production": {
+        "id": "ti-p-catalog",
+        "name": "Titânio · produção",
+        "type": "production",
+        "unit": "",
+        "values": [
+          null,
+          null,
+          null
+        ],
+        "source": "titanium-minerals",
+        "sourceKey": null,
+        "period": "2025 estimado",
+        "nodata": [
+          "Não harmonizado",
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "Ilmenita e rutilo são séries distintas. A produção não foi harmonizada neste recorte."
+      },
+      "reserve": {
+        "id": "ti-r-catalog",
+        "name": "Titânio · reservas",
+        "type": "reserve",
+        "unit": "",
+        "values": [
+          null,
+          null,
+          null
+        ],
+        "source": "titanium-minerals",
+        "sourceKey": null,
+        "period": "USGS MCS 2026",
+        "nodata": [
+          "Não harmonizado",
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "Reservas de ilmenita e rutilo devem ser consultadas separadamente. Não há uma série harmonizada neste recorte."
+      }
+    },
+    "V": {
+      "production": {
+        "id": "v-p-catalog",
+        "name": "Vanádio · produção",
+        "type": "production",
+        "unit": "t de V",
+        "values": [
+          5300,
+          null,
+          null
+        ],
+        "source": "vanadium",
+        "sourceKey": null,
+        "period": "2025 estimado",
+        "nodata": [
+          null,
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte."
+      },
+      "reserve": {
+        "id": "v-r-catalog",
+        "name": "Vanádio · reservas",
+        "type": "reserve",
+        "unit": "t de V",
+        "values": [
+          94000,
+          null,
+          null
+        ],
+        "source": "vanadium",
+        "sourceKey": null,
+        "period": "USGS MCS 2026",
+        "nodata": [
+          null,
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "Valor brasileiro transcrito da ficha deste atlas. Os valores de China e EUA não estão incluídos neste recorte."
+      }
+    },
+    "Cu": {
+      "production": {
+        "id": "cu-p-catalog",
+        "name": "Cobre · produção",
+        "type": "production",
+        "unit": "t de Cu",
+        "values": [
+          null,
+          null,
+          null
+        ],
+        "source": "copper",
+        "sourceKey": null,
+        "period": "2025 estimado",
+        "nodata": [
+          "Não individualizado",
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "Brasil não individualizado na tabela selecionada. China e EUA não transcritos neste recorte; o total mundial não foi distribuído entre países."
+      },
+      "reserve": {
+        "id": "cu-r",
+        "name": "Cobre · reservas",
+        "type": "reserve",
+        "unit": "Mt de Cu",
+        "values": [
+          null,
+          41,
+          47
+        ],
+        "source": "copper",
+        "note": "Brasil agregado em “outros países” nesta tabela. A ausência de valor individual não indica ausência de reservas."
+      }
+    },
+    "U": {
+      "production": {
+        "id": "u-p-catalog",
+        "name": "Urânio · produção",
+        "type": "production",
+        "unit": "t de U",
+        "values": [
+          null,
+          null,
+          null
+        ],
+        "source": null,
+        "sourceKey": "uranium",
+        "period": "Período não harmonizado",
+        "nodata": [
+          "Não harmonizado",
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "Produção não harmonizada nesta seleção."
+      },
+      "reserve": {
+        "id": "u-r-catalog",
+        "name": "Urânio · reservas",
+        "type": "reserve",
+        "unit": "t de U",
+        "values": [
+          null,
+          null,
+          null
+        ],
+        "source": null,
+        "sourceKey": "uranium",
+        "period": "IEN · 2026 · recursos, não reservas",
+        "nodata": [
+          "Não harmonizado",
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "A ficha informa cerca de 250 mil t de U em recursos brasileiros (IEN, 2026). Recursos não são reservas e não são convertidos em uma barra de reservas."
+      }
+    },
+    "Fe": {
+      "production": {
+        "id": "fe-p",
+        "name": "Minério de ferro · produção",
+        "type": "production",
+        "unit": "Mt de minério utilizável",
+        "values": [
+          420,
+          290,
+          38
+        ],
+        "source": "iron-ore",
+        "world": 2600
+      },
+      "reserve": {
+        "id": "fe-r",
+        "name": "Minério de ferro · reservas",
+        "type": "reserve",
+        "unit": "Mt de minério bruto",
+        "values": [
+          34000,
+          17000,
+          3600
+        ],
+        "source": "iron-ore",
+        "note": "Massa de minério bruto. O conteúdo de ferro é outra série e não deve ser misturado."
+      }
+    },
+    "Al": {
+      "production": {
+        "id": "al-p",
+        "name": "Bauxita · produção",
+        "type": "production",
+        "unit": "Mt de bauxita",
+        "values": [
+          33,
+          87,
+          null
+        ],
+        "source": "bauxite-alumina",
+        "world": 440,
+        "nodata": [
+          null,
+          null,
+          "Dado sigiloso (W)"
+        ],
+        "note": "Bauxita em equivalente seco; não é produção de alumínio metálico."
+      },
+      "reserve": {
+        "id": "al-r",
+        "name": "Bauxita · reservas",
+        "type": "reserve",
+        "unit": "Mt de bauxita",
+        "values": [
+          1700,
+          710,
+          20
+        ],
+        "source": "bauxite-alumina",
+        "geoSource": "panorama"
+      }
+    },
+    "Co": {
+      "production": {
+        "id": "co-p-catalog",
+        "name": "Cobalto · produção",
+        "type": "production",
+        "unit": "t de Co",
+        "values": [
+          null,
+          null,
+          null
+        ],
+        "source": "cobalt",
+        "sourceKey": null,
+        "period": "2025 estimado",
+        "nodata": [
+          "Não harmonizado",
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "Produção não harmonizada nesta seleção. Consulte a ficha e a tabela original."
+      },
+      "reserve": {
+        "id": "co-r-catalog",
+        "name": "Cobalto · reservas",
+        "type": "reserve",
+        "unit": "t de Co",
+        "values": [
+          null,
+          null,
+          null
+        ],
+        "source": "cobalt",
+        "sourceKey": null,
+        "period": "USGS MCS 2026",
+        "nodata": [
+          "Não harmonizado",
+          "Fora deste recorte",
+          "Fora deste recorte"
+        ],
+        "note": "Não há uma comparação quantitativa de reservas transcrita neste recorte. Consulte a classificação na fonte."
+      }
+    }
+  }
 }

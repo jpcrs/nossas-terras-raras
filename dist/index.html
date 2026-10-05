@@ -8,6 +8,7 @@
   <title>Terras Raras — O futuro sob nossos pés</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23f7f5ef'/%3E%3Cpath d='M20 4 35 15 28 34 12 34 5 15Z' fill='none' stroke='%23b54b32' stroke-width='2'/%3E%3Cpath d='m5 15 15 8 15-8M20 4v19l8 11M20 23l-8 11' fill='none' stroke='%23b54b32'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="applications.css">
   <script src="vendor/d3.min.js" defer></script>
   <script type="module" src="app.js"></script>
 </head>
@@ -49,14 +50,50 @@
 
     <section id="elementos" class="story-section elements-section">
       <div class="section-heading"><span class="eyebrow">03 — A MATÉRIA DO FUTURO</span><span class="eyebrow">17 ELEMENTOS · FUNÇÕES DIFERENTES</span></div>
-      <div class="section-intro"><h2>Raras no nome.<br><em>Presentes no cotidiano.</em></h2><p>“Terras raras” é uma família de elementos. Quatro deles são especialmente relevantes para ímãs de alto desempenho. Selecione um para conectar o mapa à sua aplicação.</p></div>
-      <div class="elements-layout"><div><div class="element-legend"><span><i class="key magnet"></i> Destaque em ímãs NdFeB</span><span><i class="key"></i> Outros elementos da família</span></div><div id="periodic-grid" class="periodic-grid" role="group" aria-label="Elementos terras raras"></div></div><div id="element-detail" class="element-detail" aria-live="polite"></div></div>
-      <div class="technology-explorer"><div class="technology-heading"><div><span class="eyebrow">SIGA O MATERIAL</span><h3>Onde ele se transforma em tecnologia.</h3></div><div class="segmented" role="group" aria-label="Tecnologia"><button data-tech="ev" class="active" aria-pressed="true">Carro elétrico</button><button data-tech="wind" aria-pressed="false">Eólica</button><button data-tech="solar" aria-pressed="false">Solar</button></div></div><div class="tech-grid"><div class="tech-drawing"><div id="tech-controls"></div><div id="tech-diagram"></div><p class="small">Clique em uma peça para explorar. Esquema funcional, sem escala de massa.</p></div><div id="tech-detail" class="tech-detail"></div></div></div>
+      <div class="section-intro"><h2>Raras no nome.<br><em>Presentes no cotidiano.</em></h2><p>Do ímã que move um carro à fibra que transporta informação. Explore os objetos, suas peças e os elementos que fazem parte deles.</p></div>
+      <div class="applications-explorer">
+        <div id="application-nav" class="application-nav" role="group" aria-label="Explorar aplicações"></div>
+        <div class="application-workbench">
+          <div class="application-scene">
+            <div class="application-title"><div><span id="application-kicker" class="eyebrow"></span><h3 id="application-title"></h3></div><span id="application-index" aria-hidden="true"></span></div>
+            <div id="tech-diagram"></div>
+            <div id="component-nav" class="component-nav" role="group" aria-label="Componente da tecnologia"></div>
+            <p class="drawing-caption">Selecione uma peça na ilustração. Esquema funcional, sem escala de massa.</p>
+          </div>
+          <div class="application-inspector"><div id="tech-detail"></div><div id="tech-controls"></div></div>
+        </div>
+        <div class="element-shelf">
+          <div class="element-shelf-heading"><span class="eyebrow">17 ELEMENTOS. EXPLORE AS CONEXÕES.</span><span><i></i> Relacionados à peça selecionada</span></div>
+          <div id="periodic-grid" class="element-strip" role="group" aria-label="Elementos terras raras"></div>
+          <div id="element-detail" class="element-connection"></div>
+        </div>
+        <div class="application-footnote"><p>Exemplos de uso, não uma receita universal. A composição varia com o projeto. A presença em uma jazida não comprova o fornecimento a estas tecnologias.</p><div id="application-sources" class="source-row"></div></div>
+        <p id="application-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+      </div>
     </section>
 
-    <section class="chain-section" id="cadeia"><div class="section-heading"><span class="eyebrow">04 — ALÉM DA MINA</span><span class="eyebrow">IEA · TERRAS RARAS MAGNÉTICAS · 2024</span></div><div class="section-intro"><h2>A riqueza está também<br><em>no que vem depois.</em></h2><p>Extrair, separar e fabricar são capacidades diferentes. A concentração da cadeia ajuda a explicar por que o subsolo, sozinho, não determina o futuro.</p></div><div id="chain-viz" class="chain-viz"></div><p class="chain-note small">Participação da China na cesta de terras raras magnéticas da IEA, em 2024. Cesta diferente da estatística mineral do USGS. <a href="https://www.iea.org/reports/rare-earth-elements/executive-summary" target="_blank" rel="noopener">Consultar estudo ↗</a></p></section>
+    <section id="outros-minerais" class="story-section mineral-section">
+      <div class="section-heading"><span class="eyebrow">04 — OUTROS MINERAIS</span><span class="eyebrow">15 PERFIS · PRODUÇÃO E RESERVAS</span></div>
+      <div class="section-intro"><h2>O Brasil além<br><em>das terras raras.</em></h2><p>Selecione um mineral para comparar a produção e as reservas de Brasil, China e Estados Unidos.</p></div>
+      <div id="mineral-grid" class="mineral-grid" role="group" aria-label="Selecionar mineral para comparar"></div>
+      <div class="mineral-comparison-heading"><div id="mineral-selection"></div><div class="mineral-comparison-actions"><button id="mineral-profile" class="text-button">Ficha e fontes ↗</button><button id="download-csv" class="text-button">Baixar os dois gráficos · CSV ↓</button></div></div>
+      <div class="mineral-charts">
+        <article class="mineral-chart-card" aria-labelledby="production-title">
+          <div class="mineral-chart-heading"><h3 id="production-title">Produção</h3><span id="production-period" class="eyebrow"></span></div>
+          <p id="production-unit" class="chart-unit"></p><div id="production-chart"></div>
+          <p id="production-note" class="chart-caption"></p><div id="production-source" class="source-row"></div>
+        </article>
+        <article class="mineral-chart-card" aria-labelledby="reserve-title">
+          <div class="mineral-chart-heading"><h3 id="reserve-title">Reservas</h3><span id="reserve-period" class="eyebrow"></span></div>
+          <p id="reserve-unit" class="chart-unit"></p><div id="reserve-chart"></div>
+          <p id="reserve-note" class="chart-caption"></p><div id="reserve-source" class="source-row"></div>
+        </article>
+      </div>
+      <p class="mineral-chart-footnote">Cada gráfico tem sua própria escala, a partir de zero. Produção é um fluxo anual; reservas são uma estimativa do estoque economicamente extraível. Dado ausente não significa zero.</p>
+      <p id="mineral-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+    </section>
 
-    <section id="outros-minerais" class="story-section mineral-section"><div class="section-heading"><span class="eyebrow">CONTINUE EXPLORANDO</span><span class="eyebrow">15 PERFIS · 17 INDICADORES</span></div><div class="section-intro"><h2>O Brasil além<br><em>das terras raras.</em></h2><p>Nióbio, lítio, grafita, cobre. Explore outros minerais estratégicos e compare Brasil, China e Estados Unidos.</p></div><div id="mineral-grid" class="mineral-grid" role="group" aria-label="Minerais estratégicos"></div><div class="metric-explorer"><div><label class="eyebrow" for="metric-select">ESCOLHA UM INDICADOR</label><select id="metric-select"></select><p class="small" id="metric-note"></p><div id="metric-source" class="source-row"></div><button id="download-csv" class="text-button">Baixar comparação · CSV ↓</button></div><div id="metric-chart"></div></div></section>
+    <section class="chain-section" id="cadeia"><div class="section-heading"><span class="eyebrow">05 — ALÉM DA MINA</span><span class="eyebrow">IEA · TERRAS RARAS MAGNÉTICAS · 2024</span></div><div class="section-intro"><h2>A riqueza está também<br><em>no que vem depois.</em></h2><p>Extrair, separar e fabricar são capacidades diferentes. A concentração da cadeia ajuda a explicar por que o subsolo, sozinho, não determina o futuro.</p></div><div id="chain-viz" class="chain-viz"></div><p class="chain-note small">Participação da China na cesta de terras raras magnéticas da IEA, em 2024. Cesta diferente da estatística mineral do USGS. <a href="https://www.iea.org/reports/rare-earth-elements/executive-summary" target="_blank" rel="noopener">Consultar estudo ↗</a></p></section>
 
     <section id="fontes" class="sources-section"><div class="sources-header"><div><p class="eyebrow">DADOS ABERTOS. FONTES À VISTA.</p><h2>Explore. Questione.<br><em>Confira a origem.</em></h2></div><p>Recorte editorial de 5 de outubro de 2026. As fichas mantêm as datas e classificações das fontes. Novas pesquisas podem mudar esse retrato.</p><a href="data-snapshot.json" download class="download-link">Baixar todos os dados <span>↓</span><small>JSON · EDIÇÃO COMPLETA</small></a></div><details><summary>Como tratamos os dados e as diferenças entre eles</summary><div class="method-grid"><div><h3>Reserva ≠ recurso</h3><p>Recurso é uma estimativa geológica. Reserva exige critérios técnicos e econômicos. Quantidades de minério, de metal e de óxidos não se somam.</p></div><div><h3>Sem informação ≠ zero</h3><p>Dados ausentes, sigilosos e valores iguais a zero têm representações diferentes. Recursos históricos estão identificados em cada ficha.</p></div><div><h3>Um mapa tem limites</h3><p>Malhas IBGE delimitam estados e municípios. Folhas SGB mostram a extensão dos mapas geológicos publicados, não os limites de depósitos ou concessões minerais.</p></div><div><h3>Cobertura não é descoberta</h3><p>Os percentuais de 28% e 50% vêm do balanço nacional SGB até 2025. O inventário vetorial é uma consulta separada; folhas podem se sobrepor. Área mapeada não equivale a área com minerais.</p></div></div></details><details><summary>Consultar todas as fontes e documentos</summary><div id="source-directory" class="source-directory"></div></details><details><summary>Ver a cartografia original de cobertura do SGB</summary><figure><img src="assets/sgb-coverage-2025.png" alt="Figura original do SGB com a cobertura geológica brasileira até 2025, escalas 1:100.000 e 1:250.000, incluindo legenda de áreas publicadas, em andamento e planejadas." loading="lazy"><figcaption>Panorama SGB 2026 · figura 4.1, página 9. A figura original também distingue o que ainda está em andamento ou planejado.</figcaption></figure></details></section>
   </main>

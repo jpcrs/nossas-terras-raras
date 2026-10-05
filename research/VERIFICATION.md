@@ -39,3 +39,19 @@ Verificações automatizadas em `scripts/check.mjs`: estrutura dos dados, cardin
 - Removido o bloco “Como transformar potencial geológico em conhecimento, indústria e valor?” e seu diálogo de desafios.
 - Reproduzido o retângulo ao clicar em um marcador: o navegador aplicava `outline: auto` ao grupo SVG mesmo sem `:focus-visible`. O estilo agora remove o contorno nativo em `:focus`, preservando o destaque circular de teclado em `:focus-visible`. A seleção também fecha o tooltip de hover.
 - Verificados no navegador: clique em Araxá sem retângulo, Tab até Poços de Caldas com destaque circular e Enter abrindo Caldeira. O cenário de filtros de projetos foi substituído por seleção direta via ponteiro/teclado e fechamento do tooltip.
+
+## Aplicações e elementos integrados
+
+- Substituídas as duas interfaces independentes por um explorador único: oito vistas vetoriais, peças selecionáveis e os 17 elementos conectados às aplicações. As relações reutilizam as descrições e fontes do catálogo original; não representam receitas universais ou fornecimento comprovado dos projetos brasileiros.
+- Elementos abrem uma aplicação compatível; peças destacam os elementos pertinentes. Promécio permanece sem conexão a uma cadeia mineral comum. Solar e motores sem ímãs deixam explícito quando nenhuma terra rara é indicada no exemplo.
+- Preservadas as variantes de motor/gerador e NMC/LFP. O cobalto agora aparece como material selecionável na NMC e nos ímãs SmCo. As composições e variantes estão incluídas no download JSON.
+- Validação: 11 cenários de integração passaram; verificados fontes, materiais conhecidos, variantes, navegação por teclado com preservação de foco e links de volta ao mapa. Inspeção no navegador em 360, 390, 768 e 1.280 px; sem overflow horizontal. A seleção por toque de um elemento traz a ilustração correspondente à tela quando ela está fora de vista. Sem erros de console nos fluxos exercitados.
+- Captura da interface integrada: `research/screenshots/applications-integrated.png`.
+
+## Comparação de minerais por seleção
+
+- “O Brasil além das terras raras” passa a vir antes de “A riqueza está também no que vem depois”, como capítulos 04 e 05.
+- Removido o seletor de indicador. As 15 células de minerais selecionam simultaneamente os gráficos de produção e reservas; a ficha completa permanece em um botão separado. Cada gráfico mantém unidade, período, escala e fonte próprios.
+- Pares definidos em `mineral-comparisons.js`: séries comparativas originais e números brasileiros já publicados nas fichas (Nb, Ni, Mn, Ta e V). Não foram estimados valores para os países ausentes. Recursos de urânio não viram reservas; dados não harmonizados, não individualizados, sigilosos e zero continuam distintos. Gráficos inteiramente sem valores não exibem uma escala numérica fictícia.
+- CSV exporta os dois indicadores do mineral selecionado, com valores nulos vazios, status, períodos, notas e fontes. Os pares também estão no JSON completo.
+- 12 testes passaram. No navegador: troca de mineral por clique e teclado, abertura separada da ficha, ordem dos capítulos, duas visualizações, ausência do dropdown e largura de 360 px sem overflow ou rótulos SVG cortados. Nenhum erro de console. Captura: `research/screenshots/mineral-comparisons.png`.

@@ -1,7 +1,8 @@
-import {sources,metrics,minerals,projects,rareEarths,usgsUrl} from './data.js';
+import {sources,minerals,projects,rareEarths,usgsUrl} from './data.js';
 import {projectFacts,fmt} from './editorial.js';
 import {initMap,selectProject} from './maps.js';
-import {diagram} from './diagrams.js';
+import {initApplications} from './applications.js';
+import {mineralComparisons,comparisonCountries,comparisonMissing,mineralComparisonCSV} from './mineral-comparisons.js';
 const d3=window.d3,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const motion=()=>!matchMedia('(prefers-reduced-motion: reduce)').matches;
 const link=(key,label)=>`<a class="source-link" href="${sources[key].url}" target="_blank" rel="noopener">${label||sources[key].name} ↗</a>`;
@@ -17,13 +18,13 @@ document.addEventListener('click',e=>{const p=e.target.closest('[data-project-fu
 $('#map-help').onclick=()=>openDialog(`<p class="eyebrow">GUIA DE LEITURA</p><h2 id="dialog-title">O que o mapa mostra.</h2><h3>Projetos e minerais</h3><p>Os sete registros usam cinco municípios do IBGE como referência. Os pontos ficam nos centros das caixas geográficas municipais; as áreas destacadas são limites municipais. Três fichas compartilham a referência de Poços de Caldas. Não são coordenadas ou perímetros medidos de jazidas.</p><p>Cores indicam o estágio do projeto de terras raras. Os círculos têm tamanho fixo: não representam volume, valor ou área mineralizada.</p><h3>Quanto conhecemos</h3><p>Os polígonos vêm do inventário oficial de folhas geológicas do SGB. Troque a escala, mova o ano e selecione uma folha. Áreas em branco podem ter levantamentos em outra escala, fora deste inventário, ou mais recentes que o ano selecionado. Não são necessariamente desconhecidas.</p><p>Os 28% e 50% são o balanço nacional até 2025 publicado no Panorama SGB 2026, calculado separadamente dos polígonos exibidos. Não são percentuais exclusivos da Amazônia.</p><h3>Como explorar</h3><p>Arraste para mover o mapa. Use + e − para ampliar, ou Ctrl + rolagem. O botão ⌂ retorna ao Brasil. Todos os projetos e folhas também podem ser escolhidos pelos controles de texto.</p><div class="source-row">${link('cartography','IBGE · malhas')}${link('mapping','SGB · inventário')}${link('panorama','SGB · balanço')}</div>`);
 
 // The horizontal bars always share a zero baseline. Missing values never become zero-length bars.
-export function drawBarChart(target,rows,{unit='',max=null,ariaLabel='Comparação por país'}={}){
- const width=590,rowHeight=59,left=128,right=107,top=25,bottom=25,height=top+rows.length*rowHeight+bottom;
+export function drawBarChart(target,rows,{unit='',max=null,labelWidth=128,ariaLabel='Comparação por país'}={}){
+ const width=590,rowHeight=59,left=labelWidth,right=107,top=25,bottom=25,height=top+rows.length*rowHeight+bottom;
  const maxValue=max??d3.max(rows,r=>r.value??0)??0;
  const x=d3.scaleLinear().domain([0,maxValue||1]).range([left,width-right]);
  const root=d3.select(target);let svg=root.select('svg');if(svg.empty())svg=root.append('svg').attr('class','country-chart');
  svg.attr('viewBox',`0 0 ${width} ${height}`).attr('role','img').attr('aria-label',ariaLabel+': '+rows.map(r=>`${r.name}: ${r.value===null?r.missing||'não disponível':fmt(r.value)+' '+unit}`).join('; '));
- const ticks=maxValue?x.ticks(4):[0];
+ const ticks=rows.some(r=>r.value!==null)?(maxValue?x.ticks(4):[0]):[];
  const grid=svg.selectAll('g.chart-grid').data([null]).join('g').attr('class','chart-grid');
  grid.selectAll('line').data(ticks).join('line').attr('x1',x).attr('x2',x).attr('y1',top-10).attr('y2',height-bottom-9).attr('stroke','#d5d9cd').attr('stroke-dasharray',d=>d===0?'0':'2 4');
  grid.selectAll('text').data(ticks).join('text').attr('class','chart-axis').attr('x',x).attr('y',height-5).attr('text-anchor','middle').text(v=>v>=1000000?fmt(v/1000000)+' mi':v>=1000?fmt(v/1000)+' mil':fmt(v));
@@ -47,38 +48,30 @@ function renderComparison(){
 }
 $$('[data-comparison]').forEach(b=>b.onclick=()=>{comparison=b.dataset.comparison;renderComparison();});$('#reserve-edition').onchange=renderComparison;renderComparison();
 
-let selectedElement='Nd';
-$('#periodic-grid').innerHTML=rareEarths.map(e=>`<button data-element="${e[0]}" class="${['Nd','Pr','Dy','Tb'].includes(e[0])?'magnet ':''}" aria-label="${e[2]}, ${e[0]}, número atômico ${e[1]}" aria-pressed="false"><small>${e[1]}</small><strong>${e[0]}</strong><span class="element-name">${e[2]}</span></button>`).join('');
-function renderElement(){const e=rareEarths.find(e=>e[0]===selectedElement);const found=projects.filter(p=>projectFacts[p.id].elements.includes(e[0]));pressed('[data-element]','element',selectedElement);$('#element-detail').innerHTML=`<div class="element-detail-top"><strong>${e[0]}</strong><div><h3>${e[2]}</h3><span class="eyebrow">${e[3]==='outra'?'ELEMENTO ASSOCIADO':'TERRA RARA '+e[3].toUpperCase()} · ${e[1]}</span></div></div><p>${e[4]}</p><p class="eyebrow">${found.length?'ENCONTRE NO MAPA':'NOS REGISTROS SELECIONADOS'}</p><div class="element-projects">${found.length?found.map(p=>`<button data-element-project="${p.id}">${projectFacts[p.id].short} ↗</button>`).join(''):'<span class="small">Não individualizado nas fichas. Isso não significa ausência no Brasil.</span>'}</div>`;$$('[data-element-project]').forEach(b=>b.onclick=()=>selectProject(b.dataset.elementProject,{focus:true}));}
-$$('[data-element]').forEach(b=>b.onclick=()=>{selectedElement=b.dataset.element;renderElement();});renderElement();
-
-let tech='ev',part=2,motor='magnet',battery='nmc';
-function getParts(){
- const motorMaterials=motor==='magnet'?['Nd','Pr','Dy','Tb','Cu','Fe']:['Cu','Al','Fe'];
- const motorText=motor==='magnet'?'Ímãs NdFeB combinam neodímio e praseodímio. Disprósio e térbio podem elevar a resistência térmica; não estão presentes em todas as formulações.':'Motores de indução usam campos eletromagnéticos. Podem dispensar ímãs permanentes de terras raras; a escolha depende do projeto.';
- if(tech==='ev')return [['Estrutura',['Fe','Al','Nb'],'Aços e alumínio formam a estrutura. Pequenas adições de nióbio podem aumentar a resistência de alguns aços.'],['Bateria',battery==='nmc'?['Li','Ni','Mn','C','Cu','Al']:['Li','C','Cu','Al','Fe'],battery==='nmc'?'Baterias NMC usam níquel, manganês e cobalto no cátodo; o cobalto está no catálogo abaixo. Grafita, cobre e alumínio participam de outros componentes.':'O cátodo LFP usa fosfato de ferro e lítio. Não depende de níquel ou cobalto no cátodo. Grafita, cobre e alumínio continuam relevantes.'],['Motor',motorMaterials,motorText],['Eletrônica',['Si','Cu','Ta'],'Semicondutores controlam a energia. Silício, cobre e tântalo têm funções distintas nos circuitos e componentes.']];
- if(tech==='wind')return [['Rotor',['Fe'],'Pás e conjunto do rotor convertem o vento em movimento. Compósitos são importantes e estão fora deste catálogo mineral.'],['Gerador',motorMaterials,motor==='magnet'?'Certos geradores eólicos usam ímãs permanentes de terras raras. Outras arquiteturas dispensam esses ímãs. '+motorText:'Geradores sem ímãs permanentes usam excitação elétrica ou indução. A composição depende da arquitetura.'],['Torre',['Fe','Nb'],'A torre usa aço. O nióbio pode integrar aços de alta resistência conforme a especificação.'],['Conexões',['Cu','Al'],'Cabos e conexões conduzem a eletricidade. A escolha de cobre ou alumínio depende da aplicação.']];
- return [['Cobertura e vidro',['Si'],'Sílica é matéria-prima para o vidro. Sua composição e processamento diferem do silício das células.'],['Células',['Si'],'Silício de alta pureza converte luz em eletricidade. Prata também é relevante, embora esteja fora deste catálogo.'],['Interconexões',['Cu'],'Condutores conectam as células. A metalização pode usar diferentes materiais e rotas.'],['Moldura',['Al'],'Alumínio protege e sustenta o módulo. Reciclagem e durabilidade fazem parte do projeto.']];
-}
-function renderTech(controls=true){
- const focusedPart=document.activeElement?.dataset.component;
- const parts=getParts();pressed('[data-tech]','tech',tech);
- if(controls){$('#tech-controls').innerHTML=tech==='solar'?'':`<label for="motor-type">${tech==='wind'?'Gerador':'Motor'}<select id="motor-type"><option value="magnet" ${motor==='magnet'?'selected':''}>Com ímãs permanentes</option><option value="induction" ${motor==='induction'?'selected':''}>Sem ímãs permanentes</option></select></label>${tech==='ev'?`<label for="battery-type">Bateria<select id="battery-type"><option value="nmc" ${battery==='nmc'?'selected':''}>NMC</option><option value="lfp" ${battery==='lfp'?'selected':''}>LFP</option></select></label>`:''}`;if($('#motor-type'))$('#motor-type').onchange=e=>{motor=e.target.value;part=tech==='ev'?2:1;renderTech(false);};if($('#battery-type'))$('#battery-type').onchange=e=>{battery=e.target.value;part=1;renderTech(false);};}
- $('#tech-diagram').innerHTML=diagram(tech,part,parts);
- const selected=parts[part];
- $('#tech-detail').innerHTML=`<div class="tech-part-list" role="group" aria-label="Componente da tecnologia">${parts.map((p,i)=>`<button data-component="${i}" class="${part===i?'active':''}" aria-pressed="${part===i}">${String(i+1).padStart(2,'0')} ${p[0]}</button>`).join('')}</div><span class="eyebrow">${String(part+1).padStart(2,'0')} / COMPONENTE</span><h3>${selected[0]}</h3><div>${selected[1].map(s=>`<button class="material-pill" ${rareEarths.some(e=>e[0]===s)?'data-element-detail':'data-mineral-detail'}="${s}" aria-label="Saiba mais sobre ${s}">${s}<small>↗</small></button>`).join('')}</div><p>${selected[2]}</p><div class="source-row">${link('doe2023','DOE · materiais e tecnologias')}</div>`;
- if(focusedPart)$('#tech-detail').querySelector(`[data-component="${focusedPart}"]`)?.focus({preventScroll:true});
- const choose=i=>{part=Number(i);renderTech(false);};$$('[data-component]').forEach(b=>b.onclick=()=>choose(b.dataset.component));$$('[data-part]').forEach(g=>{g.onclick=()=>choose(g.dataset.part);g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(g.dataset.part);$('#tech-detail').querySelector(`[data-component="${part}"]`).focus();}};});
-}
-$$('[data-tech]').forEach(b=>b.onclick=()=>{tech=b.dataset.tech;part=tech==='solar'?1:tech==='wind'?1:2;renderTech();});renderTech();
+initApplications({selectProject});
 
 const chain=[['Extração',60,'O minério sai do solo. Beneficiamento produz um concentrado.'],['Separação e refino',91,'Os elementos são separados e purificados para uso industrial.'],['Ímãs sinterizados',94,'Metais e ligas se transformam em componentes de alto desempenho.']];
 $('#chain-viz').innerHTML=chain.map(([title,share,desc],i)=>`<article class="chain-step"><span class="eyebrow">0${i+1} / ETAPA DA CADEIA</span><h3>${title}</h3><div class="chain-dots" role="img" aria-label="China: ${share} por cento; outros países: ${100-share} por cento">${Array.from({length:100},(_,j)=>`<i class="${j<share?'filled':''}"></i>`).join('')}</div><div class="share"><strong>${share}%</strong><span>participação<br>da China</span></div><p>${desc}</p></article>`).join('');
 
-$('#mineral-grid').innerHTML=minerals.map(m=>`<button class="mineral-tile" data-mineral-detail="${m.symbol}" aria-label="Abrir ficha de ${m.name}"><small>${m.number}</small><strong>${m.symbol}</strong><span>${m.name}</span></button>`).join('');
-$('#metric-select').innerHTML=metrics.map(m=>`<option value="${m.id}">${m.name}</option>`).join('');$('#metric-select').value='nb-p';
-function renderMetric(){const m=metrics.find(m=>m.id===$('#metric-select').value);drawBarChart('#metric-chart',['Brasil','China','Estados Unidos'].map((name,i)=>({name,value:m.values[i],missing:m.nodata?.[i]||'Não individualizado'})),{unit:m.unit,ariaLabel:m.name});$('#metric-note').textContent=`${m.unit}. ${m.type==='production'?'Produção de 2025 estimada. ':''}${m.note||'Mesma unidade e mesma edição da fonte para os três países. Escala começa em zero.'}`;$('#metric-source').innerHTML=metricLink(m);}
-$('#metric-select').onchange=renderMetric;renderMetric();
-$('#download-csv').onclick=()=>{const m=metrics.find(m=>m.id===$('#metric-select').value);const quote=v=>'"'+String(v??'').replaceAll('"','""')+'"';const rows=[['País','Indicador','Valor','Unidade','Status','Período','Fonte'],...['Brasil','China','Estados Unidos'].map((name,i)=>[name,m.name,m.values[i],m.unit,m.values[i]===null?m.nodata?.[i]||'Não individualizado':'Informado',m.period||(m.type==='production'?'2025 estimado':'USGS MCS 2026'),m.source?usgsUrl(m.source):sources[m.sourceKey].url])];const blob=new Blob(['\uFEFF'+rows.map(r=>r.map(quote).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`terras-raras-${m.id}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+let selectedMineral='Nb';
+$('#mineral-grid').innerHTML=minerals.map(m=>`<button class="mineral-tile" data-mineral="${m.symbol}" aria-label="Comparar ${m.name}" aria-pressed="false" aria-controls="production-chart reserve-chart"><small>${m.number}</small><strong>${m.symbol}</strong><span>${m.name}</span></button>`).join('');
+function renderMineralComparisons(){
+ const mineral=minerals.find(m=>m.symbol===selectedMineral);
+ pressed('#mineral-grid [data-mineral]','mineral',selectedMineral);
+ $('#mineral-selection').innerHTML=`<strong class="selected-mineral-symbol">${mineral.symbol}</strong><div><span class="eyebrow">${mineral.group.toUpperCase()} · MINERAL SELECIONADO</span><h3>${mineral.name}</h3></div>`;
+ $('#mineral-profile').dataset.mineralDetail=selectedMineral;
+ for(const type of ['production','reserve']){
+  const m=mineralComparisons[selectedMineral][type];
+  drawBarChart(`#${type}-chart`,comparisonCountries.map((name,i)=>({name,value:m.values[i],missing:comparisonMissing(m,i)})),{unit:m.unit,labelWidth:150,ariaLabel:m.name});
+  $(`#${type}-period`).textContent=selectedMineral==='U'?'SEM SÉRIE COMPARÁVEL':m.id==='ree-r'?'USGS 2026 · HISTÓRICO':type==='production'?'2025 · ESTIMATIVA':'USGS · MCS 2026';
+  $(`#${type}-unit`).textContent=m.unit||'SEM SÉRIE COMPARÁVEL NESTE RECORTE';
+  $(`#${type}-note`).textContent=m.note||'Mesma unidade e edição da fonte para os três países.';
+  $(`#${type}-source`).innerHTML=metricLink(m);
+ }
+ $('#mineral-announcement').textContent=`${mineral.name}: gráficos de produção e reservas atualizados.`;
+}
+$$('#mineral-grid [data-mineral]').forEach(b=>b.onclick=()=>{selectedMineral=b.dataset.mineral;renderMineralComparisons();});
+renderMineralComparisons();
+$('#download-csv').onclick=()=>{const blob=new Blob([mineralComparisonCSV(selectedMineral)],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`terras-raras-${selectedMineral.toLowerCase()}-producao-reservas.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 $('#source-directory').innerHTML=Object.values(sources).map(s=>`<a href="${s.url}" target="_blank" rel="noopener">${s.name} ↗<small>${s.date}</small></a>`).join('')+`<a href="assets/geological-coverage.geojson" download>Folhas geológicas · polígonos do SGB ↓<small>GeoJSON · consulta de 05/10/2026 · publicadas até 2025</small></a>`;
 export const mapInitialized=initMap();

@@ -3,7 +3,25 @@ import fs from 'node:fs';
 import * as d3 from 'd3';
 import {sources,metrics,minerals,projects,rareEarths} from '../dist/data.js';
 import {projectFacts,locations,gradePercent,resourceBreakdown,coverageFeatures,normalizeWinding} from '../dist/editorial.js';
+import {mineralComparisons} from '../dist/mineral-comparisons.js';
+import {applicationExamples} from '../dist/applications-data.js';
 const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
+const materialSymbols=new Set([...rareEarths.map(e=>e[0]),...minerals.map(m=>m.symbol)]);
+const illustratedElements=new Set();
+for(const app of applicationExamples){
+ assert(sources[app.source]);
+ for(const variant of app.variants)for(const part of variant.components){
+  assert(part.name&&part.text);
+  for(const symbol of part.materials){assert(materialSymbols.has(symbol),`Unknown application material: ${symbol}`);illustratedElements.add(symbol);}
+ }
+}
+for(const [symbol]of rareEarths)assert.equal(illustratedElements.has(symbol),symbol!=='Pm','Promethium must remain outside the illustrated mineral supply chains');
+assert.deepEqual(JSON.parse(read('dist/data-snapshot.json')).applicationExamples,applicationExamples);
+for(const mineral of minerals){
+ const pair=mineralComparisons[mineral.symbol];assert(pair);
+ for(const type of ['production','reserve']){const m=pair[type];assert.equal(m.type,type);assert.equal(m.values.length,3);assert(m.values.every(v=>v===null||Number.isFinite(v)&&v>=0));assert(m.source||sources[m.sourceKey]);}
+}
+assert.deepEqual(JSON.parse(read('dist/data-snapshot.json')).mineralComparisons,mineralComparisons);
 assert.equal(minerals.length,15);assert.equal(rareEarths.length,17);assert.equal(projects.length,7);
 for(const m of metrics){assert.equal(m.values.length,3);for(const n of m.values)assert(n===null||Number.isFinite(n)&&n>=0);assert(m.source||sources[m.sourceKey]);}
 for(const p of projects){assert(sources[p.source]);assert(p.date&&p.status&&p.resource);assert(!p.coord,'Municipal references must not masquerade as deposit coordinates');const f=projectFacts[p.id];assert(f);assert.equal(f.elements.every(e=>p.key.includes(e)),true);}
@@ -30,5 +48,5 @@ for(const [scale,count]of Object.entries(expected)){assert.equal(coverageFeature
 assert.equal(new Set(coverage.features.map(f=>f.id)).size,coverage.features.length);
 for(const f of coverage.features){assert.equal(f.properties.SITUACAO,'Publicado');assert(Number(f.properties.ANO_MAPA)<=2025);assert(f.geometry.coordinates.length);}
 const snapshot=JSON.parse(read('dist/data-snapshot.json'));assert.deepEqual(snapshot.metrics,metrics);assert.equal(snapshot.mapping.scale100000,28);assert.deepEqual(snapshot.projectFacts,projectFacts);assert.equal(snapshot.mapping.polygons.features,874);
-for(const name of ['index.html','style.css','app.js','editorial.js','diagrams.js','maps.js','vendor/d3.min.js','vendor/D3-LICENSE','assets/fonts/fonts.css'])assert(fs.existsSync(new URL('../dist/'+name,import.meta.url)));
+for(const name of ['index.html','style.css','app.js','editorial.js','diagrams.js','applications.js','applications.css','applications-data.js','mineral-comparisons.js','maps.js','vendor/d3.min.js','vendor/D3-LICENSE','assets/fonts/fonts.css'])assert(fs.existsSync(new URL('../dist/'+name,import.meta.url)));
 console.log('Passed: source provenance, 17 indicators, null/zero semantics, grade conversion, resource classes, 27 states, 5 municipal references, D3 polygon winding, 874 published SGB sheets, time/scale filters, snapshot consistency and static assets.');

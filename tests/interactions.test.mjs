@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
 import * as d3 from 'd3';
+import {mineralComparisonCSV} from '../dist/mineral-comparisons.js';
 let dom,document;
 const $=s=>document.querySelector(s);
 const click=s=>{const el=$(s);assert(el,`Missing control ${s}`);el.click();};
@@ -95,16 +96,64 @@ test('all rare earth elements retain their own applications and map links',()=>{
  click('[data-element="Pm"]');assert.match($('#element-detail').textContent,/Não individualizado/);
  click('[data-element="Nd"]');click('[data-element-project="araxa"]');assert.equal($('#map-inspector h3').textContent,'Araxá');
 });
-test('technology choices change materials instead of implying every technology uses rare earths',()=>{
- change('#motor-type','induction');assert.equal($('#tech-detail [data-element-detail="Nd"]'),null);assert.match($('#tech-detail').textContent,/dispensar ímãs/);
- change('#battery-type','lfp');assert.equal($('#tech-detail [data-mineral-detail="Ni"]'),null);assert.match($('#tech-detail').textContent,/Não depende de níquel/);
- click('[data-tech="wind"]');assert.match($('#tech-detail h3').textContent,/Gerador/);
- click('[data-tech="solar"]');assert.match($('#tech-detail h3').textContent,/Células/);assert($('#tech-detail [data-mineral-detail="Si"]'));
- click('[data-component="3"]');assert.equal($('#tech-detail h3').textContent,'Moldura');
+test('element and application selections stay connected, including cases with no rare earths',()=>{
+ click('[data-element="Er"]');assert.equal($('#application-title').textContent,'Fibra óptica');assert.equal($('#tech-detail h4').textContent,'Amplificação óptica');
+ assert.equal($('#periodic-grid [data-element="Er"]').classList.contains('related'),true);
+ click('[data-element="Eu"]');assert.equal($('#application-title').textContent,'Telas e vidros');assert.equal($('#tech-detail h4').textContent,'Fósforos');
+ click('[data-element="Pm"]');assert.equal(document.querySelectorAll('[data-tech][aria-pressed="true"]').length,0);assert.equal(document.querySelectorAll('[data-part]').length,0);assert.match($('#tech-detail').textContent,/não integra uma cadeia mineral comum/);
+ click('[data-tech="ev"]');assert.equal($('#tech-detail h4').textContent,'Motor');assert.equal($('#periodic-grid [data-element="Nd"]').getAttribute('aria-pressed'),'true');
+ click('[data-choice="motor"][data-value="induction"]');assert.equal($('#tech-detail [data-material="Nd"]'),null);assert.match($('#tech-detail').textContent,/dispensar ímãs/);assert.equal(document.querySelectorAll('#periodic-grid .related').length,0);
+ click('[data-element="Dy"]');assert.equal($('[data-choice="motor"][data-value="magnet"]').getAttribute('aria-pressed'),'true');assert.equal($('#tech-detail [data-material="Dy"]').getAttribute('aria-pressed'),'true');
+ click('[data-component="1"]');assert($('#tech-detail [data-mineral-detail="Co"]'));
+ click('[data-choice="battery"][data-value="lfp"]');assert.equal($('#tech-detail [data-mineral-detail="Ni"]'),null);assert.equal($('#tech-detail [data-mineral-detail="Co"]'),null);assert.match($('#tech-detail').textContent,/Não depende de níquel/);
+ click('[data-tech="wind"]');assert.equal($('#tech-detail h4').textContent,'Gerador');
+ click('[data-choice="motor"][data-value="induction"]');assert.equal(document.querySelectorAll('#tech-detail [data-material]').length,0);
+ click('[data-tech="solar"]');assert.equal($('#tech-detail h4').textContent,'Células');assert($('#tech-detail [data-mineral-detail="Si"]'));assert.equal(document.querySelectorAll('#periodic-grid .related').length,0);
+ click('[data-component="3"]');assert.equal($('#tech-detail h4').textContent,'Moldura');
 });
-test('all indicators render, while undisclosed, zero and wholly missing data remain distinct',()=>{
- for(const o of $('#metric-select').options){change('#metric-select',o.value);assert($('#metric-chart svg').getAttribute('aria-label').length>0);}
- change('#metric-select','li-p');assert.match($('#metric-chart svg').getAttribute('aria-label'),/Dado sigiloso \(W\)/);
- change('#metric-select','nb-p');assert.match($('#metric-chart svg').getAttribute('aria-label'),/Estados Unidos: 0 t de Nb/);
- change('#metric-select','u-res');assert.equal(document.querySelectorAll('#metric-chart .data-row').length,3);assert.equal($('#metric-chart svg').getAttribute('aria-label').includes('NaN'),false);
+test('illustrated components work by pointer and keyboard, preserve focus, and expose material sources',()=>{
+ for(const tech of ['ev','wind','optics','fiber','laser','alloys','special','solar']){
+  click(`[data-tech="${tech}"]`);
+  const count=document.querySelectorAll('[data-component]').length;
+  for(let i=0;i<count;i++){
+   const shape=$(`[data-part="${i}"]`);shape.focus();shape.dispatchEvent(new dom.window.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
+   assert.equal(document.activeElement.dataset.part,String(i));assert.equal($(`[data-part="${i}"]`).getAttribute('aria-pressed'),'true');assert.equal($(`[data-component="${i}"]`).getAttribute('aria-pressed'),'true');
+  }
+  assert($('#application-sources a').href.startsWith('https://'));
+ }
+ click('[data-tech="ev"]');const structure=$('[data-part="0"]');structure.dispatchEvent(new dom.window.MouseEvent('click',{bubbles:true}));assert.equal($('#tech-detail h4').textContent,'Estrutura');
+ click('[data-component="2"]');click('[data-choice="motor"][data-value="magnet"]');click('[data-material="Pr"]');assert.equal($('#element-detail h3').textContent,'Praseodímio');
+ click('#element-detail [data-element-detail="Pr"]');assert.equal($('#dialog-title').textContent,'Praseodímio');click('.dialog-close');
+ click('[data-element-project="araxa"]');assert.equal($('#map-inspector h3').textContent,'Araxá');
+});
+test('mineral tiles update production and reserves together without opening a dialog',async()=>{
+ assert.equal($('#outros-minerais select'),null);
+ assert.equal($('#outros-minerais').nextElementSibling.id,'cadeia');
+ for(const tile of document.querySelectorAll('#mineral-grid [data-mineral]')){
+  tile.focus();tile.click();
+  assert.equal(tile.getAttribute('aria-pressed'),'true');assert.equal(document.activeElement,tile);
+  assert.equal(document.querySelectorAll('#mineral-grid [aria-pressed="true"]').length,1);
+  assert.equal($('#detail-dialog').open,false);
+  for(const type of ['production','reserve']){
+   assert.equal(document.querySelectorAll(`#${type}-chart .data-row`).length,3);
+   assert($(`#${type}-chart svg`).getAttribute('aria-label').length>0);
+   assert(!$(`#${type}-chart svg`).innerHTML.includes('NaN'));
+   assert($(`#${type}-source a`).getAttribute('href'));
+  }
+ }
+ click('[data-mineral="Li"]');assert.match($('#production-chart svg').getAttribute('aria-label'),/Dado sigiloso \(W\)/);assert.match($('#reserve-chart svg').getAttribute('aria-label'),/Brasil: 540.000 t de Li/);
+ click('[data-mineral="Nb"]');assert.match($('#production-chart svg').getAttribute('aria-label'),/Estados Unidos: 0 t de Nb/);assert.match($('#reserve-chart svg').getAttribute('aria-label'),/Brasil: 14 Mt de Nb/);assert.match($('#reserve-chart svg').getAttribute('aria-label'),/China: Fora deste recorte/);
+ click('[data-mineral="ETR"]');assert.match($('#reserve-period').textContent,/HISTÓRICO/);assert.match($('#reserve-note').textContent,/anterior à revisão/);
+ click('[data-mineral="U"]');assert.match($('#reserve-note').textContent,/Recursos não são reservas/);assert.equal(document.querySelectorAll('#reserve-chart .chart-grid text').length,0);
+ await tick();assert([...document.querySelectorAll('#reserve-chart .data-bar')].every(b=>Number(b.getAttribute('width'))===0));
+ click('[data-mineral="V"]');click('#mineral-profile');assert.equal($('#dialog-title').textContent,'Vanádio');click('.dialog-close');
+});
+test('comparison CSV exports both selected series with nulls, zero and provenance intact',()=>{
+ const lithium=mineralComparisonCSV('Li');
+ assert.equal(lithium.split('\r\n').length,7);
+ assert.match(lithium,/Lítio · produção/);assert.match(lithium,/Lítio · reservas/);
+ assert.match(lithium,/"Estados Unidos";"Lítio · produção";"";"t de Li contido";"Dado sigiloso \(W\)"/);
+ assert.match(mineralComparisonCSV('Nb'),/"Estados Unidos";"Nióbio · produção";"0"/);
+ assert.match(mineralComparisonCSV('U'),/Recursos não são reservas/);
+ assert.match(lithium,/https:\/\/pubs.usgs.gov/);
 });
