@@ -16,7 +16,7 @@ Abra http://127.0.0.1:4174. `PORT=4180 npm run dev` usa outra porta. A publicaç
 ## Explorar
 
 - **Projetos e minerais:** sete registros em cinco referências municipais IBGE, seleção direta no mapa, zoom, fichas e fontes. Poços de Caldas reúne três registros independentes.
-- **Quanto conhecemos:** 874 polígonos oficiais do inventário SGB, com escalas 1:1.000.000, 1:250.000 e 1:100.000, ano de publicação e consulta de cada folha. As geometrias ficam recortadas ao Brasil.
+- **Quanto conhecemos:** 874 polígonos oficiais do inventário SGB, com escalas 1:1.000.000, 1:250.000 e 1:100.000, sempre no recorte completo até 2025. As folhas são selecionadas diretamente no mapa, por clique ou teclado, para consultar a publicação e a fonte. As geometrias ficam recortadas ao Brasil.
 - **Tipos de depósito:** classificação dos projetos e seção conceitual de argilas iônicas ou sistemas de rocha/alteração.
 - **Comparações:** reservas versus produção, com a estimativa histórica de 21 Mt identificada, produção e reservas lado a lado para 12 minerais com pelo menos um valor disponível, seleção pelas células e exportação conjunta em CSV. Perfis sem valores nas duas séries (cobalto, urânio e titânio) não aparecem no seletor; o catálogo completo continua disponível nas fichas de aplicações e no JSON.
 - **Materiais e tecnologias:** um explorador integrado conecta terras raras a sete aplicações: carro elétrico, eólica, telas e vidros, fibra óptica, lasers, ligas e usos especiais. Selecionar um item mostra todos os materiais do recorte com explicações breves de uso. As fichas mantêm fontes e links para projetos no mapa; a referência completa dos 17 elementos fica em uma seção expansível.

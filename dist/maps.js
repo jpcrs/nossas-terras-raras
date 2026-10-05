@@ -4,7 +4,8 @@ const d3=window.d3;
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const link=(key,label)=>`<a class="source-link" href="${sources[key].url}" target="_blank" rel="noopener">${label||sources[key].name} ↗</a>`;
-let layer='projects', selected='serra', scale=100000, year=2025;
+let layer='projects', selected='serra', scale=100000;
+const coverageYear=2025;
 let states,towns,coverage,svg,viewport,path,projection,zoom,markers,coverageGroup,municipalityGroup,labelGroup;
 let transform=d3.zoomIdentity,mapReady=false,coveragePromise,selectedSheet=null;
 const W=820,H=650;
@@ -12,7 +13,7 @@ const sheetName=f=>[f.properties.NOME_FOLHA,f.properties.COD_FOLHA,f.properties.
 const locationData=[];
 const announcement=text=>{$('#announcement').textContent=text;};
 const safeURL=url=>{try{const u=new URL(url);return u.protocol==='https:'?u.href:null;}catch{return null;}};
-export function getMapState(){return {layer,selected,scale,year};}
+export function getMapState(){return {layer,selected,scale,year:coverageYear};}
 export function selectProject(id,{switchLayer=true,focus=false}={}){
  if(!projectFacts[id])return;
  const previous=selected;
@@ -36,7 +37,7 @@ function renderInspector(){
  const p=projects.find(p=>p.id===selected),f=projectFacts[selected];
  const peers=projects.filter(x=>projectFacts[x.id].municipality===f.municipality);
  const breakdown=resourceBreakdown(selected);
- panel.innerHTML=`<div class="inspector-kicker"><span class="eyebrow">${p.state} / ${layer==='geology'?'GEOLOGIA':'PROJETO SELECIONADO'}</span>${stageLabel(p)}</div>${peers.length>1?`<div class="cluster-tabs" role="group" aria-label="Projetos na região de Poços de Caldas">${peers.map(x=>`<button data-select-project="${x.id}" class="${x.id===selected?'active':''}" aria-pressed="${x.id===selected}">${projectFacts[x.id].short}</button>`).join('')}</div>`:''}<h3>${f.short}</h3><p class="project-region">${p.region}</p>${layer==='geology'?`${geologyCutaway(f.kind)}<p class="small">${f.kind==='clay'?'Nas argilas iônicas, parte das terras raras está adsorvida nas partículas. A recuperação depende da química e dos testes de cada depósito.':'Em sistemas de rocha e alteração, as terras raras estão associadas a minerais. Beneficiamento e separação dependem da mineralogia local.'}</p><p class="small">Esquema conceitual. Não representa uma seção medida deste projeto nem sua composição elementar.</p>`:''}<p class="eyebrow element-label">ELEMENTOS DESTACADOS NA FONTE</p><div class="element-chips">${f.elements.length?f.elements.map(elementChip).join(''):'<span class="small">ETR não individualizadas · tório associado</span>'}</div><div class="project-geology"><strong>${p.type}</strong></div><div class="resource-stat"><span class="eyebrow">${f.amountLabel}</span>${f.amount!==null?`<strong>${fmt(f.amount)}</strong><span class="unit">${f.unit==='Mt de material'?'milhões de t · material':'milhões de t · TREO contidos'}</span>`:'<p class="no-resource">Quantidade não disponível</p>'}</div><p class="resource-note">${f.resourceNote}</p>${breakdown?`<div class="resource-stack" role="img" aria-label="${fmt(breakdown.measuredIndicated)} Mt medidos e indicados; ${fmt(breakdown.inferred)} Mt inferidos"><span style="width:${breakdown.measuredIndicated/breakdown.total*100}%"></span><span style="width:${breakdown.inferred/breakdown.total*100}%"></span></div><div class="resource-stack-labels"><span>${fmt(breakdown.measuredIndicated)} Mt<br>Medidos + indicados</span><span>${fmt(breakdown.inferred)} Mt<br>Inferidos</span></div>`:''}<div class="grade"><div class="grade-header"><span><abbr title="Óxidos totais de terras raras">TREO</abbr> · teor médio</span><strong>${f.grade!==null?fmt(f.grade)+' ppm':'Não comparável'}</strong></div>${f.grade!==null?`<div class="grade-strip" role="img" aria-label="Teor ${fmt(gradePercent(f.grade),4)} por cento. Escala visual de zero a um por cento"><span style="width:${gradePercent(f.grade)*100}%"></span></div><div class="grade-endpoints"><span>0%</span><span>escala ampliada · 1%</span></div><div class="grade-conversion"><span>1 t de material →</span><strong>${fmt(f.grade/1000,3)} kg de TREO</strong></div><p class="grade-note">${fmt(gradePercent(f.grade),4)}% de óxidos no material.<br>Conteúdo químico, não recuperação industrial.</p>`:`<p class="resource-note">${p.grade}</p>`}</div><div class="inspector-actions"><button class="text-button" data-project-full="${p.id}">Ficha e fontes ↗</button><button class="text-button" id="zoom-project">Ampliar região ⤢</button></div><div class="project-source">${esc(p.operator)}<br>REFERÊNCIA · ${esc(p.date)}<br>${link(p.source,'Fonte do projeto')}${p.extraSource?' · '+link(p.extraSource,'Referência do recurso'):''}</div>`;
+ panel.innerHTML=`<div class="inspector-kicker"><span class="eyebrow">${p.state} / ${layer==='geology'?'GEOLOGIA':'PROJETO SELECIONADO'}</span>${stageLabel(p)}</div>${peers.length>1?`<div class="cluster-tabs" role="group" aria-label="Projetos na região de Poços de Caldas">${peers.map(x=>`<button data-select-project="${x.id}" class="${x.id===selected?'active':''}" aria-pressed="${x.id===selected}">${projectFacts[x.id].short}</button>`).join('')}</div>`:''}<h3>${f.short}</h3><p class="project-region">${p.region}</p>${layer==='geology'?`${geologyCutaway(f.kind)}<p class="small">${f.kind==='clay'?'Nas argilas iônicas, parte das terras raras está adsorvida nas partículas. A recuperação depende da química e dos testes de cada depósito.':'Em sistemas de rocha e alteração, as terras raras estão associadas a minerais. Beneficiamento e separação dependem da mineralogia local.'}</p><p class="small">Esquema conceitual. Não representa uma seção medida deste projeto nem sua composição elementar.</p>`:''}<p class="eyebrow element-label">ELEMENTOS DESTACADOS NA FONTE</p><div class="element-chips">${f.elements.length?f.elements.map(elementChip).join(''):'<span class="small">ETR não individualizadas · tório associado</span>'}</div><div class="project-geology"><strong>${p.type}</strong></div><div class="resource-stat"><span class="eyebrow">${f.amountLabel}</span>${f.amount!==null?`<strong>${fmt(f.amount)}</strong><span class="unit">${f.unit==='Mt de material'?'milhões de toneladas · material':'milhões de toneladas · TREO contidos'}</span>`:'<p class="no-resource">Quantidade não disponível</p>'}</div><p class="resource-note">${f.resourceNote}</p>${breakdown?`<div class="resource-stack" role="img" aria-label="${fmt(breakdown.measuredIndicated)} Mt medidos e indicados; ${fmt(breakdown.inferred)} Mt inferidos"><span style="width:${breakdown.measuredIndicated/breakdown.total*100}%"></span><span style="width:${breakdown.inferred/breakdown.total*100}%"></span></div><div class="resource-stack-labels"><span>${fmt(breakdown.measuredIndicated)} Mt<br>Medidos + indicados</span><span>${fmt(breakdown.inferred)} Mt<br>Inferidos</span></div>`:''}<div class="grade"><div class="grade-header"><span><abbr title="Óxidos totais de terras raras">TREO</abbr> · teor médio</span><strong>${f.grade!==null?fmt(f.grade)+' ppm':'Não comparável'}</strong></div>${f.grade!==null?`<div class="grade-strip" role="img" aria-label="Teor ${fmt(gradePercent(f.grade),4)} por cento. Escala visual de zero a um por cento"><span style="width:${gradePercent(f.grade)*100}%"></span></div><div class="grade-endpoints"><span>0%</span><span>escala ampliada · 1%</span></div><div class="grade-conversion"><span>1 t de material →</span><strong>${fmt(f.grade/1000,3)} kg de TREO</strong></div><p class="grade-note">${fmt(gradePercent(f.grade),4)}% de óxidos no material.<br>Conteúdo químico, não recuperação industrial.</p>`:`<p class="resource-note">${p.grade}</p>`}</div><div class="inspector-actions"><button class="text-button" data-project-full="${p.id}">Ficha e fontes ↗</button><button class="text-button" id="zoom-project">Ampliar região ⤢</button></div><div class="project-source">${esc(p.operator)}<br>REFERÊNCIA · ${esc(p.date)}<br>${link(p.source,'Fonte do projeto')}${p.extraSource?' · '+link(p.extraSource,'Referência do recurso'):''}</div>`;
  panel.querySelectorAll('[data-select-project]').forEach(b=>b.onclick=()=>selectProject(b.dataset.selectProject));
  $('#zoom-project').onclick=zoomProject;
 }
@@ -63,26 +64,24 @@ function renderControls(){
  if(focusScale)$('#map-controls').querySelector(`[data-scale="${focusScale}"]`)?.focus({preventScroll:true});
 }
 function renderLegend(){
- if(layer==='coverage')$('#map-legend').innerHTML=`<span class="legend-entry"><i class="legend-swatch" style="--color:${coverageScales[scale].color}"></i>Folhas publicadas até ${year}</span><span class="legend-entry"><i class="legend-swatch" style="--color:#e0e5d7"></i>Sem folha exibida</span>`;
+ if(layer==='coverage')$('#map-legend').innerHTML=`<span class="legend-entry"><i class="legend-swatch" style="--color:${coverageScales[scale].color}"></i>Folhas publicadas até ${coverageYear}</span><span class="legend-entry"><i class="legend-swatch" style="--color:#e0e5d7"></i>Sem folha exibida</span>`;
  else $('#map-legend').innerHTML=Object.values(layer==='geology'?kinds:stages).map(s=>`<span class="legend-entry"><i class="legend-dot" style="--color:${s.color}"></i>${s.label}</span>`).join('');
 }
 export function setLayer(next){
  layer=next;selectedSheet=null;hideTooltip();renderControls();renderInspector();updateMap();
  if(layer==='coverage')loadCoverage();
- announcement(layer==='coverage'?'Camada de mapeamento geológico. Escolha a escala e o ano.':layer==='geology'?'Camada de tipos de depósito.':'Camada de projetos e minerais.');
+ announcement(layer==='coverage'?'Camada de mapeamento geológico. Escolha a escala e selecione uma folha no mapa.':layer==='geology'?'Camada de tipos de depósito.':'Camada de projetos e minerais.');
 }
 function renderCoverageInspector(){
  const s=coverageScales[scale];
- $('#map-inspector').innerHTML=`<div class="inspector-kicker"><span class="eyebrow">O QUE JÁ FOI MAPEADO</span><span class="eyebrow">SGB · ATÉ 2025</span></div><h3>${s.label}</h3><p class="project-region">Escala 1:${fmt(scale,0)} · ${s.detail}</p>${s.rate?`<div class="coverage-big"><strong>${s.rate}%</strong><span>do território<br>com mapas nessa escala</span></div><div class="coverage-rail" role="img" aria-label="${s.rate} por cento mapeado no balanço nacional até 2025"><span style="width:${s.rate}%"></span></div><p class="small coverage-explanation">Cerca de <strong>${fmt(8.51*s.rate/100)} milhões de km²</strong>. Outras áreas podem ter mapas em escalas diferentes.</p>`:'<p class="small coverage-explanation">Uma visão de integração nacional. Mapas gerais reúnem levantamentos de diferentes épocas; não significam pesquisa detalhada em todo o território.</p>'}<div class="coverage-year"><label for="coverage-year">MOSTRAR FOLHAS ATÉ <output id="year-output" for="coverage-year">${year}</output></label><input id="coverage-year" type="range" min="1969" max="2025" value="${year}" step="1"><div class="range-labels"><span>1969</span><span>2025</span></div></div><p class="coverage-count" id="coverage-count">${coverage?'':'Carregando polígonos oficiais…'}</p><p class="small coverage-warning">O ano filtra as folhas deste inventário. ${s.rate?'O percentual acima é o balanço nacional de 2025 e não muda com o filtro.':'Folhas podem se sobrepor e não medem a cobertura do território por simples contagem.'}</p><div class="sheet-detail" id="sheet-detail"><span class="eyebrow">LEIA O MAPA</span><h4>Selecione uma área verde.</h4><p>Veja o nome da folha, a instituição e o ano de publicação.</p></div><div class="project-source">GEOMETRIAS · INVENTÁRIO SGB<br>PERCENTUAIS · PANORAMA 2026, ATÉ 2025<br>${link('panorama','Balanço nacional')} · ${link('mapping','Mapa do SGB')}</div>`;
- $('#coverage-year').oninput=e=>{year=Number(e.target.value);$('#year-output').textContent=year;selectedSheet=null;updateCoverage();renderLegend();};
- $('#coverage-year').onchange=()=>announcement(`${year}. ${coverage?coverageFeatures(coverage,scale,year).length:0} folhas publicadas no inventário.`);
+ $('#map-inspector').innerHTML=`<div class="inspector-kicker"><span class="eyebrow">O QUE JÁ FOI MAPEADO</span><span class="eyebrow">SGB · ATÉ 2025</span></div><h3>${s.label}</h3><p class="project-region">Escala 1:${fmt(scale,0)} · ${s.detail}</p>${s.rate?`<div class="coverage-big"><strong>${s.rate}%</strong><span>do território<br>com mapas nessa escala</span></div><div class="coverage-rail" role="img" aria-label="${s.rate} por cento mapeado no balanço nacional até 2025"><span style="width:${s.rate}%"></span></div><p class="small coverage-explanation">Cerca de <strong>${fmt(8.51*s.rate/100)} milhões de km²</strong>. Outras áreas podem ter mapas em escalas diferentes.</p>`:'<p class="small coverage-explanation">Uma visão de integração nacional. Mapas gerais reúnem levantamentos de diferentes épocas; não significam pesquisa detalhada em todo o território.</p>'}<p class="coverage-count" id="coverage-count">${coverage?'':'Carregando polígonos oficiais…'}</p><p class="small coverage-warning">Folhas podem se sobrepor e não medem a cobertura do território por simples contagem.</p><div class="sheet-detail" id="sheet-detail"><span class="eyebrow">LEIA O MAPA</span><h4>Selecione uma área verde.</h4><p>Veja o nome da folha, a instituição e o ano de publicação.</p></div><div class="project-source">GEOMETRIAS · INVENTÁRIO SGB<br>PERCENTUAIS · PANORAMA 2026, ATÉ 2025<br>${link('panorama','Balanço nacional')} · ${link('mapping','Mapa do SGB')}</div>`;
  updateCoverageCount();
 }
 function showSheet(f){
  selectedSheet=f.id??f.properties.OBJECTID;
  const p=f.properties;const url=safeURL(p.URL_RIGEO);
  $('#sheet-detail').innerHTML=`<span class="eyebrow">FOLHA ${esc(p.COD_FOLHA?.trim()||'CÓDIGO NÃO INFORMADO')}</span><h4>${esc(sheetName(f))}</h4><p>${esc(p.EXECUCAO||'Instituição não informada')} · ${esc(p.ANO_MAPA)}</p><p>Escala 1:${fmt(Number(p.ESCALA),0)} · ${esc(p.SITUACAO)}</p>${url?`<a class="source-link" href="${esc(url)}" target="_blank" rel="noopener">Consultar folha original ↗</a>`:''}`;
- coverageGroup?.selectAll('path').classed('is-selected',d=>(d.id??d.properties.OBJECTID)===selectedSheet);
+ coverageGroup?.selectAll('path').classed('is-selected',d=>(d.id??d.properties.OBJECTID)===selectedSheet).attr('aria-pressed',d=>(d.id??d.properties.OBJECTID)===selectedSheet).attr('tabindex',d=>(d.id??d.properties.OBJECTID)===selectedSheet?0:-1);
  announcement(`${sheetName(f)}, folha ${p.COD_FOLHA}, publicada em ${p.ANO_MAPA}.`);
 }
 async function loadCoverage(){
@@ -90,17 +89,27 @@ async function loadCoverage(){
  if(!coveragePromise)coveragePromise=fetch('assets/geological-coverage.geojson').then(r=>{if(!r.ok)throw Error('coverage');return r.json();}).then(j=>{coverage=normalizeWinding(j,d3);updateCoverage();}).catch(()=>{coveragePromise=null;if(layer==='coverage'){$('#coverage-count').innerHTML='Não foi possível carregar as folhas. <button id="retry-coverage" class="text-button">Tentar novamente</button>';$('#retry-coverage').onclick=loadCoverage;}});
  await coveragePromise;
 }
-function updateCoverageCount(){if(layer!=='coverage'||!coverage)return;const count=coverageFeatures(coverage,scale,year).length;$('#coverage-count').textContent=`${fmt(count,0)} folhas publicadas neste recorte`;}
+function updateCoverageCount(){if(layer!=='coverage'||!coverage)return;const count=coverageFeatures(coverage,scale,coverageYear).length;$('#coverage-count').textContent=`${fmt(count,0)} folhas publicadas neste recorte`;}
 function updateCoverage(){
  if(!mapReady||!coverage||layer!=='coverage')return;
- const features=coverageFeatures(coverage,scale,year);
+ const features=coverageFeatures(coverage,scale,coverageYear);
  coverageGroup.attr('display',null).style('--coverage-color',coverageScales[scale].color);
- coverageGroup.selectAll('path').data(features,d=>d.id??d.properties.OBJECTID).join('path').attr('d',path).attr('class','coverage-sheet').attr('role','button').attr('tabindex',-1).attr('aria-label',d=>`Folha ${sheetName(d)}, ${d.properties.ANO_MAPA}`).on('pointermove',(e,d)=>showTooltip(e,esc(sheetName(d)),`${esc(d.properties.COD_FOLHA)} · ${esc(d.properties.ANO_MAPA)}`)).on('pointerleave',hideTooltip).on('click',(e,d)=>{e.stopPropagation();showSheet(d);hideTooltip();});
- // Hundreds of sheets stay out of the tab order; a synchronized selector provides keyboard access.
- if($('#sheet-picker'))$('#sheet-picker').remove();
- const picker=document.createElement('div');picker.className='sheet-detail';picker.id='sheet-picker';picker.innerHTML=`<label class="eyebrow" for="coverage-sheet-select">OU ESCOLHA UMA FOLHA</label><select id="coverage-sheet-select" aria-label="Selecionar folha geológica"><option value="">Selecione uma folha…</option>${features.slice().sort((a,b)=>sheetName(a).localeCompare(sheetName(b),'pt-BR')).map(f=>`<option value="${f.id??f.properties.OBJECTID}">${esc(sheetName(f))} · ${esc(f.properties.ANO_MAPA)}</option>`).join('')}</select>`;
- $('#sheet-detail').after(picker);
- $('#coverage-sheet-select').onchange=e=>{const f=features.find(f=>String(f.id??f.properties.OBJECTID)===e.target.value);if(f)showSheet(f);};
+ const sheets=coverageGroup.selectAll('path').data(features,d=>d.id??d.properties.OBJECTID).join('path')
+  .attr('d',path).attr('class','coverage-sheet').attr('role','button')
+  .classed('is-selected',d=>(d.id??d.properties.OBJECTID)===selectedSheet)
+  .attr('aria-pressed',d=>(d.id??d.properties.OBJECTID)===selectedSheet)
+  .attr('tabindex',(d,i)=>selectedSheet!==null?((d.id??d.properties.OBJECTID)===selectedSheet?0:-1):(i===0?0:-1))
+  .attr('aria-label',d=>`Folha ${sheetName(d)}, ${d.properties.ANO_MAPA}`)
+  .on('pointermove',(e,d)=>showTooltip(e,esc(sheetName(d)),`${esc(d.properties.COD_FOLHA)} · ${esc(d.properties.ANO_MAPA)}`))
+  .on('pointerleave',hideTooltip)
+  .on('click',(e,d)=>{e.stopPropagation();showSheet(d);hideTooltip();})
+  .on('focus',function(){sheets.attr('tabindex',-1);d3.select(this).attr('tabindex',0);})
+  .on('keydown',function(e,d){
+   if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();showSheet(d);hideTooltip();return;}
+   const nodes=sheets.nodes(),index=nodes.indexOf(this);
+   const next={ArrowRight:(index+1)%nodes.length,ArrowDown:(index+1)%nodes.length,ArrowLeft:(index+nodes.length-1)%nodes.length,ArrowUp:(index+nodes.length-1)%nodes.length,Home:0,End:nodes.length-1}[e.key];
+   if(next!==undefined){e.preventDefault();e.stopPropagation();nodes[next].focus();}
+  });
  if(!selectedSheet)$('#sheet-detail').innerHTML='<span class="eyebrow">LEIA O MAPA</span><h4>Selecione uma área verde.</h4><p>Veja o nome da folha, a instituição e o ano de publicação.</p>';
  updateCoverageCount();
 }
@@ -136,7 +145,7 @@ export async function initMap(){
   states=normalizeWinding(geometry[0],d3);towns=normalizeWinding(geometry[1],d3);
   projection=d3.geoConicConformal().parallels([-2,-22]).rotate([54,0]).fitExtent([[90,70],[W-83,H-60]],states);
   path=d3.geoPath(projection);
-  $('#map').innerHTML='';svg=d3.select('#map').append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('role','group').attr('aria-label','Brasil: estados, referências municipais e folhas geológicas. Use Tab e Enter ou os botões de projetos para explorar por teclado.');
+  $('#map').innerHTML='';svg=d3.select('#map').append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('role','group').attr('aria-label','Brasil: estados, referências municipais e folhas geológicas. Use Tab para entrar no mapa, setas para percorrer as folhas e Enter ou espaço para selecionar. Os projetos também têm botões abaixo do mapa.');
   svg.append('defs').append('clipPath').attr('id','brazil-clip').selectAll('path').data(states.features).join('path').attr('d',path);
   viewport=svg.append('g');
   viewport.append('path').datum(d3.geoGraticule().extent([[-79,-38],[-31,10]]).step([10,10])()).attr('class','graticule').attr('d',path);

@@ -9,7 +9,6 @@ import {supplyChain, supplyPercent} from '../dist/supply-chain-data.js';
 let dom,document;
 const $=s=>document.querySelector(s);
 const click=s=>{const el=$(s);assert(el,`Missing control ${s}`);el.click();};
-const change=(s,value,event='change')=>{const el=$(s);assert(el,`Missing control ${s}`);el.value=value;el.dispatchEvent(new dom.window.Event(event,{bubbles:true}));};
 const tick=()=>new Promise(resolve=>setTimeout(resolve,30));
 test('supply chain selects real country shares by stage and preserves rounded zeros',()=>{
  assert.equal($('#supply-chart svg').getAttribute('data-selected-stage'),'magnets');
@@ -83,10 +82,12 @@ test('all seven project cards select, grouped records remain distinct, oxide uni
   assert($('#map-inspector h3').textContent.length>0);
  }
  click('#project-list [data-project="caldeira"]');
+ assert.equal($('.resource-stat .unit').textContent,'milhões de toneladas · material');
  assert.equal(document.querySelectorAll('.cluster-tabs button').length,3);
  assert.match($('.resource-stack').getAttribute('aria-label'),/703 Mt medidos e indicados; 928 Mt inferidos/);
  click('[data-select-project="morro"]');assert.match($('#map-inspector').textContent,/Quantidade não disponível/);
  click('#project-list [data-project="araxa"]');assert.match($('.resource-stat').textContent,/3,98.*TREO contidos/);
+ assert.equal($('.resource-stat .unit').textContent,'milhões de toneladas · TREO contidos');
  assert.match($('.grade').textContent,/Não comparável/);
 });
 test('map markers select projects by pointer and keyboard without stale hover overlays',()=>{
@@ -108,18 +109,38 @@ test('map markers select projects by pointer and keyboard without stale hover ov
  assert.equal(pitinga.getAttribute('tabindex'),'0');
  assert.equal(araxa.getAttribute('aria-pressed'),'false');
 });
-test('coverage uses official polygons, filters scale and year, and exposes source metadata',async()=>{
+test('coverage shows the current snapshot and selects sheets directly on the map by pointer and keyboard',async()=>{
  click('[data-layer="coverage"]');await tick();
  assert.equal($('#map-note').hidden,false);assert.match($('#map-note').textContent,/Polígonos oficiais/);
  assert.equal(document.querySelectorAll('.coverage-sheet').length,511);
  assert.match($('.coverage-big').textContent,/28%/);
- change('#coverage-year','1969','input');assert.equal(document.querySelectorAll('.coverage-sheet').length,0);
- assert.match($('.coverage-big').textContent,/28%/,'national 2025 figure must stay separate from the historical vector filter');
- change('#coverage-year','2025','input');click('[data-scale="250000"]');
+ assert.equal($('#coverage-year'),null);
+ assert.equal($('#coverage-sheet-select'),null);
+ assert.match($('#map-legend').textContent,/Folhas publicadas até 2025/);
+ click('[data-scale="250000"]');
  assert.equal(document.querySelectorAll('.coverage-sheet').length,318);assert.match($('.coverage-big').textContent,/50%/);
- const options=[...$('#coverage-sheet-select').options];assert(options.every(o=>o.textContent.trim()&&!/^·/.test(o.textContent.trim())));
- change('#coverage-sheet-select',options[1].value);assert.match($('#sheet-detail').textContent,/Publicado/);
+ const sheets=[...document.querySelectorAll('.coverage-sheet')];
+ const key=(node,key)=>node.dispatchEvent(new dom.window.KeyboardEvent('keydown',{key,bubbles:true,cancelable:true}));
+ assert.equal(document.querySelectorAll('.coverage-sheet[tabindex="0"]').length,1);
+ sheets[1].dispatchEvent(new dom.window.MouseEvent('pointermove',{bubbles:true,clientX:100,clientY:100}));
+ sheets[1].dispatchEvent(new dom.window.MouseEvent('click',{bubbles:true}));
+ assert.equal(sheets[1].getAttribute('aria-pressed'),'true');
+ assert.equal($('#map-tooltip').hidden,true);
+ assert.match($('#sheet-detail').textContent,/Publicado/);
+ assert.equal(document.querySelectorAll('.coverage-sheet[tabindex="0"]').length,1);
+ sheets[1].focus();key(sheets[1],'ArrowRight');
+ assert.equal(document.activeElement,sheets[2]);
+ key(sheets[2],'Enter');
+ assert.equal(sheets[1].getAttribute('aria-pressed'),'false');
+ assert.equal(sheets[2].getAttribute('aria-pressed'),'true');
+ assert($('#sheet-detail h4').textContent.length>0);
+ assert($('#announcement').textContent.includes($('#sheet-detail h4').textContent));
+ key(sheets[2],'End');assert.equal(document.activeElement,sheets.at(-1));
+ key(sheets.at(-1),'ArrowRight');assert.equal(document.activeElement,sheets[0]);
+ key(sheets[0],' ');assert.equal(sheets[0].getAttribute('aria-pressed'),'true');
  click('[data-scale="1000000"]');assert.equal(document.querySelectorAll('.coverage-sheet').length,45);assert.equal($('.coverage-big'),null);
+ assert.equal(document.querySelectorAll('.coverage-sheet[aria-pressed="true"]').length,0);
+ assert.equal(document.querySelectorAll('.coverage-sheet[tabindex="0"]').length,1);
  click('[data-layer="geology"]');assert($('.geology-cutaway'));assert.equal($('.atlas-body').classList.contains('coverage-mode'),false);
  click('[data-layer="projects"]');
 });
