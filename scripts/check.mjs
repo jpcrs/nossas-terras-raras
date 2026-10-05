@@ -9,6 +9,15 @@ import {supplyChain} from '../dist/supply-chain-data.js';
 import {futureDemand,futureMetrics} from '../dist/future-data.js';
 import {usDependence} from '../dist/us-dependence-data.js';
 const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
+// Every CSS font URL must resolve to a real compressed font, with a payload budget.
+const fontURLs=[...read('dist/assets/fonts/fonts.css').matchAll(/url\(([^)]+)\)/g)].map(match=>match[1]);
+let fontBytes=0;
+for(const name of fontURLs){
+ const bytes=fs.readFileSync(new URL('../dist/assets/fonts/'+name,import.meta.url));
+ assert.equal(bytes.subarray(0,4).toString(),'wOF2',`Invalid WOFF2 font: ${name}`);
+ fontBytes+=bytes.length;
+}
+assert(fontBytes<400000,'Web font payload exceeds the 400 kB budget');
 // The US consumption series and the multi-year supplier mix are distinct measures.
 const importRows=d3.csvParse(read('dist/'+usDependence.rawData),d3.autoType);
 const importMetrics={netImportReliance:'net_import_reliance',apparentConsumption:'apparent_consumption_compounds_metals',compoundImports:'compound_imports',importValueMillionUSD:'import_value_compounds_metals'};

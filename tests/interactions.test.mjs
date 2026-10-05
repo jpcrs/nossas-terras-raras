@@ -10,6 +10,8 @@ import {sources} from '../dist/data.js';
 import {mineralComparisonCSV} from '../dist/mineral-comparisons.js';
 import {supplyChain, supplyPercent} from '../dist/supply-chain-data.js';
 let dom,document;
+let geometryProjections=0,stateProjections=0;
+const resizeObservers=[];
 const $=s=>document.querySelector(s);
 const click=s=>{const el=$(s);assert(el,`Missing control ${s}`);el.click();};
 const tick=()=>new Promise(resolve=>setTimeout(resolve,30));
@@ -145,7 +147,18 @@ before(async()=>{
  document=dom.window.document;
  for(const key of ['window','document','HTMLElement','SVGElement','Element'])globalThis[key]=dom.window[key];
  Object.defineProperty(globalThis,'navigator',{value:dom.window.navigator,configurable:true});
- dom.window.d3=d3;
+ dom.window.d3={...d3,geoPath:(...args)=>new Proxy(d3.geoPath(...args),{apply(target,thisArg,args){
+  const feature=args[0];
+  if(feature?.type==='Feature'){
+   geometryProjections++;
+   if(String(feature.properties?.codarea).length===2)stateProjections++;
+  }
+  return Reflect.apply(target,thisArg,args);
+ }})};
+ globalThis.ResizeObserver=class{
+  constructor(callback){this.callback=callback;resizeObservers.push(this);}
+  observe(target){this.target=target;}
+ };
  globalThis.matchMedia=()=>({matches:true});
  globalThis.fetch=async url=>{try{return {ok:true,json:async()=>JSON.parse(await fs.readFile(new URL('../dist/'+url,import.meta.url),'utf8'))};}catch{return {ok:false};}};
  dom.window.HTMLElement.prototype.scrollIntoView=function(){};
@@ -161,6 +174,35 @@ test('map renders actual state and municipal geometries, with all municipal refe
  assert.equal($('#map-scope-note').hidden,false);
  assert.equal($('.map-location.is-selected').getAttribute('aria-label'),'Serra Verde, GO. Referência municipal.');
  assert(!$('#map svg').innerHTML.includes('NaN'));
+ assert.equal(stateProjections,27,'State shapes, outlines and clipping share one projection per feature');
+});
+test('map resize batches label measurements and keeps hit targets aligned at mobile and desktop sizes',()=>{
+ const map=$('#map'),observer=resizeObservers.find(observer=>observer.target===map);
+ const svgPrototype=dom.window.SVGElement.prototype,elementPrototype=dom.window.Element.prototype;
+ const original={rect:map.getBoundingClientRect,bounds:svgPrototype.getBBox,length:svgPrototype.getComputedTextLength,setAttribute:elementPrototype.setAttribute};
+ let operations=[];
+ svgPrototype.getComputedTextLength=function(){operations.push('read');return 70;};
+ svgPrototype.getBBox=function(){operations.push('read');return {x:Number(this.getAttribute('x')),y:Number(this.getAttribute('y'))-10,width:70,height:12};};
+ elementPrototype.setAttribute=function(name,value){if(this.matches('.location-label,.location-hit,.location-leader')&&['x','y','d'].includes(name))operations.push('write');return original.setAttribute.call(this,name,value);};
+ try{
+  for(const width of [350,820]){
+   map.getBoundingClientRect=()=>({width,height:650});operations=[];
+   observer.callback();
+   assert(operations.lastIndexOf('read')<operations.indexOf('write'),'All label measurements must precede position writes');
+   for(const marker of document.querySelectorAll('.map-location')){
+    const label=marker.querySelector('.location-label'),hit=marker.querySelector('.location-hit');
+    const x=Number(label.getAttribute('x')),y=Number(label.getAttribute('y'));
+    assert(Number(hit.getAttribute('x'))<x);
+    assert(Number(hit.getAttribute('y'))<y-10);
+    assert(Number(hit.getAttribute('x'))+Number(hit.getAttribute('width'))>x+70);
+    assert(Number(hit.getAttribute('y'))+Number(hit.getAttribute('height'))>y+2);
+   }
+  }
+ }finally{
+  map.getBoundingClientRect=original.rect;elementPrototype.setAttribute=original.setAttribute;
+  if(original.bounds)svgPrototype.getBBox=original.bounds;else delete svgPrototype.getBBox;
+  if(original.length)svgPrototype.getComputedTextLength=original.length;else delete svgPrototype.getComputedTextLength;
+ }
 });
 test('all projects select through the map, grouped records remain distinct, oxide units stay distinct',()=>{
  for(const {id} of projects){
@@ -235,6 +277,21 @@ test('resource grade is converted into concentration, not inflated into recovere
  assert.match($('.grade-conversion').textContent,/2,317 kg de TREO/);
  assert.match($('.grade-strip').getAttribute('aria-label'),/0,2317.*zero a 1/);
  assert(Math.abs(parseFloat($('.grade-strip span').style.width)-23.17)<0.001);
+});
+test('returning to a loaded map layer reuses geometry while keeping sheet paths and tooltips intact',async()=>{
+ click('[data-layer="coverage"]');await tick();
+ const before=[...document.querySelectorAll('.coverage-sheet')].map(sheet=>sheet.getAttribute('d'));
+ const count=geometryProjections;
+ click('[data-layer="geology"]');click('[data-layer="coverage"]');
+ assert.equal(geometryProjections,count);
+ assert.deepEqual([...document.querySelectorAll('.coverage-sheet')].map(sheet=>sheet.getAttribute('d')),before);
+ const sheet=$('.coverage-sheet');
+ sheet.dispatchEvent(new dom.window.MouseEvent('pointermove',{bubbles:true,clientX:100,clientY:100}));
+ const tooltipText=$('#map-tooltip strong');
+ sheet.dispatchEvent(new dom.window.MouseEvent('pointermove',{bubbles:true,clientX:105,clientY:105}));
+ assert.equal($('#map-tooltip strong'),tooltipText,'Moving over the same sheet must not recreate tooltip content');
+ assert.equal($('#map-tooltip').hidden,false);
+ click('[data-layer="projects"]');
 });
 test('new resources keep their source classes, dates and high-grade scales readable',()=>{
  for(const id of ['ema','tiros','caladao','pch','montealto','sulista','alpha','constellation','itarantim']){

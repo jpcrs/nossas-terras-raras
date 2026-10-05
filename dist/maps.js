@@ -8,6 +8,12 @@ let layer='projects', selected='serra', scale=100000;
 const coverageYear=2025;
 let states,towns,coverage,svg,viewport,path,projection,zoom,markers,coverageGroup,municipalityGroup,labelGroup;
 let transform=d3.zoomIdentity,mapReady=false,coveragePromise,selectedSheet=null;
+let projectedPaths=new WeakMap(),tooltipContent='';
+// Zoom transforms the SVG group; projected geometry stays valid until the projection changes.
+function projectedPath(feature){
+ if(!projectedPaths.has(feature))projectedPaths.set(feature,path(feature));
+ return projectedPaths.get(feature);
+}
 const W=820,H=650;
 const sheetName=f=>[f.properties.NOME_FOLHA,f.properties.COD_FOLHA,f.properties.PROJETO].find(v=>v?.trim())?.trim()||`Registro SGB ${f.id??f.properties.OBJECTID}`;
 const locationData=[];
@@ -90,7 +96,7 @@ function updateCoverage(){
  const features=coverageFeatures(coverage,scale,coverageYear);
  coverageGroup.attr('display',null).style('--coverage-color',coverageScales[scale].color);
  const sheets=coverageGroup.selectAll('path').data(features,d=>d.id??d.properties.OBJECTID).join('path')
-  .attr('d',path).attr('class','coverage-sheet').attr('role','button')
+  .attr('d',projectedPath).attr('class','coverage-sheet').attr('role','button')
   .classed('is-selected',d=>(d.id??d.properties.OBJECTID)===selectedSheet)
   .attr('aria-pressed',d=>(d.id??d.properties.OBJECTID)===selectedSheet)
   .attr('tabindex',(d,i)=>selectedSheet!==null?((d.id??d.properties.OBJECTID)===selectedSheet?0:-1):(i===0?0:-1))
@@ -108,13 +114,13 @@ function updateCoverage(){
  if(!selectedSheet)$('#sheet-detail').innerHTML='<span class="eyebrow">LEIA O MAPA</span><h4>Selecione uma área verde.</h4><p>Veja o nome da folha, a instituição e o ano de publicação.</p>';
  updateCoverageCount();
 }
-function showTooltip(event,title,detail){const tip=$('#map-tooltip');const box=$('.map-stage').getBoundingClientRect();tip.innerHTML=`<strong>${title}</strong><span>${detail}</span>`;tip.hidden=false;tip.style.left=Math.max(10,Math.min(event.clientX-box.left+14,box.width-245))+'px';tip.style.top=Math.max(80,Math.min(event.clientY-box.top+14,box.height-90))+'px';}
+function showTooltip(event,title,detail){const tip=$('#map-tooltip');const box=$('.map-stage').getBoundingClientRect();const content=`<strong>${title}</strong><span>${detail}</span>`;if(content!==tooltipContent){tip.innerHTML=content;tooltipContent=content;}tip.hidden=false;tip.style.left=Math.max(10,Math.min(event.clientX-box.left+14,box.width-245))+'px';tip.style.top=Math.max(80,Math.min(event.clientY-box.top+14,box.height-90))+'px';}
 function hideTooltip(){$('#map-tooltip').hidden=true;}
 function updateMap(){
  if(!mapReady)return;
  coverageGroup.attr('display',layer==='coverage'?null:'none');
  if(layer==='coverage'){updateCoverage();municipalityGroup.attr('display','none');}else{
-  municipalityGroup.attr('display',null).selectAll('path').data(towns.features.filter(f=>String(f.properties.codarea)===projectFacts[selected].municipality)).join('path').attr('class','municipality').attr('d',path);
+  municipalityGroup.attr('display',null).selectAll('path').data(towns.features.filter(f=>String(f.properties.codarea)===projectFacts[selected].municipality)).join('path').attr('class','municipality').attr('d',projectedPath);
  }
  markers.classed('is-selected',d=>d.ids.includes(selected))
  .attr('aria-pressed',d=>d.ids.includes(selected)).style('--color',d=>{const id=d.ids.includes(selected)?selected:d.ids[0];return layer==='geology'?kinds[projectFacts[id].kind].color:stages[projectFacts[id].stage].color;});
@@ -140,13 +146,14 @@ export async function initMap(){
   states=normalizeWinding(geometry[0],d3);towns=normalizeWinding(geometry[1],d3);
   projection=d3.geoConicConformal().parallels([-2,-22]).rotate([54,0]).fitExtent([[90,70],[W-83,H-60]],states);
   path=d3.geoPath(projection);
+  projectedPaths=new WeakMap();
   $('#map').innerHTML='';svg=d3.select('#map').append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('role','group').attr('aria-label','Brasil: estados, referências municipais e folhas geológicas. Use Tab para percorrer os projetos e Enter ou espaço para selecionar. Na camada de folhas, use também as setas para navegar.');
-  svg.append('defs').append('clipPath').attr('id','brazil-clip').selectAll('path').data(states.features).join('path').attr('d',path);
+  svg.append('defs').append('clipPath').attr('id','brazil-clip').selectAll('path').data(states.features).join('path').attr('d',projectedPath);
   viewport=svg.append('g');
   viewport.append('path').datum(d3.geoGraticule().extent([[-79,-38],[-31,10]]).step([10,10])()).attr('class','graticule').attr('d',path);
-  viewport.append('g').selectAll('path').data(states.features).join('path').attr('class','state-shape').attr('d',path).append('title').text(d=>stateNames[d.properties.codarea]?.[1]||'Brasil');
+  viewport.append('g').selectAll('path').data(states.features).join('path').attr('class','state-shape').attr('d',projectedPath).append('title').text(d=>stateNames[d.properties.codarea]?.[1]||'Brasil');
   coverageGroup=viewport.append('g').attr('clip-path','url(#brazil-clip)').attr('display','none');
-  viewport.append('g').selectAll('path').data(states.features).join('path').attr('class','state-outline').attr('d',path);
+  viewport.append('g').selectAll('path').data(states.features).join('path').attr('class','state-outline').attr('d',projectedPath);
   municipalityGroup=viewport.append('g');
   labelGroup=viewport.append('g');
   labelGroup.selectAll('text').data(states.features.filter(f=>!['53','27','28','25','24','32','33'].includes(String(f.properties.codarea)))).join('text').attr('class','state-label').attr('transform',d=>`translate(${path.centroid(d)})`).text(d=>stateNames[d.properties.codarea]?.[0]);
@@ -164,25 +171,27 @@ export async function initMap(){
   markers.on('click',activate).on('keydown',(e,d)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate(e,d);}}).on('pointermove',(e,d)=>showTooltip(e,d.label,'Referência municipal · '+(d.ids.length>1?`clique para ver ${d.ids.length} registros`:projects.find(p=>p.id===d.ids[0]).status))).on('pointerleave',hideTooltip);
   zoom=d3.zoom().scaleExtent([1,8]).extent([[0,0],[W,H]]).translateExtent([[-W/2,-H/2],[W*1.5,H*1.5]]).filter(e=>(e.type!=='wheel'||e.ctrlKey)&&(!e.button||e.type==='wheel')).on('zoom',e=>applyTransform(e.transform));
   svg.call(zoom).on('dblclick.zoom',null);mapReady=true;applyTransform(d3.zoomIdentity);updateMap();
-  if(typeof ResizeObserver!=='undefined'){const observer=new ResizeObserver(()=>{
+  if(typeof ResizeObserver!=='undefined'){const layoutMarkers=()=>{
    const box=$('#map').getBoundingClientRect();const k=Math.min(box.width/W,box.height/H)||1;
    const compact=box.width<600;
    markers.selectAll('.location-label:not(.location-sub)').style('font-size',`${(compact?11:12)/k}px`);
    markers.selectAll('.location-sub').style('font-size',`${9/k}px`).attr('display',compact?'none':null);
    const compactY={montealto:215,sulista:285,alpha:355,itarantim:425,caladao:495};
-   markers.each(function(d){
-    const group=d3.select(this),label=group.select('.location-label:not(.location-sub)');
-    const width=label.node().getComputedTextLength();
+   // Measure every label before changing positions, avoiding a forced layout per marker.
+   const measurements=markers.nodes().map(node=>{
+    const group=d3.select(node),label=group.select('.location-label:not(.location-sub)');
+    return {group,label,d:group.datum(),width:label.node().getComputedTextLength(),bounds:label.node().getBBox(),x:Number(label.attr('x')),y:Number(label.attr('y'))};
+   });
+   for(const {group,label,d,width,bounds,x,y} of measurements){
     const dx=Math.max(12/k-d.point[0],Math.min(d.offset[0],W-16/k-d.point[0]-width));
     const dy=compact&&compactY[d.ids[0]]!==undefined?compactY[d.ids[0]]-d.point[1]:d.offset[1];
     label.attr('x',dx).attr('y',dy-7);
     group.select('.location-sub').attr('x',dx).attr('y',dy+9);
     group.select('.location-leader').attr('d',`M0,0 L${dx*.65},${dy} H${dx}`);
-    const b=label.node().getBBox();
-    group.select('.location-hit').attr('x',b.x-4/k).attr('y',b.y-4/k).attr('width',b.width+8/k).attr('height',b.height+8/k);
-   });
+    group.select('.location-hit').attr('x',bounds.x+dx-x-4/k).attr('y',bounds.y+dy-7-y-4/k).attr('width',bounds.width+8/k).attr('height',bounds.height+8/k);
+   }
    labelGroup.selectAll('text').style('font-size',`${7.5/k/transform.k}px`);
-  });observer.observe($('#map'));}
+  };const observer=new ResizeObserver(layoutMarkers);observer.observe($('#map'));document.fonts?.ready.then(layoutMarkers);}
   if(layer==='coverage')loadCoverage();
  }catch(error){$('#map').innerHTML='<div class="map-error"><p>Não foi possível carregar o mapa. Tente novamente para explorar os projetos.</p><button id="retry-map">Tentar novamente</button></div>';$('#retry-map').onclick=()=>{locationData.length=0;initMap();};console.error('Falha ao carregar geometrias',error);}
 }

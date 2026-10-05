@@ -46,6 +46,14 @@ Abra http://127.0.0.1:4174. `PORT=4180 npm run dev` usa outra porta. A publicaç
 - `dist/data-snapshot.json`: dados completos, incluindo proveniência cartográfica e edições de reservas.
 - `tests/interactions.test.mjs`: testes de integração DOM (jsdom, sem navegador externo).
 
+## Desempenho
+
+As 11 fontes são servidas em WOFF2 (370.064 bytes, contra 1.044.300 bytes dos TTFs originais), preservando caracteres, métricas e licenças. O CSS das fontes é carregado diretamente no HTML; apenas as duas fontes do título principal recebem preload. Os TTFs continuam como originais para reprodução: instale `fonttools[woff]` em um ambiente Python separado e execute `python scripts/compress-fonts.py`.
+
+O mapa reutiliza caminhos projetados de estados, municípios e folhas; as medidas dos rótulos são lidas em lote antes de reposicioná-los. Tooltips mantêm o conteúdo ao mover o ponteiro sobre a mesma área. As fichas usam um fundo escurecido sem o filtro de desfoque da página inteira. `npm test` verifica o orçamento das fontes, a reutilização das geometrias e o alinhamento das áreas clicáveis.
+
+Essas reduções de bytes e trabalho de renderização não equivalem a um resultado de Core Web Vitals em produção. Compare LCP e INP no Cloudflare após publicar, separando celular e desktop e observando o tamanho da amostra.
+
 ## Verificar e manter
 
 ```sh
