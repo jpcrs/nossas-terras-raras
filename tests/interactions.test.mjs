@@ -187,6 +187,8 @@ test('the optional reference preserves all 17 elements without changing the sele
 test('mineral tiles update production and reserves together without opening a dialog',async()=>{
  assert.equal($('#outros-minerais select'),null);
  assert.equal($('#outros-minerais').nextElementSibling.id,'cadeia');
+ assert.deepEqual([...document.querySelectorAll('#mineral-grid [data-mineral]')].map(tile=>tile.dataset.mineral),['Nb','ETR','Li','C','Ni','Mn','Si','Ta','V','Cu','Fe','Al']);
+ assert.equal($('#mineral-count').textContent,'12 PERFIS · PRODUÇÃO E RESERVAS');
  for(const tile of document.querySelectorAll('#mineral-grid [data-mineral]')){
   tile.focus();tile.click();
   assert.equal(tile.getAttribute('aria-pressed'),'true');assert.equal(document.activeElement,tile);
@@ -204,7 +206,7 @@ test('mineral tiles update production and reserves together without opening a di
  assert.equal($('#production-note').hidden,true);assert.equal($('#reserve-note').hidden,true);
  assert.equal($('#production-note').textContent,'');assert.equal($('#reserve-note').textContent,'');
  click('[data-mineral="ETR"]');assert.match($('#reserve-period').textContent,/HISTÓRICO/);assert.match($('#reserve-note').textContent,/anterior à revisão/);
- click('[data-mineral="U"]');assert.match($('#reserve-note').textContent,/Recursos não são reservas/);assert.equal(document.querySelectorAll('#reserve-chart .chart-grid text').length,0);
+ click('[data-mineral="Si"]');assert.match($('#reserve-note').textContent,/Não há um total de reservas comparável/);assert.equal(document.querySelectorAll('#reserve-chart .chart-grid text').length,0);
  await tick();assert([...document.querySelectorAll('#reserve-chart .data-bar')].every(b=>Number(b.getAttribute('width'))===0));
  click('[data-mineral="V"]');click('#mineral-profile');assert.equal($('#dialog-title').textContent,'Vanádio');click('.dialog-close');
 });

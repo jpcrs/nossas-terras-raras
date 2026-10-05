@@ -54,8 +54,11 @@ initApplications();
 
 initSupplyChain();
 
-let selectedMineral='Nb';
-$('#mineral-grid').innerHTML=minerals.map(m=>`<button class="mineral-tile" data-mineral="${m.symbol}" aria-label="Comparar ${m.name}" aria-pressed="false" aria-controls="production-chart reserve-chart"><small>${m.number}</small><strong>${m.symbol}</strong><span>${m.name}</span></button>`).join('');
+// Offer a comparison only when at least one series has a reported value; zero counts.
+const comparisonMinerals=minerals.filter(m=>Object.values(mineralComparisons[m.symbol]).some(series=>series.values.some(Number.isFinite)));
+let selectedMineral=comparisonMinerals[0].symbol;
+$('#mineral-count').textContent=`${comparisonMinerals.length} PERFIS · PRODUÇÃO E RESERVAS`;
+$('#mineral-grid').innerHTML=comparisonMinerals.map(m=>`<button class="mineral-tile" data-mineral="${m.symbol}" aria-label="Comparar ${m.name}" aria-pressed="false" aria-controls="production-chart reserve-chart"><small>${m.number}</small><strong>${m.symbol}</strong><span>${m.name}</span></button>`).join('');
 function renderMineralComparisons(){
  const mineral=minerals.find(m=>m.symbol===selectedMineral);
  pressed('#mineral-grid [data-mineral]','mineral',selectedMineral);
@@ -64,7 +67,7 @@ function renderMineralComparisons(){
  for(const type of ['production','reserve']){
   const m=mineralComparisons[selectedMineral][type];
   drawBarChart(`#${type}-chart`,comparisonCountries.map((name,i)=>({name,value:m.values[i],missing:comparisonMissing(m,i)})),{unit:m.unit,labelWidth:150,ariaLabel:m.name});
-  $(`#${type}-period`).textContent=selectedMineral==='U'?'SEM SÉRIE COMPARÁVEL':m.id==='ree-r'?'USGS 2026 · HISTÓRICO':type==='production'?'2025 · ESTIMATIVA':'USGS · MCS 2026';
+  $(`#${type}-period`).textContent=m.id==='ree-r'?'USGS 2026 · HISTÓRICO':type==='production'?'2025 · ESTIMATIVA':'USGS · MCS 2026';
   $(`#${type}-unit`).textContent=m.unit||'SEM SÉRIE COMPARÁVEL NESTE RECORTE';
   const note=m.chartNote??m.note??'';
   $(`#${type}-note`).textContent=note;
