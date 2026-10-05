@@ -1,0 +1,14 @@
+metric,period,country,value,unit,source
+net_import_reliance,2024,United States,53,percent of apparent consumption,usgsImports
+net_import_reliance,2025,United States,67,percent of apparent consumption,usgsImports
+apparent_consumption_compounds_metals,2024,United States,9010,tonnes REO equivalent,usgsImports
+apparent_consumption_compounds_metals,2025,United States,27000,tonnes REO equivalent,usgsImports
+compound_imports,2024,United States,8120,tonnes REO equivalent,usgsImports
+compound_imports,2025,United States,21000,tonnes REO equivalent,usgsImports
+import_value_compounds_metals,2024,United States,168,million USD,usgsImports
+import_value_compounds_metals,2025,United States,165,million USD,usgsImports
+import_origin_share,2021-2024,China including Hong Kong,71,percent of imports,usgsImports
+import_origin_share,2021-2024,Malaysia,13,percent of imports,usgsImports
+import_origin_share,2021-2024,Japan,5,percent of imports,usgsImports
+import_origin_share,2021-2024,Estonia,5,percent of imports,usgsImports
+import_origin_share,2021-2024,Other,6,percent of imports,usgsImports

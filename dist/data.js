@@ -1,5 +1,7 @@
 // Editorial snapshot: 5 October 2026. See research/ and the source notes in the page.
 export const sources={
+ usgsImports:{name:'USGS · dependência e importações dos Estados Unidos',url:'https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-rare-earths_ver.1.2.pdf',date:'MCS 2026 · Rare Earths · versão 1.2 · dados de 2024–2025 e fornecedores de 2021–2024'},
+ ieaUSRisk:{name:'IEA · exposição industrial dos Estados Unidos',url:'https://www.iea.org/reports/rare-earth-elements/executive-summary',date:'2026 · cenário de controles integrais e efeitos observados em 2025 · CC BY 4.0'},
  reeHistorical:{name:'USGS · terras raras · tabela histórica com 21 Mt',url:'assets/usgs-rare-earths-2026-before-may-revision.pdf',date:'MCS 2026 · anterior à revisão de maio · cópia preservada'},
  panorama:{name:'SGB · Panorama de minerais críticos 2026',url:'https://rigeo.sgb.gov.br/bitstreams/9d2eac39-ada3-4f29-8221-822380c7edd0/download',date:'2026 · cobertura até 2025 e províncias minerais'},
  chinaArea:{name:'MOFCOM · território chinês',url:'https://fdi.mofcom.gov.cn/EN/come-newzonghe.html?Liindex=0&comeID=1&parentId=104',date:'Área territorial aproximada'},

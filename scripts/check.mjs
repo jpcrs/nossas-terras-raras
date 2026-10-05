@@ -7,7 +7,23 @@ import {mineralComparisons} from '../dist/mineral-comparisons.js';
 import {applicationExamples,materialSourceKeys} from '../dist/applications-data.js';
 import {supplyChain} from '../dist/supply-chain-data.js';
 import {futureDemand,futureMetrics} from '../dist/future-data.js';
+import {usDependence} from '../dist/us-dependence-data.js';
 const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
+// The US consumption series and the multi-year supplier mix are distinct measures.
+const importRows=d3.csvParse(read('dist/'+usDependence.rawData),d3.autoType);
+const importMetrics={netImportReliance:'net_import_reliance',apparentConsumption:'apparent_consumption_compounds_metals',compoundImports:'compound_imports',importValueMillionUSD:'import_value_compounds_metals'};
+for(const row of usDependence.years)for(const [key,metric] of Object.entries(importMetrics)){
+ const raw=importRows.find(r=>r.metric===metric&&r.period===row.year);
+ assert(raw,`Missing US import source row: ${metric}/${row.year}`);
+ assert.equal(row[key],raw.value);
+ assert.equal(raw.source,usDependence.source);
+}
+assert.equal(usDependence.origins.countries.reduce((sum,country)=>sum+country.share,0),100);
+assert.deepEqual(usDependence.origins.countries.map(country=>country.share),importRows.filter(r=>r.metric==='import_origin_share'&&r.period==='2021-2024').map(r=>r.value));
+assert(sources[usDependence.source]&&sources[usDependence.risk.source]);
+assert.equal(usDependence.risk.relation,'greater-than');
+assert.deepEqual(JSON.parse(read('dist/data-snapshot.json')).usDependence,usDependence);
+for(const file of ['us-dependence.js','us-dependence-data.js','us-dependence.css'])assert(fs.existsSync(new URL('../dist/'+file,import.meta.url)));
 // Compare every displayed chain value to the preserved IEA series, including zeros.
 const supplyRows=d3.dsvFormat(';').parse(read('dist/'+supplyChain.rawData));
 const supplyColumns=['China','United States'];
@@ -105,5 +121,5 @@ for(const [scale,count]of Object.entries(expected)){assert.equal(coverageFeature
 assert.equal(new Set(coverage.features.map(f=>f.id)).size,coverage.features.length);
 for(const f of coverage.features){assert.equal(f.properties.SITUACAO,'Publicado');assert(Number(f.properties.ANO_MAPA)<=2025);assert(f.geometry.coordinates.length);}
 const snapshot=JSON.parse(read('dist/data-snapshot.json'));assert.deepEqual(snapshot.metrics,metrics);assert.equal(snapshot.mapping.scale100000,28);assert.deepEqual(snapshot.projectFacts,projectFacts);assert.equal(snapshot.mapping.polygons.features,874);
-for(const name of ['index.html','assets/logo.svg','assets/favicon.svg','favicon.ico','assets/apple-touch-icon.png','style.css','app.js','editorial.js','applications.js','application-icons.js','applications.css','applications-data.js','supply-chain.js','supply-chain-data.js','supply-chain.css','future.js','future-data.js','future.css','mineral-comparisons.js','maps.js','vendor/d3.min.js','vendor/D3-LICENSE','assets/fonts/fonts.css'])assert(fs.existsSync(new URL('../dist/'+name,import.meta.url)));
+for(const name of ['index.html','navigation.js','assets/logo.svg','assets/favicon.svg','favicon.ico','assets/apple-touch-icon.png','style.css','app.js','editorial.js','applications.js','application-icons.js','applications.css','applications-data.js','supply-chain.js','supply-chain-data.js','supply-chain.css','future.js','future-data.js','future.css','mineral-comparisons.js','maps.js','vendor/d3.min.js','vendor/D3-LICENSE','assets/fonts/fonts.css'])assert(fs.existsSync(new URL('../dist/'+name,import.meta.url)));
 console.log('Passed: source provenance, 17 indicators, null/zero semantics, grade conversion, resource classes, 27 states, 13 municipal references, D3 polygon winding, 874 published SGB sheets, time/scale filters, snapshot consistency and static assets.');

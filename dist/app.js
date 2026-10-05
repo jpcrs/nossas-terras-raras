@@ -5,6 +5,9 @@ import {initApplications} from './applications.js';
 import {applications,materialSourceKeys} from './applications-data.js';
 import {initSupplyChain} from './supply-chain.js';
 import {initFuture} from './future.js';
+import {initUSDependence} from './us-dependence.js';
+import {initNavigation} from './navigation.js';
+initNavigation();
 const d3=window.d3,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const motion=()=>!matchMedia('(prefers-reduced-motion: reduce)').matches;
 const link=(key,label)=>`<a class="source-link" href="${sources[key].url}" target="_blank" rel="noopener">${label||sources[key].name} ↗</a>`;
@@ -58,6 +61,7 @@ $$('[data-comparison]').forEach(b=>b.onclick=()=>{comparison=b.dataset.compariso
 initApplications();
 
 initSupplyChain();
+initUSDependence();
 initFuture();
 
 $('#source-directory').innerHTML=Object.values(sources).map(s=>`<a href="${s.url}" target="_blank" rel="noopener">${s.name} ↗<small>${s.date}</small></a>`).join('')+`<a href="assets/geological-coverage.geojson" download>Folhas geológicas · polígonos do SGB ↓<small>GeoJSON · consulta de 05/10/2026 · publicadas até 2025</small></a>`;

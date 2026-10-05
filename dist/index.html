@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="applications.css">
   <link rel="stylesheet" href="supply-chain.css">
+  <link rel="stylesheet" href="us-dependence.css">
   <link rel="stylesheet" href="future.css">
   <script src="vendor/d3.min.js" defer></script>
   <script type="module" src="app.js"></script>
@@ -23,10 +24,12 @@
   <a class="skip" href="#explorar">Pular para o mapa</a>
   <header class="masthead">
     <a href="#inicio" class="brand" aria-label="Nossas terras raras, início"><img class="brand-mark" src="assets/logo.svg" width="46" height="46" alt=""><span class="brand-wordmark"><span class="brand-prefix">Nossas</span><strong>terras raras</strong></span><span class="brand-tagline">UM ATLAS<br>DO BRASIL</span></a>
-    <nav aria-label="Navegação principal">
+    <button type="button" class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation" hidden><span class="menu-glyph" aria-hidden="true"><span></span><span></span><span></span></span></button>
+    <nav id="primary-navigation" aria-label="Navegação principal">
       <a href="#explorar">Explore o mapa</a>
       <a href="#elementos">Do mineral à tecnologia</a>
       <a href="#cadeia">Da mina ao ímã</a>
+      <a href="#dependencia">Dependência dos EUA</a>
       <a href="#dimensao">Brasil no mundo</a>
       <a href="#futuro">Demanda futura</a>
       <a href="#fontes">Fontes</a>
@@ -95,13 +98,41 @@
       <p id="supply-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>
     </section>
 
+    <section id="dependencia" class="story-section us-section" aria-labelledby="us-title">
+      <div class="section-heading"><span class="eyebrow">04 — O GARGALO DOS ESTADOS UNIDOS</span><span class="eyebrow">USGS + IEA · 2026</span></div>
+      <div class="section-intro">
+        <h2 id="us-title">Potência industrial.<br><em>Dependência mineral.</em></h2>
+        <p>Os EUA extraem terras raras, mas sua indústria ainda depende de compostos e metais importados. A China é o principal fornecedor.</p>
+      </div>
+      <div class="us-dependence-grid">
+        <div class="us-reliance-panel">
+          <div class="us-panel-heading"><h3>Quanto vem de fora?</h3><div id="us-years" class="us-years" role="group" aria-label="Ano da dependência dos Estados Unidos"></div></div>
+          <div id="us-reliance"></div>
+          <div id="us-import-totals" class="us-import-totals"></div>
+        </div>
+        <div class="us-origin-panel">
+          <div class="us-panel-heading"><h3>De quem os EUA compram?</h3><span id="us-origin-period" class="eyebrow"></span></div>
+          <p class="us-origin-caption">Participação nas importações de compostos e metais de terras raras.</p>
+          <ul id="us-origin-chart" class="us-origin-chart" aria-label="Países fornecedores dos Estados Unidos, 2021 a 2024"></ul>
+          <p class="us-origin-note">China inclui Hong Kong. Os demais fornecedores também podem processar matéria-prima chinesa.</p>
+        </div>
+      </div>
+      <div class="us-data-notes"><p id="us-consumption-note"></p><a id="us-import-source" class="source-link" target="_blank" rel="noopener">USGS · importações e consumo ↗</a></div>
+      <aside class="us-risk" aria-labelledby="us-risk-title">
+        <div class="us-risk-amount"><p class="eyebrow">EXPOSIÇÃO INDUSTRIAL DOS EUA</p><p class="us-risk-number"><span>mais de US$</span><strong id="us-risk-value"></strong><small>tri / ano</small></p><p>em perdas diretas potenciais sob controles integrais de exportação.</p></div>
+        <div class="us-risk-context"><h3 id="us-risk-title">Quando falta o material,<br>a fábrica sente.</h3><p>Em 2025, restrições chinesas deixaram montadoras nos EUA e em outros mercados sem ímãs suficientes. A IEA registrou cortes e paralisações de produção.</p><a id="us-risk-source" class="source-link" target="_blank" rel="noopener">IEA · cenário e impactos industriais ↗</a></div>
+      </aside>
+      <details class="us-method"><summary>Entenda os recortes dos dados</summary><p>Os percentuais medem coisas diferentes: 67% é a dependência líquida sobre o consumo aparente em 2025; 71% é a parcela chinesa nas importações acumuladas de 2021–2024. O seletor de ano altera apenas os dados de consumo e importação, não a origem dos fornecedores.</p><p>O USGS inclui lantanídeos e ítrio e exclui a maior parte do escândio. A massa importada exibida se refere apenas a compostos; o valor em dólares inclui compostos e metais. Terras raras incorporadas em ímãs e outros produtos acabados representam dependência adicional. Em 2025, a composição das importações mudou para produtos de menor valor.</p><p>O valor da IEA é um cenário de implementação integral dos controles anunciados em 2025, não uma perda já ocorrida nem uma queda prevista do PIB. As medidas ampliadas de outubro de 2025 foram suspensas por um ano em novembro daquele ano.</p></details>
+      <p id="us-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+    </section>
+
     <section id="dimensao" class="story-section dimension">
-      <div class="section-heading"><span class="eyebrow">04 — A DIMENSÃO DA OPORTUNIDADE</span><span class="eyebrow">USGS · MCS 2026</span></div>
+      <div class="section-heading"><span class="eyebrow">05 — A DIMENSÃO DA OPORTUNIDADE</span><span class="eyebrow">USGS · MCS 2026</span></div>
       <div class="comparison-layout"><div class="story-copy"><h2>Ter a reserva<br>é só o <em>começo.</em></h2><p>O Brasil tem uma das maiores reservas conhecidas de terras raras. Sua participação na produção ainda é pequena.</p><div class="big-takeaway" id="comparison-takeaway"></div><p class="small">REO = óxidos de terras raras. Reservas são uma estimativa do que pode ser extraído economicamente; produção é o que sai das minas em um ano.</p></div><div class="comparison-viz"><div class="comparison-toolbar"><div class="segmented" role="group" aria-label="Comparar terras raras"><button data-comparison="reserve" class="active" aria-pressed="true">No subsolo</button><button data-comparison="production" aria-pressed="false">Nas minas</button></div><span id="comparison-unit" class="eyebrow"></span></div><div id="country-chart"></div><p id="comparison-caption" class="chart-caption"></p><div class="source-row" id="comparison-source"></div></div></div>
     </section>
 
     <section id="futuro" class="story-section future-section" aria-labelledby="future-title">
-      <div class="section-heading"><span class="eyebrow">05 — DEMANDA POR TERRAS RARAS</span><span class="eyebrow">ADAMAS INTELLIGENCE · HORIZONTE 2040</span></div>
+      <div class="section-heading"><span class="eyebrow">06 — DEMANDA POR TERRAS RARAS</span><span class="eyebrow">ADAMAS INTELLIGENCE · HORIZONTE 2040</span></div>
       <div class="section-intro">
         <h2 id="future-title">O futuro pede<br><em>mais terras raras.</em></h2>
         <p>Ímãs, catalisadores, vidros, cerâmicas e ligas. A projeção reúne a demanda mundial por óxidos de terras raras em diferentes indústrias.</p>
