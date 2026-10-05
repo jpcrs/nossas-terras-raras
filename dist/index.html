@@ -9,6 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23f7f5ef'/%3E%3Cpath d='M20 4 35 15 28 34 12 34 5 15Z' fill='none' stroke='%23b54b32' stroke-width='2'/%3E%3Cpath d='m5 15 15 8 15-8M20 4v19l8 11M20 23l-8 11' fill='none' stroke='%23b54b32'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="applications.css">
+  <link rel="stylesheet" href="supply-chain.css">
   <script src="vendor/d3.min.js" defer></script>
   <script type="module" src="app.js"></script>
 </head>
@@ -84,7 +85,31 @@
       <p id="mineral-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>
     </section>
 
-    <section class="chain-section" id="cadeia"><div class="section-heading"><span class="eyebrow">05 — ALÉM DA MINA</span><span class="eyebrow">IEA · TERRAS RARAS MAGNÉTICAS · 2024</span></div><div class="section-intro"><h2>A riqueza está também<br><em>no que vem depois.</em></h2><p>Extrair, separar e fabricar são capacidades diferentes. A concentração da cadeia ajuda a explicar por que o subsolo, sozinho, não determina o futuro.</p></div><div id="chain-viz" class="chain-viz"></div><p class="chain-note small">Participação da China na cesta de terras raras magnéticas da IEA, em 2024. Cesta diferente da estatística mineral do USGS. <a href="https://www.iea.org/reports/rare-earth-elements/executive-summary" target="_blank" rel="noopener">Consultar estudo ↗</a></p></section>
+    <section class="story-section supply-section" id="cadeia" aria-labelledby="supply-title">
+      <div class="section-heading"><span class="eyebrow">05 — DA MINA AO ÍMÃ</span><span class="eyebrow">IEA · PARTICIPAÇÃO MUNDIAL · 2024</span></div>
+      <div class="section-intro">
+        <h2 id="supply-title">Da mina ao ímã,<br><em>a liderança chinesa cresce.</em></h2>
+        <p>China e Estados Unidos em três etapas da cadeia. A distância aumenta quando o minério se transforma em material para a indústria.</p>
+      </div>
+      <div class="supply-chart-header">
+        <p>Participação na produção mundial <span>· %</span></p>
+        <ul class="supply-legend" aria-label="Países comparados"><li class="supply-china">China</li><li class="supply-usa">Estados Unidos</li></ul>
+      </div>
+      <div class="supply-layout">
+        <div class="supply-main">
+          <div id="supply-stages" class="supply-stages" role="group" aria-label="Explorar uma etapa da cadeia"></div>
+          <div id="supply-chart" class="supply-chart"></div>
+          <p class="supply-chart-caption">Três etapas, a mesma escala. Selecione uma etapa para comparar os países.</p>
+        </div>
+        <aside id="supply-detail" class="supply-detail" aria-labelledby="supply-detail-title"></aside>
+      </div>
+      <div class="supply-footer">
+        <p>Terras raras para ímãs: Nd, Pr, Dy e Tb. Cada etapa tem seu próprio total mundial; as linhas comparam participações, não fluxos de material. Valores de 2024, publicados pela IEA em 2026.</p>
+        <a class="source-link" href="https://www.iea.org/data-and-statistics/charts/share-of-global-supply-of-magnet-rare-earths-and-magnet-manufacturing-2024" target="_blank" rel="noopener">IEA · consultar gráfico original ↗</a>
+      </div>
+      <details class="supply-method"><summary>Consultar valores e notas de leitura</summary><div id="supply-data"></div></details>
+      <p id="supply-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+    </section>
 
     <section id="fontes" class="sources-section"><div class="sources-header"><div><p class="eyebrow">DADOS ABERTOS. FONTES À VISTA.</p><h2>Explore. Questione.<br><em>Confira a origem.</em></h2></div><p>Recorte editorial de 5 de outubro de 2026. As fichas mantêm as datas e classificações das fontes. Novas pesquisas podem mudar esse retrato.</p><a href="data-snapshot.json" download class="download-link">Baixar todos os dados <span>↓</span><small>JSON · EDIÇÃO COMPLETA</small></a></div><details><summary>Como tratamos os dados e as diferenças entre eles</summary><div class="method-grid"><div><h3>Reserva ≠ recurso</h3><p>Recurso é uma estimativa geológica. Reserva exige critérios técnicos e econômicos. Quantidades de minério, de metal e de óxidos não se somam.</p></div><div><h3>Sem informação ≠ zero</h3><p>Dados ausentes, sigilosos e valores iguais a zero têm representações diferentes. Recursos históricos estão identificados em cada ficha.</p></div><div><h3>Um mapa tem limites</h3><p>Malhas IBGE delimitam estados e municípios. Folhas SGB mostram a extensão dos mapas geológicos publicados, não os limites de depósitos ou concessões minerais.</p></div><div><h3>Cobertura não é descoberta</h3><p>Os percentuais de 28% e 50% vêm do balanço nacional SGB até 2025. O inventário vetorial é uma consulta separada; folhas podem se sobrepor. Área mapeada não equivale a área com minerais.</p></div></div></details><details><summary>Consultar todas as fontes e documentos</summary><div id="source-directory" class="source-directory"></div></details><details><summary>Ver a cartografia original de cobertura do SGB</summary><figure><img src="assets/sgb-coverage-2025.png" alt="Figura original do SGB com a cobertura geológica brasileira até 2025, escalas 1:100.000 e 1:250.000, incluindo legenda de áreas publicadas, em andamento e planejadas." loading="lazy"><figcaption>Panorama SGB 2026 · figura 4.1, página 9. A figura original também distingue o que ainda está em andamento ou planejado.</figcaption></figure></details></section>
   </main>

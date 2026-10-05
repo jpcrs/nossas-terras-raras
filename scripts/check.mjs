@@ -5,7 +5,20 @@ import {sources,metrics,minerals,projects,rareEarths} from '../dist/data.js';
 import {projectFacts,locations,gradePercent,resourceBreakdown,coverageFeatures,normalizeWinding} from '../dist/editorial.js';
 import {mineralComparisons} from '../dist/mineral-comparisons.js';
 import {applicationExamples} from '../dist/applications-data.js';
+import {supplyChain} from '../dist/supply-chain-data.js';
 const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
+// Compare every displayed chain value to the preserved IEA series, including zeros.
+const supplyRows=d3.dsvFormat(';').parse(read('dist/'+supplyChain.rawData));
+const supplyColumns=['China','United States'];
+assert.deepEqual(supplyChain.countryOrder,['China','Estados Unidos']);
+for(const [index,stage] of supplyChain.stages.entries()){
+ const raw=supplyRows[index];
+ assert.deepEqual(stage.values,supplyColumns.map(country=>Number(raw[country])));
+ const world=Object.entries(raw).filter(([key])=>key).reduce((sum,[,value])=>sum+Number(value),0);
+ assert(Math.abs(world-100)<.11);
+}
+assert(sources[supplyChain.source]);
+assert.deepEqual(JSON.parse(read('dist/data-snapshot.json')).supplyChain,supplyChain);
 const materialSymbols=new Set([...rareEarths.map(e=>e[0]),...minerals.map(m=>m.symbol)]);
 const applicationElements=new Set();
 for(const app of applicationExamples){
@@ -51,5 +64,5 @@ for(const [scale,count]of Object.entries(expected)){assert.equal(coverageFeature
 assert.equal(new Set(coverage.features.map(f=>f.id)).size,coverage.features.length);
 for(const f of coverage.features){assert.equal(f.properties.SITUACAO,'Publicado');assert(Number(f.properties.ANO_MAPA)<=2025);assert(f.geometry.coordinates.length);}
 const snapshot=JSON.parse(read('dist/data-snapshot.json'));assert.deepEqual(snapshot.metrics,metrics);assert.equal(snapshot.mapping.scale100000,28);assert.deepEqual(snapshot.projectFacts,projectFacts);assert.equal(snapshot.mapping.polygons.features,874);
-for(const name of ['index.html','style.css','app.js','editorial.js','applications.js','applications.css','applications-data.js','mineral-comparisons.js','maps.js','vendor/d3.min.js','vendor/D3-LICENSE','assets/fonts/fonts.css'])assert(fs.existsSync(new URL('../dist/'+name,import.meta.url)));
+for(const name of ['index.html','style.css','app.js','editorial.js','applications.js','applications.css','applications-data.js','supply-chain.js','supply-chain-data.js','supply-chain.css','mineral-comparisons.js','maps.js','vendor/d3.min.js','vendor/D3-LICENSE','assets/fonts/fonts.css'])assert(fs.existsSync(new URL('../dist/'+name,import.meta.url)));
 console.log('Passed: source provenance, 17 indicators, null/zero semantics, grade conversion, resource classes, 27 states, 5 municipal references, D3 polygon winding, 874 published SGB sheets, time/scale filters, snapshot consistency and static assets.');

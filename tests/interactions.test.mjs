@@ -5,11 +5,57 @@ import {JSDOM} from 'jsdom';
 import * as d3 from 'd3';
 import {applications} from '../dist/applications-data.js';
 import {mineralComparisonCSV} from '../dist/mineral-comparisons.js';
+import {supplyChain, supplyPercent} from '../dist/supply-chain-data.js';
 let dom,document;
 const $=s=>document.querySelector(s);
 const click=s=>{const el=$(s);assert(el,`Missing control ${s}`);el.click();};
 const change=(s,value,event='change')=>{const el=$(s);assert(el,`Missing control ${s}`);el.value=value;el.dispatchEvent(new dom.window.Event(event,{bubbles:true}));};
 const tick=()=>new Promise(resolve=>setTimeout(resolve,30));
+test('supply chain selects real country shares by stage and preserves rounded zeros',()=>{
+ assert.equal($('#supply-chart svg').getAttribute('data-selected-stage'),'magnets');
+ assert.equal(document.querySelectorAll('.chain-dots').length,0);
+ assert.deepEqual([...document.querySelectorAll('.supply-legend li')].map(el=>el.textContent),['China','Estados Unidos']);
+ assert.equal(document.querySelectorAll('.supply-series').length,2);
+ assert.doesNotMatch($('#cadeia').textContent,/Brasil|Demais países/);
+ for(const stage of supplyChain.stages){
+  click(`[data-supply-stage="${stage.id}"]`);
+  assert.equal($('#supply-detail-title').textContent,stage.name);
+  assert.equal($(`[data-supply-stage="${stage.id}"]`).getAttribute('aria-pressed'),'true');
+  assert.equal(document.querySelectorAll('[data-supply-stage][aria-pressed="true"]').length,1);
+  assert.equal($('#supply-chart svg').getAttribute('data-selected-stage'),stage.id);
+  assert.equal(document.querySelectorAll('.supply-point.is-active').length,2);
+  for(const [i,key] of ['china','usa'].entries()){
+   const row=$(`#supply-detail [data-country="${key}"]`);
+   assert(row.textContent.includes(supplyPercent(stage.values[i])));
+   assert(Math.abs(Number(row.querySelector('.supply-share-bar').getAttribute('width'))-2.4*stage.values[i])<1e-9);
+  }
+  if(stage.values.includes(0))assert.match($('.supply-zero-note').textContent,/Não significa necessariamente ausência/);
+  assert($('#supply-announcement').textContent.includes(stage.name));
+  assert.equal(document.querySelectorAll('#supply-detail .supply-country-row').length,2);
+  assert.doesNotMatch($('#supply-announcement').textContent,/Brasil|Demais países/);
+ }
+ assert.equal(document.querySelectorAll('#supply-data tbody tr').length,2);
+ assert.equal($('#supply-data a[download]').getAttribute('href'),supplyChain.rawData);
+ assert.match($('#supply-data').textContent,/99,9%/);
+});
+test('supply chain keyboard and direct chart selection update the same accessible state',()=>{
+ const key=(selector,key)=>$(selector).dispatchEvent(new dom.window.KeyboardEvent('keydown',{key,bubbles:true,cancelable:true}));
+ key('[data-supply-stage="magnets"]','Home');
+ assert.equal(document.activeElement,$('[data-supply-stage="mining"]'));
+ assert.equal($('#supply-chart svg').getAttribute('data-selected-stage'),'mining');
+ key('[data-supply-stage="mining"]','ArrowRight');
+ assert.equal(document.activeElement,$('[data-supply-stage="refining"]'));
+ assert.equal($('#supply-detail-title').textContent,'Separação e refino');
+ key('[data-supply-stage="refining"]','End');
+ key('[data-supply-stage="magnets"]','ArrowRight');
+ assert.equal(document.activeElement,$('[data-supply-stage="mining"]'));
+ key('[data-supply-stage="mining"]','ArrowLeft');
+ assert.equal(document.activeElement,$('[data-supply-stage="magnets"]'));
+ $('[data-supply-hit="refining"]').dispatchEvent(new dom.window.MouseEvent('click',{bubbles:true}));
+ assert.equal($('[data-supply-stage="refining"]').getAttribute('aria-pressed'),'true');
+ assert(!$('#supply-chart svg').innerHTML.includes('NaN'));
+ assert.match($('#supply-chart-desc').textContent,/China 58,9%.*Estados Unidos 9,6%/);
+});
 before(async()=>{
  const html=await fs.readFile(new URL('../dist/index.html',import.meta.url),'utf8');
  dom=new JSDOM(html,{url:'http://localhost:4174/',pretendToBeVisual:true});

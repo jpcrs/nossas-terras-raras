@@ -2,6 +2,7 @@ import {sources,minerals,projects,rareEarths,usgsUrl} from './data.js';
 import {projectFacts,fmt} from './editorial.js';
 import {initMap,selectProject} from './maps.js';
 import {initApplications} from './applications.js';
+import {initSupplyChain} from './supply-chain.js';
 import {mineralComparisons,comparisonCountries,comparisonMissing,mineralComparisonCSV} from './mineral-comparisons.js';
 const d3=window.d3,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const motion=()=>!matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -50,8 +51,7 @@ $$('[data-comparison]').forEach(b=>b.onclick=()=>{comparison=b.dataset.compariso
 
 initApplications();
 
-const chain=[['Extração',60,'O minério sai do solo. Beneficiamento produz um concentrado.'],['Separação e refino',91,'Os elementos são separados e purificados para uso industrial.'],['Ímãs sinterizados',94,'Metais e ligas se transformam em componentes de alto desempenho.']];
-$('#chain-viz').innerHTML=chain.map(([title,share,desc],i)=>`<article class="chain-step"><span class="eyebrow">0${i+1} / ETAPA DA CADEIA</span><h3>${title}</h3><div class="chain-dots" role="img" aria-label="China: ${share} por cento; outros países: ${100-share} por cento">${Array.from({length:100},(_,j)=>`<i class="${j<share?'filled':''}"></i>`).join('')}</div><div class="share"><strong>${share}%</strong><span>participação<br>da China</span></div><p>${desc}</p></article>`).join('');
+initSupplyChain();
 
 let selectedMineral='Nb';
 $('#mineral-grid').innerHTML=minerals.map(m=>`<button class="mineral-tile" data-mineral="${m.symbol}" aria-label="Comparar ${m.name}" aria-pressed="false" aria-controls="production-chart reserve-chart"><small>${m.number}</small><strong>${m.symbol}</strong><span>${m.name}</span></button>`).join('');

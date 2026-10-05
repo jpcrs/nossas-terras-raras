@@ -21,12 +21,15 @@ Abra http://127.0.0.1:4174. `PORT=4180 npm run dev` usa outra porta. A publicaç
 - **Comparações:** reservas versus produção, escolha explícita entre a estimativa histórica de 21 Mt e a revisão de 11 Mt, produção e reservas lado a lado para os 15 perfis de minerais, com seleção pelas células e exportação conjunta em CSV.
 - **Materiais e tecnologias:** um explorador integrado conecta 17 terras raras a oito aplicações: carro elétrico, eólica, telas e vidros, fibra óptica, lasers, ligas, usos especiais e solar. Selecionar um item mostra todos os materiais do recorte com explicações breves de uso. As fichas mantêm fontes e links para projetos no mapa; a referência completa dos 17 elementos fica em uma seção expansível.
 
+- **Da mina ao ímã:** perfis D3 de China e Estados Unidos na extração, no refino e na fabricação de ímãs. Seleção por clique ou teclado, escala comum de 0–100%, tabela acessível e CSV original da IEA (2024).
+
 ## Estrutura
 
 - `dist/index.html` e `dist/style.css`: estrutura editorial e layout responsivo.
 - `dist/maps.js`: projeção D3, camadas, zoom, seleção, filtros de cobertura e inspector.
 - `dist/app.js`: gráficos, minerais, diálogos e exportação.
 - `dist/applications.js`, `dist/applications.css` e `dist/applications-data.js`: seleção de aplicações, lista de materiais com seus usos e referência de elementos.
+- `dist/supply-chain.js`, `dist/supply-chain.css` e `dist/supply-chain-data.js`: comparação da cadeia, detalhes por etapa e valores com proveniência.
 - `dist/data.js`: pesquisa original, fontes e unidades, preservadas.
 - `dist/mineral-comparisons.js`: pares de produção/reservas por mineral, lacunas explícitas e exportação CSV. Reutiliza as séries comparativas e os valores brasileiros já presentes nas fichas.
 - `dist/editorial.js`: valores estruturados de apresentação, classes de recursos e funções de filtragem.
@@ -37,7 +40,7 @@ Abra http://127.0.0.1:4174. `PORT=4180 npm run dev` usa outra porta. A publicaç
 ## Verificar e manter
 
 ```sh
-npm test                # integridade dos dados + 12 cenários de interação
+npm test                # integridade dos dados + 14 cenários de interação
 npm run snapshot        # regera o download JSON após mudanças nos dados
 npm run check           # unidades, filtros, projeção e proveniência
 npm run vendor          # recopia o D3 e sua licença após atualizar a dependência

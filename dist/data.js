@@ -12,6 +12,7 @@ export const sources={
  china:{name:'China Geological Survey · levantamentos regionais',url:'https://en.cgs.gov.cn/Activities/201603/t20160309_266130.html',date:'Escalas nacionais de referência'},
  china2024:{name:'CGS · boletim de recursos naturais 2024',url:'https://www.cgs.gov.cn/zcwj/202503/t20250314_820792.html',date:'14/03/2025 · atividade em 2024'},
  iea:{name:'IEA · Rare Earth Elements',url:'https://www.iea.org/reports/rare-earth-elements/executive-summary',date:'2026 · dados de 2024'},
+ ieaSupply:{name:'IEA · participação mundial na cadeia de ímãs',url:'https://www.iea.org/data-and-statistics/charts/share-of-global-supply-of-magnet-rare-earths-and-magnet-manufacturing-2024',date:'Dados de 2024 · consulta 05/10/2026 · CC BY 4.0'},
  iea2026:{name:'IEA · Global Critical Minerals Outlook 2026',url:'https://www.iea.org/news/supply-concentration-export-restrictions-and-declining-investment-put-critical-mineral-security-at-risk',date:'16/07/2026 · dados de 2025'},
  doe:{name:'DOE · materiais críticos e aplicações',url:'https://www.energy.gov/cmm/what-are-critical-minerals-and-materials',date:'Consultado em 05/10/2026'},
  doe2023:{name:'DOE · Critical Materials Assessment',url:'https://www.energy.gov/sites/default/files/2023-05/2023-critical-materials-assessment.pdf',date:'2023 · tecnologias e materiais'},

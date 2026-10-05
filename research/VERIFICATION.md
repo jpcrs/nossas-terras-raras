@@ -63,3 +63,24 @@ Verificações automatizadas em `scripts/check.mjs`: estrutura dos dados, cardin
 - As células abrem as fichas e fontes existentes. Fichas de terras raras agora permitem ir diretamente aos projetos no mapa. A referência completa dos 17 elementos permanece em uma seção recolhida, independente da aplicação selecionada.
 - Navegação de aplicações permanece visível durante a rolagem. No celular, o seletor permite rolagem horizontal; a grade adapta-se a três, duas ou uma coluna.
 - 12 cenários automatizados passaram, cobrindo todas as aplicações, materiais sem duplicação, fichas, navegação aos projetos e demais visualizações. Inspeção no navegador em 360, 390, 768 e 1.280 px: sem overflow horizontal da página ou das células. Captura: `research/screenshots/application-materials.png`.
+
+
+## Cadeia de terras raras para ímãs — revisão visual de 05/10/2026
+
+A seção escura com matrizes de pontos foi substituída por perfis D3 sobre uma escala comum de 0 a 100%, com comparação direta de China, Estados Unidos e Brasil. As etapas podem ser selecionadas pelos botões (inclusive setas/Home/End) ou pelo gráfico. Os detalhes incluem os demais países, uma explicação breve e ressalvas de arredondamento.
+
+Fonte primária: [IEA, Share of global supply of magnet rare earths and magnet manufacturing, 2024](https://www.iea.org/data-and-statistics/charts/share-of-global-supply-of-magnet-rare-earths-and-magnet-manufacturing-2024), consulta em 05/10/2026, CC BY 4.0. O atributo público `data-chart-csv` foi preservado sem alterações em `dist/assets/iea-magnet-supply-2024.csv`. Cesta: Nd, Pr, Dy e Tb, diferente da estatística geral do USGS. Percentuais de produção em 2024, não capacidade anunciada ou valores de 2026.
+
+| Etapa | China | Estados Unidos | Brasil | Demais países (soma) |
+|---|---:|---:|---:|---:|
+| Extração | 58,9% | 9,6% | 0,6% | 30,8% |
+| Separação e refino | 91,3% | 1,2% | 0,0% | 7,5% |
+| Ímãs | 94,4% | 0,0% | 0,0% | 5,6% |
+
+O gráfico original tem mais precisão que os 60%/91%/94% arredondados no texto do sumário executivo anteriormente usado. As parcelas de extração somam 99,9%; não foram normalizadas. Zeros são valores publicados na série com uma casa decimal, não dados ausentes nem afirmação de inexistência de atividade. As linhas conectam participações entre etapas, não fluxos de material ou uma série temporal. Todos os valores estão no download JSON; a verificação compara a transcrição e os agregados com o CSV preservado.
+
+Validação: `npm test` passou com 14 cenários; `git diff --check` sem erros. No navegador, seleção pelos botões e pelo gráfico, navegação por teclado, tabela e ausência de erros de console foram conferidas. Layouts de 1280×720 e 360×800 sem transbordamento horizontal. Captura desktop em `research/screenshots/chain-comparison.png`.
+
+### Comparação reduzida a China e Estados Unidos
+
+A pedido do usuário, o gráfico, a legenda, o painel por etapa, a tabela e os anúncios acessíveis passam a comparar somente China e Estados Unidos. O texto introdutório e o download JSON acompanham esse recorte. A série CSV original da IEA permanece intacta com todos os países; os percentuais exibidos continuam relativos ao total mundial, sem renormalização.
