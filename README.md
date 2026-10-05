@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-Abra http://127.0.0.1:4174. `PORT=4180 npm run dev` usa outra porta. A publicação continua sendo inteiramente estática: basta servir `dist/` por HTTP. Não há backend, chamadas a APIs em tempo de execução, dependência de CDN ou etapa de build. D3 e fontes tipográficas estão incluídos com suas licenças.
+Abra http://127.0.0.1:4174. `PORT=4180 npm run dev` usa outra porta. A publicação continua sendo inteiramente estática: basta servir `dist/` por HTTP. Não há backend nem etapa de build. Os dados, D3 e fontes tipográficas são locais, com as respectivas licenças. O Cloudflare Web Analytics carrega um script externo para coletar métricas de acesso.
 
 **Trabalho local:** por preferência do proprietário, não publicar no OpenAI Sites. Alterações e prévias devem permanecer locais, salvo nova solicitação explícita de publicação.
 
