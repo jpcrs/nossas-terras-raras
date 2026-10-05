@@ -18,6 +18,13 @@ for(const [index,stage] of supplyChain.stages.entries()){
  assert(Math.abs(world-100)<.11);
 }
 assert(sources[supplyChain.source]);
+// Broader USGS mining totals and undated metallurgy estimates must stay outside the IEA series.
+const reeProduction=metrics.find(m=>m.id==='ree-p');
+assert.deepEqual(supplyChain.totalMining.values,reeProduction.values.slice(1));
+assert.equal(supplyChain.totalMining.world,reeProduction.world);
+assert.equal(supplyChain.metallurgy.usaShare,null);
+assert.equal(supplyChain.metallurgy.year,null);
+for(const key of [supplyChain.metallurgy.source,supplyChain.totalMining.source,...supplyChain.usProgress.sources])assert(sources[key]);
 assert.deepEqual(JSON.parse(read('dist/data-snapshot.json')).supplyChain,supplyChain);
 const materialSymbols=new Set([...rareEarths.map(e=>e[0]),...minerals.map(m=>m.symbol)]);
 const applicationElements=new Set();

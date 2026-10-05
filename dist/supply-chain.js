@@ -1,4 +1,5 @@
 import {supplyChain, supplyPercent} from './supply-chain-data.js';
+import {sources} from './data.js';
 
 const countries = [
   {name: 'China', color: '#ac452e', key: 'china'},
@@ -8,6 +9,37 @@ const countries = [
 export function initSupplyChain() {
   const d3 = window.d3;
   const {stages} = supplyChain;
+  const sourceLink = (key, label) => `<a href="${sources[key].url}" target="_blank" rel="noopener">${label}</a>`;
+  const ratio = stage => (stage.values[0] / stage.values[1]).toLocaleString('pt-BR', {maximumFractionDigits: 1});
+  d3.select('#supply-takeaway').html(`
+    <div class="supply-takeaway-copy"><span class="eyebrow">A DISTÂNCIA INDUSTRIAL</span><p>Ter a mina é apenas <br><em>o primeiro passo.</em></p></div>
+    <div class="supply-multiple"><strong>${ratio(stages[0])}<small>×</small></strong><span>a participação dos EUA<br>na extração</span></div>
+    <span class="supply-takeaway-arrow" aria-hidden="true">→</span>
+    <div class="supply-multiple"><strong>${ratio(stages[1])}<small>×</small></strong><span>a participação dos EUA<br>no refino</span></div>
+    <p class="supply-takeaway-note">Participação chinesa ÷ participação americana. <br>Cálculo sobre a série IEA de 2024.</p>`);
+
+  const {metallurgy, totalMining, usProgress} = supplyChain;
+  d3.select('#supply-context').html(`
+    <article class="supply-context-card supply-metallurgy">
+      <p class="eyebrow">ENTRE O ÓXIDO E O ÍMÃ</p>
+      <h3>Metalização e ligas:<br><em>outro elo concentrado.</em></h3>
+      <div class="supply-metal-stat"><strong>≈${metallurgy.chinaMetalShare}%</strong><p>da produção de <b>metais</b><br>e de <b>ligas</b> está na China</p></div>
+      <p>Os óxidos precisam virar metais; depois, ligas com ferro e boro. Essa transformação exige instalações e conhecimento próprios, além da separação química.</p>
+      <div class="supply-us-status"><span>ESTADOS UNIDOS</span><p>Produção comercial de metal NdPr iniciada pela MP Materials em janeiro de 2025. A fonte canadense não informa a participação americana.</p></div>
+      <p class="supply-context-note">Estimativas publicadas pelo Canadá em janeiro de 2025, sem ano-base explícito. Referência distinta dos dados de 2024 da IEA.</p>
+      <div class="supply-context-sources">${sourceLink('nrcanMagnets', 'Canadá · metais e ligas')}${sourceLink('mpMetal2025', 'MP Materials · metal NdPr')}</div>
+    </article>
+    <article class="supply-context-card supply-mountain-pass">
+      <p class="eyebrow">MOUNTAIN PASS E A CADEIA AMERICANA</p>
+      <h3>Mineração relevante.<br><em>Indústria em expansão.</em></h3>
+      <p>No recorte mais amplo de terras raras do USGS, a diferença na mineração é menor do que no refino de materiais para ímãs.</p>
+      <div class="supply-mining-shares" aria-label="Participação mundial na mineração de terras raras, estimativa de 2025">
+        ${countries.map((c, i) => `<div class="supply-${c.key}"><span>${c.name}</span><strong>${supplyPercent(totalMining.values[i] / totalMining.world * 100)}</strong><small>${totalMining.values[i].toLocaleString('pt-BR')} t de REO</small></div>`).join('')}
+      </div>
+      <p class="supply-context-note">USGS · estimativas de 2025, sobre ${totalMining.world.toLocaleString('pt-BR')} t mundiais. Recorte mais amplo que os quatro elementos do gráfico.</p>
+      <div class="supply-us-progress"><strong>${usProgress.ndprOxideTonnes.toLocaleString('pt-BR')} t de óxidos de NdPr</strong><p>produzidas pela MP Materials em 2025. A empresa também reportou seus primeiros ímãs em equipamentos comerciais no 4º trimestre de 2025, no Texas.</p></div>
+      <div class="supply-context-sources">${sourceLink('usgsREE', 'USGS · mineração, 2025')}${sourceLink('mpResults2025', 'MP Materials · resultados, 2025')}</div>
+    </article>`);
   const root = d3.select('#supply-chart');
   const detail = d3.select('#supply-detail');
   let selected = 'magnets';
@@ -111,6 +143,7 @@ export function initSupplyChain() {
     detail.html(`<p class="eyebrow">${stage.number} / ${stage.output.toUpperCase()}</p>
       <h3 id="supply-detail-title">${stage.name}</h3><p class="supply-description">${stage.description}</p>
       <div class="supply-country-rows"></div>
+      <div class="supply-implication"><span class="eyebrow">O QUE ISSO SIGNIFICA</span><p>${stage.implication}</p></div>
       ${stage.values.includes(0) ? `<p class="supply-zero-note">* ${supplyChain.zeroNote}</p>` : ''}`);
     const rows = countries.map((c, i) => ({...c, value: stage.values[i]}));
     const row = detail.select('.supply-country-rows').selectAll('.supply-country-row').data(rows).join('div')

@@ -21,7 +21,7 @@ Abra http://127.0.0.1:4174. `PORT=4180 npm run dev` usa outra porta. A publicaç
 - **Comparações:** reservas versus produção, com a estimativa histórica de 21 Mt identificada, produção e reservas lado a lado para 12 minerais com pelo menos um valor disponível, seleção pelas células e exportação conjunta em CSV. Perfis sem valores nas duas séries (cobalto, urânio e titânio) não aparecem no seletor; o catálogo completo continua disponível nas fichas de aplicações e no JSON.
 - **Materiais e tecnologias:** um explorador integrado conecta terras raras a sete aplicações: carro elétrico, eólica, telas e vidros, fibra óptica, lasers, ligas e usos especiais. Selecionar um item mostra todos os materiais do recorte com explicações breves de uso. As fichas mantêm fontes e links para projetos no mapa; a referência completa dos 17 elementos fica em uma seção expansível.
 
-- **Da mina ao ímã:** perfis D3 de China e Estados Unidos na extração, no refino e na fabricação de ímãs. Seleção por clique ou teclado, escala comum de 0–100% e descrição acessível dos valores. CSV original da IEA (2024) preservado nos dados.
+- **Da mina ao ímã:** perfis D3 de China e Estados Unidos na extração, no refino e na fabricação de ímãs, com a diferença de escala e as implicações de cada etapa. Seleção por clique ou teclado, escala comum de 0–100% e CSV original da IEA (2024) preservados. Painéis complementares documentam metalização e ligas (Canadá, sem ano-base), mineração no recorte USGS de 2025 e marcos industriais da MP Materials em 2025, sem misturar esses dados na série do gráfico.
 
 ## Estrutura
 
