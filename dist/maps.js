@@ -21,7 +21,7 @@ export function selectProject(id,{switchLayer=true,focus=false}={}){
  hideTooltip();
  if(switchLayer&&layer==='coverage')layer='projects';
  renderControls();
- renderInspector();updateMap();renderProjectList();
+ renderInspector();updateMap();
  if(mapReady&&previous!==id&&transform.k>1.05)zoomProject();
  const p=projects.find(p=>p.id===id);announcement(`${p.name}, ${p.region}. ${p.status}.`);
  if(focus){$('#explorar').scrollIntoView({behavior:motion()?'smooth':'instant'});}
@@ -41,13 +41,6 @@ function renderInspector(){
  panel.innerHTML=`<div class="inspector-kicker"><span class="eyebrow">${p.state} / ${layer==='geology'?'GEOLOGIA':'PROJETO SELECIONADO'}</span>${stageLabel(p)}</div>${peers.length>1?`<div class="cluster-tabs" role="group" aria-label="Projetos nesta referência municipal">${peers.map(x=>`<button data-select-project="${x.id}" class="${x.id===selected?'active':''}" aria-pressed="${x.id===selected}">${projectFacts[x.id].short}</button>`).join('')}</div>`:''}<h3>${f.short}</h3><p class="project-region">${p.region}</p>${layer==='geology'?`${geologyCutaway(f.kind)}<p class="small">${f.kind==='clay'?'Nas argilas iônicas, parte das terras raras está adsorvida nas partículas. A recuperação depende da química e dos testes de cada depósito.':'Em sistemas de rocha e alteração, as terras raras estão associadas a minerais. Beneficiamento e separação dependem da mineralogia local.'}</p><p class="small">Esquema conceitual. Não representa uma seção medida deste projeto nem sua composição elementar.</p>`:''}<p class="eyebrow element-label">ELEMENTOS DESTACADOS NA FONTE</p><div class="element-chips">${f.elements.length?f.elements.map(elementChip).join(''):'<span class="small">ETR não individualizadas · tório associado</span>'}</div><div class="project-geology"><strong>${p.type}</strong></div><div class="resource-stat"><span class="eyebrow">${f.amountLabel}</span>${f.amount!==null?`<strong>${fmt(f.amount)}</strong><span class="unit">${f.unit==='Mt de material'?'milhões de toneladas · material':'milhões de toneladas · TREO contidos'}</span>`:'<p class="no-resource">Quantidade não disponível</p>'}</div><p class="resource-note">${f.resourceNote}</p>${breakdown?`<div class="resource-stack" role="img" aria-label="${fmt(breakdown.measuredIndicated)} Mt medidos e indicados; ${fmt(breakdown.inferred)} Mt inferidos"><span style="width:${breakdown.measuredIndicated/breakdown.total*100}%"></span><span style="width:${breakdown.inferred/breakdown.total*100}%"></span></div><div class="resource-stack-labels"><span>${fmt(breakdown.measuredIndicated)} Mt<br>Medidos + indicados</span><span>${fmt(breakdown.inferred)} Mt<br>Inferidos</span></div>`:''}<div class="grade"><div class="grade-header"><span><abbr title="Óxidos totais de terras raras">TREO</abbr> · teor médio</span><strong>${f.grade!==null?fmt(f.grade)+' ppm':'Não comparável'}</strong></div>${f.grade!==null?`<div class="grade-strip" role="img" aria-label="Teor ${fmt(gradePercent(f.grade),4)} por cento. Escala visual de zero a ${fmt(gradeMax)} por cento"><span style="width:${gradePercent(f.grade)/gradeMax*100}%"></span></div><div class="grade-endpoints"><span>0%</span><span>escala ampliada · ${fmt(gradeMax)}%</span></div><div class="grade-conversion"><span>1 t de material →</span><strong>${fmt(f.grade/1000,3)} kg de TREO</strong></div><p class="grade-note">${fmt(gradePercent(f.grade),4)}% de óxidos no material.<br>Conteúdo químico, não recuperação industrial.</p>`:`<p class="resource-note">${p.grade}</p>`}</div><div class="inspector-actions"><button class="text-button" data-project-full="${p.id}">Ficha e fontes ↗</button><button class="text-button" id="zoom-project">Ampliar região ⤢</button></div><div class="project-source">${esc(p.operator)}<br>REFERÊNCIA · ${esc(p.date)}<br>${link(p.source,'Fonte do projeto')}${p.extraSource?' · '+link(p.extraSource,'Referência do recurso'):''}</div>`;
  panel.querySelectorAll('[data-select-project]').forEach(b=>b.onclick=()=>selectProject(b.dataset.selectProject));
  $('#zoom-project').onclick=zoomProject;
-}
-function renderProjectList(){
- const focusId=document.activeElement?.dataset.project;
- $('#project-count').textContent=`EXPLORE OS ${projects.length} REGISTROS`;
- $('#project-list').innerHTML=projects.map(p=>`<button data-project="${p.id}" class="${p.id===selected?'active':''}" aria-pressed="${p.id===selected}"><i class="legend-dot" style="--color:${stages[projectFacts[p.id].stage].color}"></i>${projectFacts[p.id].short}</button>`).join('');
- $('#project-list').querySelectorAll('button').forEach(b=>b.onclick=()=>selectProject(b.dataset.project));
- if(focusId)$('#project-list').querySelector(`[data-project="${focusId}"]`)?.focus({preventScroll:true});
 }
 function renderControls(){
  const focusScale=document.activeElement?.dataset.scale;
@@ -137,7 +130,7 @@ function applyTransform(t){
 function zoomTo(t){if(!mapReady)return;svg.interrupt();if(motion())svg.transition().duration(600).call(zoom.transform,t);else svg.call(zoom.transform,t);}
 function zoomProject(){if(!mapReady)return;const f=towns.features.find(f=>String(f.properties.codarea)===projectFacts[selected].municipality);const [[x0,y0],[x1,y1]]=path.bounds(f);const k=Math.min(6,.55/Math.max((x1-x0)/W,(y1-y0)/H));zoomTo(d3.zoomIdentity.translate(W/2,H/2).scale(k).translate(-(x0+x1)/2,-(y0+y1)/2));}
 export async function initMap(){
- renderControls();renderInspector();renderProjectList();
+ renderControls();renderInspector();
  document.querySelectorAll('[data-layer]').forEach(b=>b.onclick=()=>setLayer(b.dataset.layer));
  $('#zoom-in').onclick=()=>{if(mapReady)svg.transition().duration(motion()?350:0).call(zoom.scaleBy,2,[W/2,H/2]);};
  $('#zoom-out').onclick=()=>{if(mapReady)svg.transition().duration(motion()?350:0).call(zoom.scaleBy,.5,[W/2,H/2]);};
@@ -147,7 +140,7 @@ export async function initMap(){
   states=normalizeWinding(geometry[0],d3);towns=normalizeWinding(geometry[1],d3);
   projection=d3.geoConicConformal().parallels([-2,-22]).rotate([54,0]).fitExtent([[90,70],[W-83,H-60]],states);
   path=d3.geoPath(projection);
-  $('#map').innerHTML='';svg=d3.select('#map').append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('role','group').attr('aria-label','Brasil: estados, referências municipais e folhas geológicas. Use Tab para entrar no mapa, setas para percorrer as folhas e Enter ou espaço para selecionar. Os projetos também têm botões abaixo do mapa.');
+  $('#map').innerHTML='';svg=d3.select('#map').append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('role','group').attr('aria-label','Brasil: estados, referências municipais e folhas geológicas. Use Tab para percorrer os projetos e Enter ou espaço para selecionar. Na camada de folhas, use também as setas para navegar.');
   svg.append('defs').append('clipPath').attr('id','brazil-clip').selectAll('path').data(states.features).join('path').attr('d',path);
   viewport=svg.append('g');
   viewport.append('path').datum(d3.geoGraticule().extent([[-79,-38],[-31,10]]).step([10,10])()).attr('class','graticule').attr('d',path);
@@ -191,5 +184,5 @@ export async function initMap(){
    labelGroup.selectAll('text').style('font-size',`${7.5/k/transform.k}px`);
   });observer.observe($('#map'));}
   if(layer==='coverage')loadCoverage();
- }catch(error){$('#map').innerHTML='<div class="map-error"><p>O mapa não carregou. Você ainda pode explorar os registros nos botões abaixo.</p><button id="retry-map">Tentar novamente</button></div>';$('#retry-map').onclick=()=>{locationData.length=0;initMap();};console.error('Falha ao carregar geometrias',error);}
+ }catch(error){$('#map').innerHTML='<div class="map-error"><p>Não foi possível carregar o mapa. Tente novamente para explorar os projetos.</p><button id="retry-map">Tentar novamente</button></div>';$('#retry-map').onclick=()=>{locationData.length=0;initMap();};console.error('Falha ao carregar geometrias',error);}
 }
