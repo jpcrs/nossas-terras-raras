@@ -5,7 +5,8 @@ import {JSDOM} from 'jsdom';
 import * as d3 from 'd3';
 import {projects} from '../dist/data.js';
 import {projectFacts,locations} from '../dist/editorial.js';
-import {applications} from '../dist/applications-data.js';
+import {applications,applicationSourceKeys,materialSourceKeys} from '../dist/applications-data.js';
+import {sources} from '../dist/data.js';
 import {mineralComparisonCSV} from '../dist/mineral-comparisons.js';
 import {supplyChain, supplyPercent} from '../dist/supply-chain-data.js';
 let dom,document;
@@ -64,6 +65,29 @@ test('supply chain keyboard and direct chart selection update the same accessibl
  assert.equal($('[data-supply-stage="refining"]').getAttribute('aria-pressed'),'true');
  assert(!$('#supply-chart svg').innerHTML.includes('NaN'));
  assert.match($('#supply-chart-desc').textContent,/China 58,9%.*Estados Unidos 9,6%/);
+});
+test('future demand uses sourced oxide endpoints and proportional bars without unrelated scenarios',()=>{
+ assert.equal($('#cadeia').nextElementSibling.id,'dimensao');
+ assert.equal($('#dimensao').nextElementSibling.id,'futuro');
+ assert.match($('#futuro .section-heading').textContent,/05 —/);
+ assert.match($('#dimensao .section-heading').textContent,/04 —/);
+ const bars=[...document.querySelectorAll('.future-bar')];
+ assert.deepEqual(bars.map(bar=>[bar.dataset.year,bar.dataset.status]),[['2024','estimate'],['2040','projection']]);
+ assert.deepEqual(bars.map(bar=>bar.querySelector('.future-total-label').textContent),['234','607']);
+ assert.deepEqual(bars.map(bar=>bar.querySelector('.future-status').textContent),['ESTIMATIVA','PROJEÇÃO']);
+ const heights=bars.map(bar=>Number(bar.querySelector('rect').getAttribute('height')));
+ assert(Math.abs(heights[1]/heights[0]-607/234)<1e-9);
+ const bottoms=bars.map((bar,i)=>Number(bar.querySelector('rect').getAttribute('y'))+heights[i]);
+ assert.equal(bottoms[0],bottoms[1]);
+ assert.equal($('.future-multiplier').textContent,'2,6×');
+ assert.equal($('.future-total-growth strong').textContent,'+159%');
+ assert.match($('.future-additional').textContent,/373 mil t/);
+ assert.match($('#future-chart-desc').textContent,/234 mil toneladas de óxidos de terras raras em 2024.*607 mil toneladas em 2040/);
+ assert.match($('.future-chart-unit').textContent,/Mil toneladas por ano.*TREO/);
+ assert.equal($('#future-source').href,sources.adamasFuture.url);
+ assert.equal(document.querySelectorAll('[data-future-scenario], .future-clean-bar').length,0);
+ assert(!$('#future-chart svg').innerHTML.includes('NaN'));
+ assert.equal(document.querySelectorAll('#future-drivers article a[href^="https://"]').length,3);
 });
 before(async()=>{
  const html=await fs.readFile(new URL('../dist/index.html',import.meta.url),'utf8');
@@ -205,9 +229,11 @@ test('item selection shows all its materials and uses without component controls
   assert.equal(document.querySelectorAll('[data-tech][aria-pressed="true"]').length,1);
   assert.equal($('#application-title').textContent,app.name);
   assert.equal(document.querySelectorAll('#application-materials .application-material').length,app.materials.length);
+  assert.equal(document.querySelectorAll('#application-materials .rare').length,app.materials.length);
+  assert.equal($('#application-materials [data-mineral-detail]'),null);
   assert.equal($('#detail-dialog').open,false);
   for(const material of app.materials){
-   const card=$(`#application-materials [data-element-detail="${material.symbol}"], #application-materials [data-mineral-detail="${material.symbol}"]`);
+   const card=$(`#application-materials [data-element-detail="${material.symbol}"]`);
    assert(card);assert.match(card.textContent,new RegExp(material.use));assert(card.textContent.includes(material.description));
   }
   assert($('#application-sources a').href.startsWith('https://'));
@@ -215,17 +241,61 @@ test('item selection shows all its materials and uses without component controls
  click('[data-tech="ev"]');
  assert.equal(document.querySelectorAll('#application-materials .rare').length,4);
  assert($('#application-materials [data-element-detail="Nd"]'));
- assert($('#application-materials [data-mineral-detail="Co"]'));
- assert($('#application-materials [data-mineral-detail="Cu"]'));
- assert.match($('#application-materials [data-mineral-detail="Ni"]').textContent,/NMC.*LFP/);
  assert.equal($('[data-tech="solar"]'),null);
 });
 test('material cards open the correct sourced profile and can navigate to project records',()=>{
  click('[data-tech="ev"]');click('#application-materials [data-element-detail="Pr"]');
  assert.equal($('#dialog-title').textContent,'Praseodímio');assert($('#dialog-content a').href.startsWith('https://'));
  click('[data-dialog-project="araxa"]');assert.equal($('#detail-dialog').open,false);assert.equal($('#map-inspector h3').textContent,'Araxá');
- click('#application-materials [data-mineral-detail="Cu"]');assert.equal($('#dialog-title').textContent,'Cobre');click('.dialog-close');
+ click('#application-materials [data-element-detail="Dy"]');assert.equal($('#dialog-title').textContent,'Disprósio');click('.dialog-close');
  assert.equal($('#application-title').textContent,'Carro elétrico');
+});
+test('every application material opens its own evidence and scope, without unrelated citations',()=>{
+ for(const app of applications){
+  click(`[data-tech="${app.id}"]`);
+  const links=[...document.querySelectorAll('#application-sources a')];
+  for(const key of applicationSourceKeys(app))assert(links.some(a=>a.href===sources[key].url));
+  for(const material of app.materials){
+   const card=$(`#application-materials [data-element-detail="${material.symbol}"]`);
+   card.click();
+   assert($('.application-dialog-context').textContent.includes(material.description));
+   assert.deepEqual([...document.querySelectorAll('.application-dialog-context a')].map(a=>a.href),materialSourceKeys(app,material).map(key=>sources[key].url));
+   if(material.scope){assert(card.textContent.includes(material.scope));assert($('.application-dialog-context').textContent.includes(material.scope));}
+   if(app.note)assert($('.application-dialog-context').textContent.includes(app.note));
+   click('.dialog-close');
+  }
+ }
+ click('[data-tech="phone"]');
+ click('#application-materials [data-element-detail="Nd"]');
+ assert.match($('.application-dialog-context').textContent,/Smartphone.*Som e vibração/);
+ assert.equal($('.application-dialog-context a').href,sources.usgsPhone.url);
+ click('.dialog-close');
+ click('[data-tech="mri"]');
+ assert.match($('#application-note').textContent,/Contraste e ímã são aplicações separadas/);
+ click('[data-tech="refining"]');
+ assert.match($('#application-note').textContent,/combustível final/);
+});
+test('smartphone shows its rare-earth selection without the removed callout or material legend',()=>{
+ click('[data-tech="phone"]');
+ assert.equal($('#application-count>strong').textContent,'9');
+ assert.match($('#application-count').textContent,/terras raras neste recorte/);
+ assert.equal(document.querySelectorAll('#application-materials .rare').length,9);
+ assert.equal($('#application-insight'),null);
+ assert(!$('.applications-explorer').textContent.includes('16 de 17'));
+ assert(!$('.applications-explorer').textContent.includes('Outro material'));
+});
+test('the expanded application selector supports keyboard navigation without losing the selection',()=>{
+ assert.equal(document.querySelectorAll('[data-tech]').length,15);
+ assert.match($('#application-total').textContent,/15 APLICAÇÕES/);
+ const key=(id,key)=>$(`[data-tech="${id}"]`).dispatchEvent(new dom.window.KeyboardEvent('keydown',{key,bubbles:true,cancelable:true}));
+ for(const [id,pressed,expected]of [['refining','Home','phone'],['phone','ArrowRight','ev'],['ev','End','special'],['special','ArrowRight','phone'],['phone','ArrowLeft','special']]){
+  key(id,pressed);
+  assert.equal(document.activeElement,$(`[data-tech="${expected}"]`));
+  assert.equal($(`[data-tech="${expected}"]`).getAttribute('aria-pressed'),'true');
+  assert.equal(document.querySelectorAll('[data-tech][aria-pressed="true"]').length,1);
+  assert.equal($('#application-title').textContent,applications.find(a=>a.id===expected).name);
+ }
+ click('[data-tech="phone"]');
 });
 test('comparison CSV exports both selected series with nulls, zero and provenance intact',()=>{
  const lithium=mineralComparisonCSV('Li');

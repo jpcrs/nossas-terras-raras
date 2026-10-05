@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="applications.css">
   <link rel="stylesheet" href="supply-chain.css">
+  <link rel="stylesheet" href="future.css">
   <script src="vendor/d3.min.js" defer></script>
   <script type="module" src="app.js"></script>
 </head>
@@ -44,14 +45,15 @@
     </section>
 
     <section id="elementos" class="story-section elements-section">
-      <div class="section-heading"><span class="eyebrow">02 — A MATÉRIA DO FUTURO</span><span class="eyebrow">DOE · CRITICAL MATERIALS ASSESSMENT · 2023</span></div>
-      <div class="section-intro"><h2>Raras no nome.<br><em>Presentes no cotidiano.</em></h2><p>Do ímã que move um carro à fibra que transporta informação. Escolha uma aplicação e descubra como cada material é usado.</p></div>
+      <div class="section-heading"><span class="eyebrow">02 — A MATÉRIA DO FUTURO</span><span class="eyebrow">MATERIAIS · USOS · FONTES</span></div>
+      <div class="section-intro"><h2>Raras no nome.<br><em>Presentes no cotidiano.</em></h2><p>Do smartphone à ressonância magnética, das turbinas aos telescópios. Escolha uma aplicação e descubra o papel de cada material.</p></div>
       <div class="applications-explorer">
+        <div class="application-picker-heading"><span id="application-total" class="eyebrow"></span><span class="application-scroll-hint">Deslize para explorar →</span></div>
         <div id="application-nav" class="application-nav" role="group" aria-label="Explorar aplicações"></div>
         <div class="application-overview"><div><span id="application-kicker" class="eyebrow"></span><h3 id="application-title"></h3><p id="application-summary"></p></div><div id="application-count" class="application-count"></div></div>
-        <div class="materials-guide"><div><span><i class="rare-key"></i> Terra rara</span><span><i></i> Outro material</span></div><p>Selecione um material para consultar a ficha e as fontes ↗</p></div>
-        <div id="application-materials" class="application-materials" role="group" aria-label="Materiais e seus usos"></div>
         <p id="application-note" class="application-note" hidden></p>
+        <div class="materials-guide"><p>Selecione um elemento para consultar a ficha e as fontes ↗</p></div>
+        <div id="application-materials" class="application-materials" role="group" aria-label="Materiais e seus usos"></div>
         <div class="application-footnote"><div id="application-sources" class="source-row"></div></div>
         <p id="application-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>
       </div>
@@ -84,6 +86,26 @@
     <section id="dimensao" class="story-section dimension">
       <div class="section-heading"><span class="eyebrow">04 — A DIMENSÃO DA OPORTUNIDADE</span><span class="eyebrow">USGS · MCS 2026</span></div>
       <div class="comparison-layout"><div class="story-copy"><h2>Ter a reserva<br>é só o <em>começo.</em></h2><p>O Brasil tem uma das maiores reservas conhecidas de terras raras. Sua participação na produção ainda é pequena.</p><div class="big-takeaway" id="comparison-takeaway"></div><p class="small">REO = óxidos de terras raras. Reservas são uma estimativa do que pode ser extraído economicamente; produção é o que sai das minas em um ano.</p></div><div class="comparison-viz"><div class="comparison-toolbar"><div class="segmented" role="group" aria-label="Comparar terras raras"><button data-comparison="reserve" class="active" aria-pressed="true">No subsolo</button><button data-comparison="production" aria-pressed="false">Nas minas</button></div><span id="comparison-unit" class="eyebrow"></span></div><div id="country-chart"></div><p id="comparison-caption" class="chart-caption"></p><div class="source-row" id="comparison-source"></div></div></div>
+    </section>
+
+    <section id="futuro" class="story-section future-section" aria-labelledby="future-title">
+      <div class="section-heading"><span class="eyebrow">05 — DEMANDA POR TERRAS RARAS</span><span class="eyebrow">ADAMAS INTELLIGENCE · HORIZONTE 2040</span></div>
+      <div class="section-intro">
+        <h2 id="future-title">O futuro pede<br><em>mais terras raras.</em></h2>
+        <p>Ímãs, catalisadores, vidros, cerâmicas e ligas. A projeção reúne a demanda mundial por óxidos de terras raras em diferentes indústrias.</p>
+      </div>
+      <div class="future-outlook">
+        <div class="future-plot">
+          <h3 class="future-chart-heading">Demanda global por óxidos de terras raras</h3>
+          <p class="future-chart-unit">Mil toneladas por ano · TREO</p>
+          <div id="future-chart"></div>
+        </div>
+        <aside id="future-takeaway" class="future-takeaway" aria-label="Crescimento projetado de 2024 a 2040"></aside>
+      </div>
+      <div class="future-source-row"><p>Projeção de mercado da Adamas Intelligence, publicada no relatório técnico Songwe Hill (2026). TREO = total de óxidos de terras raras.</p><a id="future-source" href="https://minedocs.com/32/Songwe-Hill-Update-DFS-06302025.pdf#page=54" target="_blank" rel="noopener">Adamas · relatório, pp. 54–55 ↗</a></div>
+      <h3 class="future-drivers-heading">Tecnologias que impulsionam esse consumo</h3>
+      <div id="future-drivers" class="future-drivers" aria-label="Tecnologias que impulsionam a demanda"></div>
+      <div class="future-digital"><span class="eyebrow">ROBÓTICA E IA</span><p>Ímãs em motores de precisão e discos rígidos de data centers. Substituições podem reduzir eficiência ou exigir componentes maiores.</p><a href="https://iea.blob.core.windows.net/assets/19c60aa0-ee07-4a20-a138-33c967ac5008/GlobalCriticalMineralsOutlook2026.pdf#page=202" target="_blank" rel="noopener">IEA · usos e limites</a></div>
     </section>
 
     <section id="fontes" class="sources-section"><div class="sources-header"><div><p class="eyebrow">DADOS ABERTOS. FONTES À VISTA.</p><h2>Explore. Questione.<br><em>Confira a origem.</em></h2></div><p>Recorte editorial de 5 de outubro de 2026. As fichas mantêm as datas e classificações das fontes. Novas pesquisas podem mudar esse retrato.</p><a href="data-snapshot.json" download class="download-link">Baixar todos os dados <span>↓</span><small>JSON · EDIÇÃO COMPLETA</small></a></div><details><summary>Como tratamos os dados e as diferenças entre eles</summary><div class="method-grid"><div><h3>Reserva ≠ recurso</h3><p>Recurso é uma estimativa geológica. Reserva exige critérios técnicos e econômicos. Quantidades de minério, de metal e de óxidos não se somam.</p></div><div><h3>Sem informação ≠ zero</h3><p>Dados ausentes, sigilosos e valores iguais a zero têm representações diferentes. Recursos históricos estão identificados em cada ficha.</p></div><div><h3>Um mapa tem limites</h3><p>Malhas IBGE delimitam estados e municípios. Folhas SGB mostram a extensão dos mapas geológicos publicados, não os limites de depósitos ou concessões minerais.</p></div><div><h3>Cobertura não é descoberta</h3><p>Os percentuais de 28% e 50% vêm do balanço nacional SGB até 2025. O inventário vetorial é uma consulta separada; folhas podem se sobrepor. Área mapeada não equivale a área com minerais.</p></div></div></details><details><summary>Consultar todas as fontes e documentos</summary><div id="source-directory" class="source-directory"></div></details><details><summary>Ver a cartografia original de cobertura do SGB</summary><figure><img src="assets/sgb-coverage-2025.png" alt="Figura original do SGB com a cobertura geológica brasileira até 2025, escalas 1:100.000 e 1:250.000, incluindo legenda de áreas publicadas, em andamento e planejadas." loading="lazy"><figcaption>Panorama SGB 2026 · figura 4.1, página 9. A figura original também distingue o que ainda está em andamento ou planejado.</figcaption></figure></details></section>

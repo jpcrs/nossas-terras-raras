@@ -104,6 +104,31 @@
       "url": "https://www.iea.org/data-and-statistics/charts/share-of-global-supply-of-magnet-rare-earths-and-magnet-manufacturing-2024",
       "date": "Dados de 2024 · consulta 05/10/2026 · CC BY 4.0"
     },
+    "adamasFuture": {
+      "name": "Adamas Intelligence · demanda global de óxidos de terras raras",
+      "url": "https://minedocs.com/32/Songwe-Hill-Update-DFS-06302025.pdf#page=54",
+      "date": "Relatório Songwe Hill de 29/04/2026 · pp. 54–55 · estudo de mercado contratado pela Mkango · 2024–2040"
+    },
+    "ieaFuture": {
+      "name": "IEA · demanda futura de terras raras",
+      "url": "https://iea.blob.core.windows.net/assets/19c60aa0-ee07-4a20-a138-33c967ac5008/GlobalCriticalMineralsOutlook2026.pdf#page=362",
+      "date": "Julho de 2026 · p. 362 · cenários CPS, STEPS e HDS · CC BY 4.0"
+    },
+    "ieaMotors": {
+      "name": "IEA · ímãs em motores elétricos",
+      "url": "https://iea.blob.core.windows.net/assets/88d2b060-4c5b-46cc-8727-c60576cb937d/RareearthelementsPathwaystosecureanddiversifiedsupplychains.pdf#page=28",
+      "date": "Abril de 2026 · revisão de maio · p. 28"
+    },
+    "jrcMagnets": {
+      "name": "Comissão Europeia / JRC · ímãs permanentes",
+      "url": "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC134499/JRC134499_01.pdf#page=154",
+      "date": "2023 · capítulo 27 · p. 147 (p. 154 do PDF)"
+    },
+    "ifrFuture": {
+      "name": "IFR · perspectivas da robótica industrial",
+      "url": "https://ifr.org/ifr-press-releases/news/five-million-robots-now-operate-in-factories-globally",
+      "date": "24/09/2026 · projeção de instalações em 2029"
+    },
     "iea2026": {
       "name": "IEA · Global Critical Minerals Outlook 2026",
       "url": "https://www.iea.org/news/supply-concentration-export-restrictions-and-declining-investment-put-critical-mineral-security-at-risk",
@@ -123,6 +148,191 @@
       "name": "SGB Educa · elementos terras raras",
       "url": "https://sgbeduca.sgb.gov.br/jovens_geociencias_elementos_terrasraras.html",
       "date": "Geologia e processos"
+    },
+    "usgsPhone": {
+      "name": "USGS · minerais no smartphone",
+      "url": "https://www.usgs.gov/news/featured-story/ordinary-minerals-give-smartphones-extraordinary-capabilities",
+      "date": "04/04/2017 · exemplos de componentes"
+    },
+    "usgsLighting": {
+      "name": "USGS · materiais dos LEDs",
+      "url": "https://www.usgs.gov/publications/byproduct-metals-and-rare-earth-elements-used-production-light-emitting-diodes",
+      "date": "2012 · SIR 2012–5215 · usos dos materiais"
+    },
+    "doePhosphors": {
+      "name": "DOE · fósforos de iluminação",
+      "url": "https://www.energy.gov/sites/default/files/2015/12/f27/QTR2015-6F-Critical-Materials.pdf",
+      "date": "2015 · tecnologias de iluminação, não participação atual de mercado"
+    },
+    "fdaMRI": {
+      "name": "FDA · ressonância e contraste",
+      "url": "https://www.fda.gov/radiation-emitting-products/medical-imaging/mri-magnetic-resonance-imaging",
+      "date": "Consultada em 05/10/2026 · contraste à base de gadolínio"
+    },
+    "rscLanthanum": {
+      "name": "RSC · lantânio em óptica e refino",
+      "url": "https://periodic-table.rsc.org/element/57/lanthanum",
+      "date": "Consultada em 05/10/2026"
+    },
+    "vixenOptics": {
+      "name": "Vixen · ocular com lantânio",
+      "url": "https://global.vixen.co.jp/en/product/37208_9/",
+      "date": "Exemplo comercial SLV · consultado em 05/10/2026"
+    },
+    "nasaCoatings": {
+      "name": "NASA · proteção de turbinas",
+      "url": "https://www.nasa.gov/glenn/research/phosphor-thermometry-and-health-monitoring/",
+      "date": "01/05/2025 · revestimentos com Y e Yb"
+    },
+    "gaoDefense": {
+      "name": "GAO · aplicações de defesa",
+      "url": "https://www.gao.gov/assets/gao-16-161.pdf",
+      "date": "Fevereiro de 2016 · GAO-16-161 · exemplos de uso"
+    },
+    "crsDefense": {
+      "name": "CRS · ímãs em sistemas de defesa",
+      "url": "https://www.everycrsreport.com/reports/R41744.html",
+      "date": "23/12/2013 · R41744 · cópia pública do relatório CRS"
+    },
+    "armyApplications": {
+      "name": "U.S. Army · ímãs e comunicações",
+      "url": "https://www.army.mil/article/227715/an_elemental_issue",
+      "date": "26/09/2019 · aplicações, não dados atuais de oferta"
+    },
+    "usgsApplications": {
+      "name": "USGS · usos das terras raras",
+      "url": "https://pubs.usgs.gov/fs/2014/3078/pdf/fs2014-3078.pdf",
+      "date": "Novembro de 2014 · FS 2014–3078"
+    },
+    "usgsPolishing": {
+      "name": "USGS · cério no polimento de vidro",
+      "url": "https://pubs.usgs.gov/of/2011/1189/of2011-1189.pptx.pdf",
+      "date": "2011 · Open-File Report 2011–1189 · seção Polishing"
+    },
+    "acsPhone": {
+      "name": "ACS · nove elementos no smartphone",
+      "url": "https://teachchemistry.org/pdf/2020/08/27/15/17/28/b5b2a8e9-1bac-4243-afb2-2487165798bb/feb2014-lo-res.pdf#page=4",
+      "date": "Fev./mar. 2014 · ChemMatters, p. 4 · recorte histórico"
+    },
+    "appleMagnets": {
+      "name": "Apple · elementos dos ímãs",
+      "url": "https://www.apple.com/environment/pdf/Apple_Environmental_Progress_Report_2023.pdf",
+      "date": "2023 · seção Rare earth elements · Nd, Pr, Dy e Tb"
+    },
+    "doeMagnetChemistry": {
+      "name": "DOE · composição dos ímãs permanentes",
+      "url": "https://www.energy.gov/sites/default/files/2023-07/doe-critical-material-assessment_07312023.pdf#page=44",
+      "date": "Julho de 2023 · versão final · p. 18 e perfis de Nd, Pr, Dy e Tb"
+    },
+    "toyotaMagnet": {
+      "name": "Toyota · pesquisa com lantânio e cério",
+      "url": "https://media.toyota.co.uk/toyota-develops-new-magnet-electric-motors-aiming-50-per-cent-reduction-use-critical-rare-earth-elements/",
+      "date": "20/02/2018 · anúncio de desenvolvimento, não confirmação de produção em série"
+    },
+    "nichiaLED": {
+      "name": "Nichia · fósforos de LED com Y, Gd e Ce",
+      "url": "https://www.nichia.co.jp/specification/newsroom/press/2011_020401_EP936682B9.pdf",
+      "date": "EP 0 936 682 B9 · exemplos de formulações de LED"
+    },
+    "mriMagnets": {
+      "name": "Liu et al. · ímãs de ressonância",
+      "url": "https://www.nature.com/articles/s41467-021-27317-1",
+      "date": "14/12/2021 · Nature Communications · protótipo SmCo e comparação com NdFeB"
+    },
+    "schottGlass": {
+      "name": "SCHOTT · composição do vidro óptico",
+      "url": "https://media.schott.com/api/public/content/7101afe0287d44c0954b3e23bdb8a8cc?v=6d4df4c2",
+      "date": "N-LAK33B · ficha técnica, seção 16.1 · 2015 · La, Gd e Y"
+    },
+    "crsDefenseFigures": {
+      "name": "CRS · elementos em guiagem e controle",
+      "url": "https://web.mit.edu/12.000/www/m2016/pdf/R41744.pdf#page=11",
+      "date": "25/04/2012 · R41744 · figura 1, p. 6 · cópia pública MIT"
+    },
+    "exxeliaFerrites": {
+      "name": "Exxelia · granadas de micro-ondas",
+      "url": "https://exxelia.com/storage/exxelia-assets/datasheets/y3-series-v1.pdf",
+      "date": "Catálogo 07/2015 · Y–Gd–Al–Co · materiais para circuladores e isoladores"
+    },
+    "exxeliaRF": {
+      "name": "Exxelia · componentes de radiofrequência",
+      "url": "https://exxelia.com/en/products/materials-tuning-components/ferrite-materials/y3-series",
+      "date": "Y3 Series · aplicações em circuladores e isoladores · consulta 05/10/2026"
+    },
+    "fccRecovery": {
+      "name": "Estudo · La e Ce em catalisadores FCC",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0304386X19309739",
+      "date": "2020 · Hydrometallurgy · recuperação de La e Ce de catalisadores usados"
+    },
+    "coherentAmplifiers": {
+      "name": "Coherent · fibras dopadas com Er e Yb",
+      "url": "https://www.coherent.com/news/press-releases/specialty-optical-fiber-for-lidar-and-quantum-computing-applications",
+      "date": "23/05/2024 · produto comercial para amplificadores ópticos de 1.550 nm"
+    },
+    "fiberlabsPr": {
+      "name": "FiberLabs · amplificador com praseodímio",
+      "url": "https://www.fiberlabs.com/blog/o-band-pdfa-achives-500-mw-output/",
+      "date": "PDFA de banda O · amplificação em torno de 1.310 nm · consulta 05/10/2026"
+    },
+    "coherentLasers": {
+      "name": "Coherent · elementos dos lasers de fibra",
+      "url": "https://www.coherent.com/web-resources/white-paper/rare-earth-doped-fiber-wp",
+      "date": "Nota técnica · Nd, Er, Yb, Ho e Tm · consulta 05/10/2026"
+    },
+    "synopticsCrystals": {
+      "name": "SYNOPTICS · cristais para lasers",
+      "url": "https://www.northropgrumman.com/what-we-do/space/synoptics",
+      "date": "Catálogo · Nd:YAG e Er:YAG · consulta 05/10/2026"
+    },
+    "synopticsFaraday": {
+      "name": "SYNOPTICS · térbio em isoladores ópticos",
+      "url": "https://www.northropgrumman.com/what-we-do/space/synoptics/products/faraday-crystals",
+      "date": "Catálogo · TGG e KTF · consulta 05/10/2026"
+    },
+    "rusalSc": {
+      "name": "RUSAL · ligas alumínio–escândio",
+      "url": "https://rusal.ru/en/innovation/technology/scandium-alloys/",
+      "date": "Exemplo de liga e processo do fabricante · consulta 05/10/2026"
+    },
+    "ornlCe": {
+      "name": "ORNL · ligas alumínio–cério",
+      "url": "https://www.ornl.gov/news/eck-industries-exclusively-licenses-cerium-aluminum-alloy-co-developed-ornl",
+      "date": "2017 · tecnologia licenciada à Eck Industries"
+    },
+    "luxferY": {
+      "name": "Luxfer · liga de magnésio com ítrio",
+      "url": "https://www.luxfermeltechnologies.com/elektron-we43b/",
+      "date": "WE43B · composição comercial · consulta 05/10/2026"
+    },
+    "luxferNdGd": {
+      "name": "Luxfer · liga com Nd e Gd",
+      "url": "https://www.luxfermeltechnologies.com/elektron-21/",
+      "date": "Elektron 21 · composição comercial · consulta 05/10/2026"
+    },
+    "lani5": {
+      "name": "Estudo · liga LaNi₅ e hidrogênio",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6650907/",
+      "date": "2019 · estudo experimental de liga armazenadora de hidrogênio"
+    },
+    "arnoldSmCo": {
+      "name": "Arnold · ímãs samário–cobalto",
+      "url": "https://www.arnoldmagnetics.com/products/recoma-samarium-cobalt-magnets/",
+      "date": "RECOMA · aplicação em ambientes quentes · consulta 05/10/2026"
+    },
+    "lysoDetector": {
+      "name": "BNC · Lu, Y e Ce em detectores PET",
+      "url": "https://www.berkeleynucleonics.com/docs/bnc-scintiq-lyso-datasheet.html",
+      "date": "Ficha LYSO:Ce · composição e aplicações · consulta 05/10/2026"
+    },
+    "nichiaXray": {
+      "name": "Nichia · materiais para detecção de raios X",
+      "url": "https://www.nichia.co.jp/specification/products/phosphors/catalogue_phosphors_techdata.pdf",
+      "date": "Junho de 2025 · pp. 2–4 · Gd₂O₂S:Tb, Gd₂O₂S:Pr e BaFCl:Eu"
+    },
+    "luxiumLa": {
+      "name": "Luxium · cintilador com La e Ce",
+      "url": "https://luxiumsolutions.com/files/2361/download",
+      "date": "BrilLanCe 380 · LaBr₃:Ce · ficha técnica consultada em 05/10/2026"
     },
     "cetem": {
       "name": "CETEM · Terras raras, capítulo I",
@@ -1531,86 +1741,138 @@
   ],
   "applicationExamples": [
     {
+      "id": "phone",
+      "name": "Smartphone",
+      "category": "NO BOLSO",
+      "source": "usgsPhone",
+      "summary": "Ímãs, circuitos, luz e vidro: várias terras raras dividem o trabalho.",
+      "note": "A composição muda com o modelo e a geração. Os usos históricos estão identificados nos cartões.",
+      "materials": [
+        {
+          "symbol": "Nd",
+          "use": "Som e vibração",
+          "description": "Forma ímãs compactos em alto-falantes e atuadores de vibração.",
+          "sources": [
+            "usgsPhone",
+            "appleMagnets"
+          ]
+        },
+        {
+          "symbol": "Pr",
+          "use": "Ímãs compactos",
+          "description": "Combina-se com neodímio em ímãs usados na eletrônica do aparelho.",
+          "sources": [
+            "appleMagnets",
+            "acsPhone"
+          ]
+        },
+        {
+          "symbol": "Dy",
+          "use": "Ímãs e vibração",
+          "description": "Integra certas formulações de ímãs; ajuda a preservar o magnetismo sob calor.",
+          "sources": [
+            "appleMagnets",
+            "acsPhone",
+            "doeMagnetChemistry"
+          ]
+        },
+        {
+          "symbol": "Tb",
+          "use": "Ímãs compactos",
+          "description": "É usado em formulações de ímãs de dispositivos Apple, conforme o componente.",
+          "sources": [
+            "appleMagnets"
+          ]
+        },
+        {
+          "symbol": "La",
+          "use": "Circuitos e tela",
+          "description": "É associado a circuitos e telas no inventário de smartphones publicado pela ACS.",
+          "sources": [
+            "acsPhone"
+          ],
+          "scope": "Recorte de 2014"
+        },
+        {
+          "symbol": "Gd",
+          "use": "Alto-falantes e circuitos",
+          "description": "A ACS o identifica nesses componentes em seu inventário de smartphones.",
+          "sources": [
+            "acsPhone"
+          ],
+          "scope": "Recorte de 2014"
+        },
+        {
+          "symbol": "Y",
+          "use": "Materiais da tela",
+          "description": "Participa de materiais luminescentes de certas tecnologias de tela.",
+          "sources": [
+            "acsPhone"
+          ],
+          "scope": "Recorte de 2014"
+        },
+        {
+          "symbol": "Eu",
+          "use": "Luz vermelha",
+          "description": "Seus compostos podem produzir emissão vermelha em materiais luminescentes da tela.",
+          "sources": [
+            "acsPhone"
+          ],
+          "scope": "Recorte de 2014"
+        },
+        {
+          "symbol": "Ce",
+          "use": "Polimento do vidro",
+          "description": "Seu óxido é usado no polimento durante a fabricação; pode não permanecer no aparelho.",
+          "sources": [
+            "acsPhone"
+          ],
+          "scope": "Na fabricação"
+        }
+      ]
+    },
+    {
       "id": "ev",
       "name": "Carro elétrico",
       "category": "MOBILIDADE",
       "source": "doe2023",
-      "summary": "Do motor à bateria, passando pela estrutura e pela eletrônica.",
+      "summary": "Ímãs de terras raras ajudam a transformar eletricidade em movimento.",
+      "note": "As quatro terras raras mostradas se referem a motores com ímãs. Há motores sem terras raras. Lantânio e cério também aparecem em uma pesquisa da Toyota (2018), sem confirmação de produção em série nessa fonte; não entram nesta contagem.",
+      "additionalSources": [
+        "toyotaMagnet"
+      ],
       "materials": [
         {
           "symbol": "Nd",
           "use": "Motor",
-          "description": "Forma ímãs NdFeB usados em alguns motores elétricos."
+          "description": "Forma ímãs NdFeB usados em alguns motores elétricos.",
+          "sources": [
+            "doeMagnetChemistry"
+          ]
         },
         {
           "symbol": "Pr",
           "use": "Motor",
-          "description": "Combina-se com neodímio em ímãs de alto desempenho."
+          "description": "Combina-se com neodímio em ímãs de alto desempenho.",
+          "sources": [
+            "doeMagnetChemistry"
+          ]
         },
         {
           "symbol": "Dy",
           "use": "Motor",
-          "description": "Pode aumentar a resistência dos ímãs à desmagnetização em altas temperaturas."
+          "description": "Pode aumentar a resistência dos ímãs à desmagnetização em altas temperaturas.",
+          "sources": [
+            "doeMagnetChemistry"
+          ]
         },
         {
           "symbol": "Tb",
           "use": "Motor",
-          "description": "Pode melhorar o desempenho térmico dos ímãs, conforme a formulação."
-        },
-        {
-          "symbol": "Li",
-          "use": "Bateria",
-          "description": "Transporta carga nas baterias de íons de lítio."
-        },
-        {
-          "symbol": "Ni",
-          "use": "Bateria",
-          "description": "Integra cátodos NMC. Não é usado no cátodo LFP."
-        },
-        {
-          "symbol": "Mn",
-          "use": "Bateria",
-          "description": "Participa do cátodo de baterias NMC; não do LFP convencional."
-        },
-        {
-          "symbol": "Co",
-          "use": "Bateria",
-          "description": "Compõe cátodos NMC. Baterias LFP dispensam cobalto no cátodo."
-        },
-        {
-          "symbol": "C",
-          "use": "Bateria",
-          "description": "A grafita é usada no ânodo, um dos eletrodos da bateria."
-        },
-        {
-          "symbol": "Cu",
-          "use": "Condução elétrica",
-          "description": "Conduz eletricidade no motor, na fiação e em componentes da bateria."
-        },
-        {
-          "symbol": "Al",
-          "use": "Estrutura e bateria",
-          "description": "Forma peças da carroceria e componentes da bateria."
-        },
-        {
-          "symbol": "Fe",
-          "use": "Estrutura, motor e bateria",
-          "description": "É a base do aço e participa de motores e de cátodos LFP."
-        },
-        {
-          "symbol": "Nb",
-          "use": "Estrutura",
-          "description": "Pequenas adições podem aumentar a resistência de alguns aços."
-        },
-        {
-          "symbol": "Si",
-          "use": "Eletrônica",
-          "description": "Forma semicondutores que controlam a energia do veículo."
-        },
-        {
-          "symbol": "Ta",
-          "use": "Eletrônica",
-          "description": "É empregado em capacitores de circuitos eletrônicos."
+          "description": "Pode melhorar o desempenho térmico dos ímãs, conforme a formulação.",
+          "sources": [
+            "doeMagnetChemistry"
+          ]
         }
       ]
     },
@@ -1619,47 +1881,379 @@
       "name": "Eólica",
       "category": "ENERGIA",
       "source": "doe2023",
-      "summary": "Materiais para o gerador, a torre e as conexões elétricas.",
+      "summary": "Ímãs de terras raras participam da geração de eletricidade em certas turbinas.",
+      "note": "Estas quatro terras raras se referem a geradores com ímãs permanentes; a combinação depende do projeto. Turbinas com outras arquiteturas podem dispensá-las.",
       "materials": [
         {
           "symbol": "Nd",
           "use": "Gerador",
-          "description": "Forma ímãs NdFeB usados em alguns geradores eólicos."
+          "description": "Forma ímãs NdFeB usados em alguns geradores eólicos.",
+          "sources": [
+            "doeMagnetChemistry"
+          ]
         },
         {
           "symbol": "Pr",
           "use": "Gerador",
-          "description": "Participa, com neodímio, dos ímãs de certos geradores."
+          "description": "Participa, com neodímio, dos ímãs de certos geradores.",
+          "sources": [
+            "doeMagnetChemistry"
+          ]
         },
         {
           "symbol": "Dy",
           "use": "Gerador",
-          "description": "Pode aumentar a resistência térmica dos ímãs, conforme o projeto."
+          "description": "Pode aumentar a resistência térmica dos ímãs, conforme o projeto.",
+          "sources": [
+            "doeMagnetChemistry"
+          ]
         },
         {
           "symbol": "Tb",
           "use": "Gerador",
-          "description": "Pode melhorar o desempenho dos ímãs em altas temperaturas."
+          "description": "Pode melhorar o desempenho dos ímãs em altas temperaturas.",
+          "sources": [
+            "doeMagnetChemistry"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lighting",
+      "name": "Iluminação eficiente",
+      "category": "LUZ & ENERGIA",
+      "source": "usgsLighting",
+      "additionalSources": [
+        "doePhosphors"
+      ],
+      "summary": "A luz branca pode combinar um LED com materiais que convertem sua cor.",
+      "note": "O conjunto reúne LEDs e fluorescentes, tecnologias com composições diferentes. Não são seis elementos obrigatórios em uma lâmpada.",
+      "materials": [
+        {
+          "symbol": "Y",
+          "use": "Matriz de fósforos",
+          "description": "Forma o cristal YAG, uma das matrizes usadas na conversão de luz em LEDs.",
+          "sources": [
+            "nichiaLED"
+          ]
         },
         {
-          "symbol": "Cu",
-          "use": "Condução elétrica",
-          "description": "É usado no gerador, nos cabos e nas conexões."
+          "symbol": "Ce",
+          "use": "Conversão de luz",
+          "description": "Ativa a luminescência do YAG:Ce, que ajuda a produzir luz branca a partir de um LED azul.",
+          "sources": [
+            "nichiaLED"
+          ]
         },
         {
-          "symbol": "Al",
-          "use": "Condução elétrica",
-          "description": "Pode ser usado em cabos e conexões, conforme a aplicação."
+          "symbol": "Eu",
+          "use": "Fósforos de iluminação",
+          "description": "É usado em materiais luminescentes de LEDs e fluorescentes; a cor depende da composição.",
+          "sources": [
+            "usgsLighting",
+            "doePhosphors"
+          ]
         },
         {
-          "symbol": "Fe",
-          "use": "Torre e rotor",
-          "description": "É a base dos aços usados na estrutura e em componentes mecânicos."
+          "symbol": "Tb",
+          "use": "Fluorescentes",
+          "description": "Produz a componente verde em certas formulações de fósforos.",
+          "sources": [
+            "doePhosphors"
+          ],
+          "scope": "Tecnologia fluorescente"
         },
         {
-          "symbol": "Nb",
-          "use": "Torre",
-          "description": "Pode integrar aços de alta resistência, conforme a especificação."
+          "symbol": "La",
+          "use": "Matriz de fósforos",
+          "description": "Participa de fósforos de lâmpadas fluorescentes, combinando-se com outros elementos.",
+          "sources": [
+            "doePhosphors"
+          ],
+          "scope": "Tecnologia fluorescente"
+        },
+        {
+          "symbol": "Gd",
+          "use": "Ajuste da emissão",
+          "description": "Pode substituir parte do ítrio em fósforos de LED e deslocar a faixa de luz emitida.",
+          "sources": [
+            "nichiaLED"
+          ],
+          "scope": "Formulações específicas"
+        }
+      ]
+    },
+    {
+      "id": "mri",
+      "name": "Ressonância magnética",
+      "category": "SAÚDE",
+      "source": "fdaMRI",
+      "summary": "No contraste e em certos ímãs, funções diferentes ajudam a formar a imagem.",
+      "note": "Contraste e ímã são aplicações separadas. Aparelhos de alto campo com ímãs supercondutores não devem ser descritos como ímãs NdFeB ou SmCo.",
+      "additionalSources": [
+        "mriMagnets"
+      ],
+      "materials": [
+        {
+          "symbol": "Gd",
+          "use": "Agente de contraste",
+          "description": "Seus compostos são usados no contraste de alguns exames para melhorar a diferenciação nas imagens.",
+          "sources": [
+            "fdaMRI"
+          ],
+          "scope": "Em alguns exames"
+        },
+        {
+          "symbol": "Nd",
+          "use": "Ímã permanente",
+          "description": "Ímãs NdFeB produzem o campo de alguns aparelhos de baixo campo.",
+          "sources": [
+            "mriMagnets"
+          ],
+          "scope": "Aparelhos específicos"
+        },
+        {
+          "symbol": "Sm",
+          "use": "Ímã de baixo campo",
+          "description": "Um protótipo de ressonância cerebral de 2021 usa um ímã samário–cobalto de 0,055 tesla.",
+          "sources": [
+            "mriMagnets"
+          ],
+          "scope": "Protótipo de pesquisa"
+        }
+      ]
+    },
+    {
+      "id": "camera",
+      "name": "Câmeras e telescópios",
+      "category": "LUZ & ÓPTICA",
+      "source": "rscLanthanum",
+      "additionalSources": [
+        "vixenOptics"
+      ],
+      "summary": "A composição do vidro controla a óptica; o polimento dá acabamento às superfícies.",
+      "note": "São exemplos de vidros e processos ópticos. Uma câmera ou um telescópio não precisa conter todos eles, e muitas lentes são feitas de outros materiais.",
+      "materials": [
+        {
+          "symbol": "La",
+          "use": "Lentes e oculares",
+          "description": "Integra vidros ópticos e oculares comerciais de telescópios, como a linha Vixen SLV.",
+          "sources": [
+            "rscLanthanum",
+            "vixenOptics",
+            "schottGlass"
+          ]
+        },
+        {
+          "symbol": "Gd",
+          "use": "Vidros ópticos",
+          "description": "Seu óxido integra a composição do vidro óptico SCHOTT N-LAK33B.",
+          "sources": [
+            "schottGlass"
+          ],
+          "scope": "Formulação específica"
+        },
+        {
+          "symbol": "Y",
+          "use": "Vidros ópticos",
+          "description": "Também compõe o N-LAK33B, junto com óxidos de lantânio e gadolínio.",
+          "sources": [
+            "schottGlass"
+          ],
+          "scope": "Formulação específica"
+        },
+        {
+          "symbol": "Ce",
+          "use": "Polimento de vidro",
+          "description": "Seu óxido é empregado no acabamento de superfícies de vidro; não precisa ficar na lente.",
+          "sources": [
+            "usgsPolishing"
+          ],
+          "scope": "Na fabricação"
+        }
+      ]
+    },
+    {
+      "id": "jet",
+      "name": "Motores a jato",
+      "category": "AVIAÇÃO CIVIL & MILITAR",
+      "source": "nasaCoatings",
+      "additionalSources": [
+        "gaoDefense"
+      ],
+      "summary": "Terras raras ajudam a proteger turbinas e a estudar seu comportamento sob calor.",
+      "note": "A formulação varia com motor e componente. O érbio é um exemplo de diagnóstico em pesquisa, sem comprovação de uso em série em um caça específico.",
+      "materials": [
+        {
+          "symbol": "Y",
+          "use": "Barreira térmica",
+          "description": "Seu óxido estabiliza a zircônia de revestimentos que protegem componentes metálicos do calor.",
+          "sources": [
+            "nasaCoatings"
+          ]
+        },
+        {
+          "symbol": "Yb",
+          "use": "Proteção de cerâmicas",
+          "description": "O dissilicato de itérbio forma barreiras contra a degradação de componentes de matriz cerâmica.",
+          "sources": [
+            "nasaCoatings"
+          ],
+          "scope": "Turbinas avançadas"
+        },
+        {
+          "symbol": "Er",
+          "use": "Medição de temperatura",
+          "description": "A NASA testa revestimentos luminescentes com érbio para medir a temperatura sem contato.",
+          "sources": [
+            "nasaCoatings"
+          ],
+          "scope": "Em pesquisa"
+        }
+      ]
+    },
+    {
+      "id": "guidance",
+      "name": "Guiagem de mísseis",
+      "category": "DEFESA",
+      "source": "crsDefenseFigures",
+      "summary": "Cinco terras raras são documentadas pelo CRS em famílias de ímãs de guiagem e controle.",
+      "additionalSources": [
+        "crsDefense"
+      ],
+      "note": "A figura do CRS reúne diferentes sistemas e ligas; não informa a composição de cada míssil nem diz que todos usam os cinco elementos.",
+      "materials": [
+        {
+          "symbol": "Nd",
+          "use": "Motores e atuadores",
+          "description": "Ímãs NdFeB integram componentes compactos que movimentam sistemas de controle.",
+          "sources": [
+            "crsDefenseFigures"
+          ]
+        },
+        {
+          "symbol": "Pr",
+          "use": "Ímãs de controle",
+          "description": "O CRS inclui praseodímio nos materiais magnéticos de motores e atuadores de guiagem.",
+          "sources": [
+            "crsDefenseFigures"
+          ]
+        },
+        {
+          "symbol": "Sm",
+          "use": "Ímãs resistentes ao calor",
+          "description": "Forma ímãs SmCo usados em equipamentos de controle.",
+          "sources": [
+            "crsDefenseFigures",
+            "crsDefense"
+          ]
+        },
+        {
+          "symbol": "Dy",
+          "use": "Formulações de ímãs",
+          "description": "Pode aumentar a resistência à desmagnetização de ímãs usados no controle.",
+          "sources": [
+            "crsDefenseFigures",
+            "doeMagnetChemistry"
+          ]
+        },
+        {
+          "symbol": "Tb",
+          "use": "Formulações de ímãs",
+          "description": "É outro elemento citado pelo CRS para ímãs de sistemas de guiagem.",
+          "sources": [
+            "crsDefenseFigures"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "military-comms",
+      "name": "Comunicações militares",
+      "category": "COMUNICAÇÃO & DEFESA",
+      "source": "armyApplications",
+      "additionalSources": [
+        "crsDefense"
+      ],
+      "summary": "Ímãs, componentes de rádio e amplificadores ópticos cumprem tarefas diferentes.",
+      "note": "São tecnologias de comunicação usadas também no setor civil. O recorte não é a lista de peças de um rádio militar específico.",
+      "materials": [
+        {
+          "symbol": "Sm",
+          "use": "Ímãs de equipamentos",
+          "description": "Ímãs SmCo têm usos em sistemas de comunicação por satélite.",
+          "sources": [
+            "armyApplications",
+            "crsDefense"
+          ]
+        },
+        {
+          "symbol": "Nd",
+          "use": "Componentes magnéticos",
+          "description": "Ímãs NdFeB permitem componentes compactos de equipamentos de comunicação.",
+          "sources": [
+            "armyApplications",
+            "crsDefense"
+          ]
+        },
+        {
+          "symbol": "Y",
+          "use": "Componentes de micro-ondas",
+          "description": "Forma granadas magnéticas usadas em circuladores e isoladores de radiofrequência.",
+          "sources": [
+            "exxeliaFerrites",
+            "exxeliaRF"
+          ]
+        },
+        {
+          "symbol": "Gd",
+          "use": "Granadas de micro-ondas",
+          "description": "Integra algumas formulações dessas cerâmicas, como a família Y–Gd–Al–Co da Exxelia.",
+          "sources": [
+            "exxeliaFerrites",
+            "exxeliaRF"
+          ],
+          "scope": "Formulações específicas"
+        },
+        {
+          "symbol": "Er",
+          "use": "Enlaces ópticos",
+          "description": "Amplifica sinais em sistemas de fibra óptica; o uso é descrito também pelo Exército dos EUA.",
+          "sources": [
+            "armyApplications",
+            "coherentAmplifiers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refining",
+      "name": "Refino de petróleo",
+      "category": "INDÚSTRIA QUÍMICA",
+      "source": "usgsApplications",
+      "additionalSources": [
+        "rscLanthanum",
+        "fccRecovery"
+      ],
+      "summary": "Aqui, a função está na química do processo de refino.",
+      "note": "O uso depende da formulação do catalisador. Os elementos participam do processo; isso não significa que sejam adicionados ao combustível final.",
+      "materials": [
+        {
+          "symbol": "La",
+          "use": "Catalisadores FCC",
+          "description": "Compostos de lantânio integram catalisadores de craqueamento catalítico do petróleo.",
+          "sources": [
+            "usgsApplications",
+            "fccRecovery"
+          ]
+        },
+        {
+          "symbol": "Ce",
+          "use": "Catalisadores FCC",
+          "description": "Também é encontrado em catalisadores de craqueamento usados, junto com lantânio.",
+          "sources": [
+            "fccRecovery"
+          ]
         }
       ]
     },
@@ -1667,28 +2261,80 @@
       "id": "optics",
       "name": "Telas e vidros",
       "category": "LUZ & ÓPTICA",
-      "source": "reeeduca",
-      "summary": "Elementos que participam da emissão de luz e da fabricação de vidros.",
+      "source": "acsPhone",
+      "summary": "Fósforos de telas, vidros ópticos e materiais usados no acabamento.",
+      "note": "A lista combina famílias de telas e vidros. Fósforos de tecnologias antigas não devem ser atribuídos automaticamente a uma tela OLED atual.",
       "materials": [
         {
           "symbol": "Eu",
-          "use": "Emissão de luz",
-          "description": "Tem aplicação em fósforos, materiais usados para emitir luz."
+          "use": "Materiais luminescentes",
+          "description": "É associado à emissão de cor em tecnologias de tela com fósforos.",
+          "sources": [
+            "acsPhone"
+          ],
+          "scope": "Tecnologias específicas"
+        },
+        {
+          "symbol": "Tb",
+          "use": "Materiais da tela",
+          "description": "É citado entre os materiais de telas no inventário histórico da ACS.",
+          "sources": [
+            "acsPhone"
+          ],
+          "scope": "Recorte de 2014"
         },
         {
           "symbol": "Y",
-          "use": "Emissão de luz",
-          "description": "Participa de fósforos usados em tecnologias de iluminação e telas."
+          "use": "Fósforos e vidros",
+          "description": "Aparece em materiais de telas e em formulações comerciais de vidro óptico.",
+          "sources": [
+            "acsPhone",
+            "schottGlass"
+          ]
         },
         {
           "symbol": "La",
           "use": "Vidros ópticos",
-          "description": "Integra algumas formulações de vidro para aplicações ópticas."
+          "description": "Seu óxido compõe vidros como o N-LAK33B, da SCHOTT.",
+          "sources": [
+            "schottGlass"
+          ]
+        },
+        {
+          "symbol": "Gd",
+          "use": "Vidros ópticos",
+          "description": "Também faz parte da formulação N-LAK33B.",
+          "sources": [
+            "schottGlass"
+          ],
+          "scope": "Formulação específica"
         },
         {
           "symbol": "Ce",
           "use": "Polimento de vidro",
-          "description": "Seus compostos ajudam a polir o vidro durante a fabricação; não necessariamente ficam no produto."
+          "description": "Seu óxido ajuda a polir vidro durante a fabricação.",
+          "sources": [
+            "usgsPolishing"
+          ],
+          "scope": "Na fabricação"
+        },
+        {
+          "symbol": "Pr",
+          "use": "Materiais da tela",
+          "description": "O inventário da ACS o associa a telas de smartphones.",
+          "sources": [
+            "acsPhone"
+          ],
+          "scope": "Recorte de 2014"
+        },
+        {
+          "symbol": "Dy",
+          "use": "Materiais da tela",
+          "description": "Também é citado no recorte histórico de telas da ACS.",
+          "sources": [
+            "acsPhone"
+          ],
+          "scope": "Recorte de 2014"
         }
       ]
     },
@@ -1696,13 +2342,34 @@
       "id": "fiber",
       "name": "Fibra óptica",
       "category": "COMUNICAÇÃO",
-      "source": "reeeduca",
-      "summary": "A amplificação permite que o sinal óptico siga pelo sistema de comunicação.",
+      "source": "coherentAmplifiers",
+      "summary": "Pequenos trechos de fibra ativa recuperam a intensidade do sinal.",
+      "note": "As terras raras ficam na fibra ativa do amplificador, não em todo o cabo. Lasers de fibra com outros dopantes aparecem na aplicação Lasers.",
       "materials": [
         {
           "symbol": "Er",
           "use": "Amplificação óptica",
-          "description": "Amplifica sinais em sistemas de fibras de telecomunicações. Sua função está no amplificador, não em toda a extensão do cabo."
+          "description": "Amplifica sinais em torno de 1.550 nm em fibras ativas.",
+          "sources": [
+            "armyApplications",
+            "coherentAmplifiers"
+          ]
+        },
+        {
+          "symbol": "Yb",
+          "use": "Fibras codopadas",
+          "description": "Combina-se com érbio em fibras comerciais para amplificadores de alta potência.",
+          "sources": [
+            "coherentAmplifiers"
+          ]
+        },
+        {
+          "symbol": "Pr",
+          "use": "Amplificação na banda O",
+          "description": "É usado em amplificadores PDFA, em torno de 1.310 nm, como os da FiberLabs.",
+          "sources": [
+            "fiberlabsPr"
+          ]
         }
       ]
     },
@@ -1710,23 +2377,67 @@
       "id": "laser",
       "name": "Lasers",
       "category": "APLICAÇÕES ÓPTICAS",
-      "source": "reeeduca",
-      "summary": "Diferentes elementos atendem a diferentes tecnologias de laser.",
+      "source": "coherentLasers",
+      "summary": "Alguns elementos emitem o feixe; outros formam o cristal ou protegem o sistema.",
+      "note": "São meios ativos, cristais e componentes de lasers diferentes. Os sete elementos não precisam estar no mesmo equipamento.",
       "materials": [
+        {
+          "symbol": "Nd",
+          "use": "Meio ativo",
+          "description": "Produz emissão laser em cristais como Nd:YAG e também em certas fibras dopadas.",
+          "sources": [
+            "synopticsCrystals",
+            "coherentLasers"
+          ]
+        },
+        {
+          "symbol": "Er",
+          "use": "Meio ativo",
+          "description": "É usado em lasers de fibra e em cristais como Er:YAG.",
+          "sources": [
+            "synopticsCrystals",
+            "coherentLasers"
+          ]
+        },
         {
           "symbol": "Yb",
           "use": "Lasers de fibra",
-          "description": "Tem aplicação em lasers de fibra, conforme a tecnologia do equipamento."
+          "description": "É um dopante ativo em lasers de fibra para aplicações industriais e científicas.",
+          "sources": [
+            "coherentLasers"
+          ]
         },
         {
           "symbol": "Ho",
-          "use": "Lasers especializados",
-          "description": "É usado em aplicações específicas de laser."
+          "use": "Lasers no infravermelho",
+          "description": "É um dos dopantes de fibras que emitem no infravermelho próximo.",
+          "sources": [
+            "coherentLasers"
+          ]
         },
         {
           "symbol": "Tm",
-          "use": "Lasers especializados",
-          "description": "Tem aplicação em lasers especializados; não precisa estar combinado com os demais elementos."
+          "use": "Lasers no infravermelho",
+          "description": "Produz emissão em outra família de lasers de fibra no infravermelho.",
+          "sources": [
+            "coherentLasers"
+          ]
+        },
+        {
+          "symbol": "Y",
+          "use": "Cristal hospedeiro",
+          "description": "Integra a granada de ítrio e alumínio, YAG, que recebe dopantes como Nd e Er.",
+          "sources": [
+            "synopticsCrystals"
+          ]
+        },
+        {
+          "symbol": "Tb",
+          "use": "Isoladores ópticos",
+          "description": "Cristais como TGG ajudam a proteger lasers contra luz refletida de volta ao sistema.",
+          "sources": [
+            "synopticsFaraday"
+          ]
         }
       ]
     },
@@ -1734,33 +2445,57 @@
       "id": "alloys",
       "name": "Ligas metálicas",
       "category": "MATERIAIS",
-      "source": "reeeduca",
-      "summary": "Elementos que entram em formulações de ligas diferentes.",
+      "source": "rusalSc",
+      "summary": "Pequenas adições mudam o desempenho; cada liga tem sua própria composição.",
+      "note": "A lista reúne exemplos de ligas distintas. LaNi₅ é um material armazenador de hidrogênio; WE43B e Elektron 21 têm magnésio como metal de base.",
       "materials": [
         {
           "symbol": "Sc",
           "use": "Ligas de alumínio",
-          "description": "É adicionado a ligas alumínio–escândio."
+          "description": "É adicionado ao alumínio para aumentar a resistência mecânica, conforme a formulação.",
+          "sources": [
+            "rusalSc"
+          ]
         },
         {
-          "symbol": "Al",
-          "use": "Metal de base",
-          "description": "É o metal de base das ligas alumínio–escândio."
-        },
-        {
-          "symbol": "La",
-          "use": "Ligas",
-          "description": "Tem aplicações em ligas, dependendo da formulação."
+          "symbol": "Ce",
+          "use": "Ligas de alumínio",
+          "description": "Ligas Al–Ce desenvolvidas pelo ORNL mantêm estabilidade em temperaturas elevadas.",
+          "sources": [
+            "ornlCe"
+          ]
         },
         {
           "symbol": "Y",
-          "use": "Ligas",
-          "description": "Integra formulações de ligas para aplicações específicas."
+          "use": "Ligas de magnésio",
+          "description": "É um dos componentes especificados na liga comercial WE43B.",
+          "sources": [
+            "luxferY"
+          ]
         },
         {
-          "symbol": "Yb",
-          "use": "Ligas especiais",
-          "description": "Tem aplicação em ligas especiais. Os elementos desta seleção não formam uma única receita."
+          "symbol": "Nd",
+          "use": "Ligas de magnésio",
+          "description": "Compõe a liga Elektron 21, desenvolvida para aplicações aeroespaciais.",
+          "sources": [
+            "luxferNdGd"
+          ]
+        },
+        {
+          "symbol": "Gd",
+          "use": "Ligas de magnésio",
+          "description": "Também integra a Elektron 21, junto com neodímio e outros metais.",
+          "sources": [
+            "luxferNdGd"
+          ]
+        },
+        {
+          "symbol": "La",
+          "use": "Armazenamento de hidrogênio",
+          "description": "Forma a liga LaNi₅, capaz de absorver e liberar hidrogênio.",
+          "sources": [
+            "lani5"
+          ]
         }
       ]
     },
@@ -1768,28 +2503,82 @@
       "id": "special",
       "name": "Usos especiais",
       "category": "APLICAÇÕES ESPECIALIZADAS",
-      "source": "reeeduca",
-      "summary": "Materiais para ímãs, aplicações magnéticas e cintiladores.",
+      "source": "lysoDetector",
+      "summary": "Luz para detectar radiação e ímãs para ambientes exigentes.",
+      "note": "Cintiladores transformam radiação em luz para os detectores. As formulações listadas são alternativas, e os ímãs SmCo são uma aplicação separada.",
       "materials": [
         {
-          "symbol": "Sm",
-          "use": "Ímãs SmCo",
-          "description": "Forma ímãs samário–cobalto, inclusive para ambientes de alta temperatura."
+          "symbol": "Lu",
+          "use": "Detectores PET",
+          "description": "Forma, com ítrio, a matriz do cintilador LYSO:Ce usado em detectores de tomografia PET.",
+          "sources": [
+            "lysoDetector"
+          ]
         },
         {
-          "symbol": "Co",
-          "use": "Ímãs SmCo",
-          "description": "Combina-se com samário nessa família de ímãs."
+          "symbol": "Y",
+          "use": "Matriz de cintiladores",
+          "description": "Também participa do cristal LYSO:Ce, junto com lutécio.",
+          "sources": [
+            "lysoDetector"
+          ]
+        },
+        {
+          "symbol": "Ce",
+          "use": "Emissão em cintiladores",
+          "description": "Ativa a emissão de luz nos cristais LYSO:Ce e LaBr₃:Ce.",
+          "sources": [
+            "lysoDetector",
+            "luxiumLa"
+          ]
+        },
+        {
+          "symbol": "La",
+          "use": "Detectores de radiação",
+          "description": "Forma o brometo de lantânio do cintilador LaBr₃:Ce.",
+          "sources": [
+            "luxiumLa"
+          ]
         },
         {
           "symbol": "Gd",
-          "use": "Aplicações magnéticas",
-          "description": "É utilizado por suas propriedades magnéticas."
+          "use": "Detecção de raios X",
+          "description": "Forma o oxissulfeto de gadolínio usado como matriz de fósforos para raios X.",
+          "sources": [
+            "nichiaXray"
+          ]
         },
         {
-          "symbol": "Lu",
-          "use": "Cintiladores",
-          "description": "Participa de cintiladores e de tecnologias médicas, conforme o equipamento."
+          "symbol": "Tb",
+          "use": "Conversão de raios X em luz",
+          "description": "Ativa a luminescência em uma formulação Gd₂O₂S:Tb comercializada pela Nichia.",
+          "sources": [
+            "nichiaXray"
+          ]
+        },
+        {
+          "symbol": "Pr",
+          "use": "Conversão de raios X em luz",
+          "description": "É o ativador de outra formulação, Gd₂O₂S:Pr.",
+          "sources": [
+            "nichiaXray"
+          ]
+        },
+        {
+          "symbol": "Eu",
+          "use": "Fósforos de raios X",
+          "description": "Ativa a emissão no material BaFCl:Eu, também usado na detecção de raios X.",
+          "sources": [
+            "nichiaXray"
+          ]
+        },
+        {
+          "symbol": "Sm",
+          "use": "Ímãs resistentes ao calor",
+          "description": "Forma ímãs samário–cobalto para ambientes exigentes.",
+          "sources": [
+            "arnoldSmCo"
+          ]
         }
       ]
     }
@@ -2400,6 +3189,70 @@
           94.4,
           0
         ]
+      }
+    ]
+  },
+  "futureDemand": {
+    "source": "adamasFuture",
+    "published": "2026-04-29",
+    "retrieved": "2026-10-05",
+    "rawData": "assets/adamas-rare-earth-demand-2040.csv",
+    "unit": "mil t de óxidos de terras raras por ano",
+    "scope": "Demanda global de óxidos de terras raras (TREO), em todas as categorias de uso do estudo.",
+    "coverageNote": "A documentação pública não estabelece uma cobertura individual dos 17 elementos.",
+    "chartMaximum": 700,
+    "baseline": {
+      "year": 2024,
+      "total": 234,
+      "status": "estimate"
+    },
+    "projection": {
+      "year": 2040,
+      "total": 607,
+      "status": "projection"
+    },
+    "note": "Projeção de mercado da Adamas Intelligence, contratada pela Mkango, publicada no relatório técnico Songwe Hill de 2026. Massa de óxidos, que inclui oxigênio; não é massa dos elementos, dos ímãs ou de minério. Os dois valores são pontos publicados, sem interpolação. Não representa uma garantia nem um déficit de oferta.",
+    "drivers": [
+      {
+        "id": "ev",
+        "title": "Veículos elétricos",
+        "prefix": "",
+        "value": "2–4",
+        "unit": "kg",
+        "description": "de ímãs por motor de tração com NdFeB",
+        "note": "Massa de ímãs, não de terras raras puras.",
+        "source": "ieaMotors",
+        "sourceLabel": "IEA · 2026",
+        "minimum": 2,
+        "maximum": 4,
+        "measurement": "kg de ímãs por motor"
+      },
+      {
+        "id": "wind",
+        "title": "Turbinas eólicas",
+        "prefix": "até",
+        "value": "600",
+        "unit": "kg/MW",
+        "description": "de ímãs de neodímio por capacidade instalada",
+        "note": "O uso varia conforme o tipo e o porte da turbina.",
+        "source": "jrcMagnets",
+        "sourceLabel": "JRC · 2023",
+        "maximum": 600,
+        "measurement": "kg de ímãs por MW"
+      },
+      {
+        "id": "robotics",
+        "title": "Robótica industrial",
+        "prefix": "em 2029",
+        "value": "806",
+        "unit": "mil",
+        "description": "novos robôs por ano, no mundo",
+        "note": "Projeção de instalações, não de consumo mineral.",
+        "source": "ifrFuture",
+        "sourceLabel": "IFR · projeção de 2026",
+        "valueUnits": 806000,
+        "year": 2029,
+        "measurement": "instalações anuais de robôs"
       }
     ]
   }

@@ -1,13 +1,13 @@
-import {rareEarths,minerals,sources} from './data.js';
-import {applications} from './applications-data.js';
+import {rareEarths,sources} from './data.js';
+import {applications,applicationSourceKeys} from './applications-data.js';
 
 export function initApplications(){
  const root=document.querySelector('.applications-explorer');
  const $=selector=>root.querySelector(selector);
- const isRare=symbol=>rareEarths.some(e=>e[0]===symbol);
- const sourceLink=key=>`<a class="source-link" href="${sources[key].url}" target="_blank" rel="noopener">${key==='reeeduca'?'SGB · elementos e usos':'DOE · materiais e tecnologias'} ↗</a>`;
- let selected='ev';
- $('#application-nav').innerHTML=applications.map(a=>`<button data-tech="${a.id}" aria-pressed="false" aria-controls="application-materials">${a.name}</button>`).join('');
+ const sourceLink=key=>`<a class="source-link" href="${sources[key].url}" target="_blank" rel="noopener">${key==='reeeduca'?'SGB · elementos e usos':sources[key].name} ↗</a>`;
+ let selected='phone';
+ $('#application-total').textContent=`${applications.length} APLICAÇÕES PARA EXPLORAR`;
+ $('#application-nav').innerHTML=applications.map(a=>`<button type="button" data-tech="${a.id}" aria-pressed="false" aria-controls="application-materials application-title application-sources">${a.name}</button>`).join('');
  function render(){
   const app=applications.find(a=>a.id===selected);
   root.querySelectorAll('[data-tech]').forEach(button=>{
@@ -17,23 +17,37 @@ export function initApplications(){
   $('#application-kicker').textContent=app.category;
   $('#application-title').textContent=app.name;
   $('#application-summary').textContent=app.summary;
-  const rareCount=app.materials.filter(m=>isRare(m.symbol)).length;
-  $('#application-count').innerHTML=`<strong>${app.materials.length}</strong><span>${app.materials.length===1?'material neste recorte':'materiais neste recorte'}<small>${rareCount?`${rareCount} ${rareCount===1?'terra rara':'terras raras'}`:'Nenhuma terra rara neste exemplo'}</small></span>`;
+  const rareCount=app.materials.length;
+  $('#application-count').innerHTML=`<strong>${rareCount}</strong><span>${rareCount===1?'terra rara neste recorte':'terras raras neste recorte'}<small>Usos documentados</small></span>`;
   $('#application-materials').innerHTML=app.materials.map(material=>{
-   const e=rareEarths.find(e=>e[0]===material.symbol),m=minerals.find(m=>m.symbol===material.symbol);
-   const name=e?.[2]??(material.symbol==='Al'?'Alumínio':m.name);
-   return `<button class="application-material ${e?'rare':''}" ${e?'data-element-detail':'data-mineral-detail'}="${material.symbol}" aria-label="${name}: ${material.description} Abrir ficha e fontes."><span class="material-symbol"><small>${e?.[1]??m.number}</small><strong>${material.symbol}</strong></span><span class="material-copy"><span class="material-use">${material.use}</span><strong>${name}<span aria-hidden="true">↗</span></strong><span class="material-description">${material.description}</span></span></button>`;
+   const e=rareEarths.find(e=>e[0]===material.symbol);
+   const name=e[2];
+   return `<button class="application-material rare" data-application="${app.id}" data-element-detail="${material.symbol}" aria-label="${name}: ${material.description}${material.scope?` ${material.scope}.`:''} Abrir ficha e fontes."><span class="material-symbol"><small>${e[1]}</small><strong>${material.symbol}</strong></span><span class="material-copy"><span class="material-use">${material.use}</span><strong>${name}<span aria-hidden="true">↗</span></strong><span class="material-description">${material.description}</span>${material.scope?`<span class="material-scope">${material.scope}</span>`:''}</span></button>`;
   }).join('');
   $('#application-note').textContent=app.note??'';
   $('#application-note').hidden=!app.note;
-  $('#application-sources').innerHTML=[...new Set(['reeeduca',app.source])].map(sourceLink).join('');
-  $('#application-announcement').textContent=`${app.name}: ${app.materials.length} ${app.materials.length===1?'material exibido':'materiais exibidos'}, ${rareCount} ${rareCount===1?'terra rara':'terras raras'}.`;
+  $('#application-sources').innerHTML=applicationSourceKeys(app).map(sourceLink).join('');
+  $('#application-announcement').textContent=`${app.name}: ${rareCount} ${rareCount===1?'terra rara exibida':'terras raras exibidas'}.`;
  }
- $('#application-nav').addEventListener('click',event=>{
-  const button=event.target.closest('[data-tech]');if(!button||button.dataset.tech===selected)return;
+ function selectApplication(button){
+  if(!button||button.dataset.tech===selected)return;
   selected=button.dataset.tech;render();
   const overview=$('.application-overview');
   if(overview.getBoundingClientRect().top<$('#application-nav').getBoundingClientRect().bottom)overview.scrollIntoView({block:'start',behavior:'auto'});
+ }
+ $('#application-nav').addEventListener('click',event=>selectApplication(event.target.closest('[data-tech]')));
+ $('#application-nav').addEventListener('keydown',event=>{
+  const current=event.target.closest('[data-tech]');
+  if(!current||!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
+  event.preventDefault();
+  const buttons=[...root.querySelectorAll('[data-tech]')],index=buttons.indexOf(current);
+  const next=event.key==='Home'?0:event.key==='End'?buttons.length-1:(index+(event.key==='ArrowRight'?1:-1)+buttons.length)%buttons.length;
+  const button=buttons[next];button.focus({preventScroll:true});
+  button.scrollIntoView({block:'nearest',inline:'nearest',behavior:'auto'});
+  selectApplication(button);
  });
+ const setNavHeight=()=>root.style.setProperty('--application-nav-height',`${$('#application-nav').getBoundingClientRect().height}px`);
+ setNavHeight();
+ if(typeof ResizeObserver!=='undefined')new ResizeObserver(setNavHeight).observe($('#application-nav'));
  render();
 }

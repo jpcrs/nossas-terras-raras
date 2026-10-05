@@ -4,8 +4,9 @@ import * as d3 from 'd3';
 import {sources,metrics,minerals,projects,rareEarths} from '../dist/data.js';
 import {projectFacts,locations,gradePercent,gradeScale,resourceBreakdown,coverageFeatures,normalizeWinding} from '../dist/editorial.js';
 import {mineralComparisons} from '../dist/mineral-comparisons.js';
-import {applicationExamples} from '../dist/applications-data.js';
+import {applicationExamples,materialSourceKeys} from '../dist/applications-data.js';
 import {supplyChain} from '../dist/supply-chain-data.js';
+import {futureDemand,futureMetrics} from '../dist/future-data.js';
 const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
 // Compare every displayed chain value to the preserved IEA series, including zeros.
 const supplyRows=d3.dsvFormat(';').parse(read('dist/'+supplyChain.rawData));
@@ -19,14 +20,36 @@ for(const [index,stage] of supplyChain.stages.entries()){
 }
 assert(sources[supplyChain.source]);
 assert.deepEqual(JSON.parse(read('dist/data-snapshot.json')).supplyChain,supplyChain);
-const materialSymbols=new Set([...rareEarths.map(e=>e[0]),...minerals.map(m=>m.symbol)]);
+// Only published Adamas endpoints; do not mix oxide mass with the old IEA element series.
+const demandRows=d3.csvParse(read('dist/'+futureDemand.rawData),d3.autoType);
+assert.equal(demandRows.length,2);
+for(const row of [futureDemand.baseline,futureDemand.projection]){
+ const raw=demandRows.find(r=>r.year===row.year&&r.status===row.status);
+ assert(raw,`Missing demand source row: ${row.year}`);
+ assert.equal(row.total,raw.total);
+ assert.equal(raw.unit,'kt TREO/year');
+ assert.equal(raw.source,futureDemand.source);
+ assert(row.total>0&&row.total<=futureDemand.chartMaximum);
+}
+const demandMetrics=futureMetrics();
+assert.equal(demandMetrics.additionalDemand,373);
+assert.equal(demandMetrics.totalMultiple.toFixed(1),'2.6');
+assert.equal(Math.round(demandMetrics.totalGrowth),159);
+assert(sources[futureDemand.source]);
+for(const driver of futureDemand.drivers)assert(sources[driver.source]);
+assert.deepEqual(JSON.parse(read('dist/data-snapshot.json')).futureDemand,futureDemand);
+const materialSymbols=new Set(rareEarths.map(e=>e[0]));
 const applicationElements=new Set();
+assert.equal(new Set(applicationExamples.map(a=>a.id)).size,applicationExamples.length);
 for(const app of applicationExamples){
  assert(sources[app.source]);
+ for(const key of app.additionalSources??[])assert(sources[key],`Unknown application source: ${key}`);
  const symbols=new Set();
  for(const material of app.materials){
   assert(material.use&&material.description);
-  assert(materialSymbols.has(material.symbol),`Unknown application material: ${material.symbol}`);
+  assert(material.sources?.length,`Missing contextual evidence: ${app.id}/${material.symbol}`);
+  for(const key of materialSourceKeys(app,material))assert(sources[key],`Unknown material source: ${app.id}/${material.symbol}/${key}`);
+  assert(materialSymbols.has(material.symbol),`Application material must be a rare earth: ${material.symbol}`);
   assert(!symbols.has(material.symbol),'Each material is shown only once per application');
   symbols.add(material.symbol);applicationElements.add(material.symbol);
  }
@@ -82,5 +105,5 @@ for(const [scale,count]of Object.entries(expected)){assert.equal(coverageFeature
 assert.equal(new Set(coverage.features.map(f=>f.id)).size,coverage.features.length);
 for(const f of coverage.features){assert.equal(f.properties.SITUACAO,'Publicado');assert(Number(f.properties.ANO_MAPA)<=2025);assert(f.geometry.coordinates.length);}
 const snapshot=JSON.parse(read('dist/data-snapshot.json'));assert.deepEqual(snapshot.metrics,metrics);assert.equal(snapshot.mapping.scale100000,28);assert.deepEqual(snapshot.projectFacts,projectFacts);assert.equal(snapshot.mapping.polygons.features,874);
-for(const name of ['index.html','style.css','app.js','editorial.js','applications.js','applications.css','applications-data.js','supply-chain.js','supply-chain-data.js','supply-chain.css','mineral-comparisons.js','maps.js','vendor/d3.min.js','vendor/D3-LICENSE','assets/fonts/fonts.css'])assert(fs.existsSync(new URL('../dist/'+name,import.meta.url)));
+for(const name of ['index.html','style.css','app.js','editorial.js','applications.js','applications.css','applications-data.js','supply-chain.js','supply-chain-data.js','supply-chain.css','future.js','future-data.js','future.css','mineral-comparisons.js','maps.js','vendor/d3.min.js','vendor/D3-LICENSE','assets/fonts/fonts.css'])assert(fs.existsSync(new URL('../dist/'+name,import.meta.url)));
 console.log('Passed: source provenance, 17 indicators, null/zero semantics, grade conversion, resource classes, 27 states, 13 municipal references, D3 polygon winding, 874 published SGB sheets, time/scale filters, snapshot consistency and static assets.');

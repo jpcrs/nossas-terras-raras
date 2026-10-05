@@ -13,15 +13,18 @@ npm run dev
 
 Abra http://127.0.0.1:4174. `PORT=4180 npm run dev` usa outra porta. A publicação continua sendo inteiramente estática: basta servir `dist/` por HTTP. Não há backend, chamadas a APIs em tempo de execução, dependência de CDN ou etapa de build. D3 e fontes tipográficas estão incluídos com suas licenças.
 
+**Trabalho local:** por preferência do proprietário, não publicar no OpenAI Sites. Alterações e prévias devem permanecer locais, salvo nova solicitação explícita de publicação.
+
 ## Explorar
 
 - **Projetos e minerais:** sete registros em cinco referências municipais IBGE, seleção direta no mapa, zoom, fichas e fontes. Poços de Caldas reúne três registros independentes.
 - **Quanto conhecemos:** 874 polígonos oficiais do inventário SGB, com escalas 1:1.000.000, 1:250.000 e 1:100.000, sempre no recorte completo até 2025. As folhas são selecionadas diretamente no mapa, por clique ou teclado, para consultar a publicação e a fonte. As geometrias ficam recortadas ao Brasil.
 - **Tipos de depósito:** classificação dos projetos e seção conceitual de argilas iônicas ou sistemas de rocha/alteração.
 - **Comparações:** reservas versus produção, com a estimativa histórica de 21 Mt identificada, produção e reservas lado a lado para 12 minerais com pelo menos um valor disponível, seleção pelas células e exportação conjunta em CSV. Perfis sem valores nas duas séries (cobalto, urânio e titânio) não aparecem no seletor; o catálogo completo continua disponível nas fichas de aplicações e no JSON.
-- **Materiais e tecnologias:** um explorador integrado conecta terras raras a sete aplicações: carro elétrico, eólica, telas e vidros, fibra óptica, lasers, ligas e usos especiais. Selecionar um item mostra todos os materiais do recorte com explicações breves de uso. As fichas mantêm fontes e links para projetos no mapa; a referência completa dos 17 elementos fica em uma seção expansível.
+- **Materiais e tecnologias:** um explorador integrado reúne 15 aplicações auditadas em `research/APPLICATIONS-AUDIT-2026.md`. Os 78 cartões mostram apenas terras raras, com fontes do uso selecionado; exemplos históricos, etapas de fabricação e pesquisa ficam identificados. As contagens são recortes documentados, não composições universais. O seletor usa duas linhas com rolagem horizontal no celular e permite setas/Home/End no teclado.
 
 - **Da mina ao ímã:** perfis D3 de China e Estados Unidos na extração, no refino e na fabricação de ímãs. Seleção por clique ou teclado, escala comum de 0–100% e descrição acessível dos valores. CSV original da IEA (2024) preservado nos dados.
+- **Demanda por terras raras:** capítulo 05, depois da comparação brasileira (04). A projeção de mercado da Adamas Intelligence compara 234 mil t de óxidos de terras raras por ano em 2024 com 607 mil t em 2040: 2,6×, +159% e mais 373 mil t anuais. Usa somente os dois pontos publicados no relatório Songwe Hill de 2026, sem interpolação ou controles de cenários da IEA. O escopo é o mercado agregado de óxidos (TREO); não se afirma uma cobertura individual dos 17 elementos. Indicadores de motores elétricos, eólicas e robótica mantêm unidades e fontes próprias.
 
 ## Estrutura
 
@@ -30,6 +33,7 @@ Abra http://127.0.0.1:4174. `PORT=4180 npm run dev` usa outra porta. A publicaç
 - `dist/app.js`: gráficos, minerais, diálogos e exportação.
 - `dist/applications.js`, `dist/applications.css` e `dist/applications-data.js`: seleção de aplicações, lista de materiais com seus usos e referência de elementos.
 - `dist/supply-chain.js`, `dist/supply-chain.css` e `dist/supply-chain-data.js`: comparação da cadeia, detalhes por etapa e valores com proveniência.
+- `dist/future.js`, `dist/future.css` e `dist/future-data.js`: demanda global de óxidos e indicadores de aplicação; pontos publicados em `dist/assets/adamas-rare-earth-demand-2040.csv`.
 - `dist/data.js`: pesquisa original, fontes e unidades, preservadas.
 - `dist/mineral-comparisons.js`: pares de produção/reservas por mineral, lacunas explícitas e exportação CSV. Reutiliza as séries comparativas e os valores brasileiros já presentes nas fichas.
 - `dist/editorial.js`: valores estruturados de apresentação, classes de recursos e funções de filtragem.
@@ -40,7 +44,7 @@ Abra http://127.0.0.1:4174. `PORT=4180 npm run dev` usa outra porta. A publicaç
 ## Verificar e manter
 
 ```sh
-npm test                # integridade dos dados + 14 cenários de interação
+npm test                # integridade dos dados + cenários de interação
 npm run snapshot        # regera o download JSON após mudanças nos dados
 npm run check           # unidades, filtros, projeção e proveniência
 npm run vendor          # recopia o D3 e sua licença após atualizar a dependência
